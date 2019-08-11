@@ -285,7 +285,7 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/08/09/web安全笔记总结-1/" itemprop="url">
+	<a href="/2019/08/09/web安全基础笔记总结/" itemprop="url">
 		web安全笔记总结[1]
 	</a>
 
@@ -299,7 +299,7 @@
 
 	发布于
 
-	<a href="/2019/08/09/web安全笔记总结-1/" itemprop="url">
+	<a href="/2019/08/09/web安全基础笔记总结/" itemprop="url">
 		<time datetime="2019-08-09T13:43:46.000Z" itemprop="datePublished">
 	  		2019-08-09
 	  </time>
@@ -317,9 +317,9 @@
 
 	更新于
 
-	<a href="/2019/08/09/web安全笔记总结-1/" itemprop="url">
+	<a href="/2019/08/09/web安全基础笔记总结/" itemprop="url">
 		<time datetime="2019-08-09T13:43:46.000Z" itemprop="dateUpdated">
-	  		2019-08-10
+	  		2019-08-11
 	  </time>
 	</a> 
 
@@ -344,7 +344,7 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h1 id="【1】web安全笔记基础总结"><a href="#【1】web安全笔记基础总结" class="headerlink" title="【1】web安全笔记基础总结"></a>【1】web安全笔记基础总结</h1><h3 id="Kali-Linux基本配置及相关指令"><a href="#Kali-Linux基本配置及相关指令" class="headerlink" title="Kali-Linux基本配置及相关指令"></a>Kali-Linux基本配置及相关指令</h3><p>更换系统源  </p>
+		<h1 id="web安全基础笔记总结"><a href="#web安全基础笔记总结" class="headerlink" title="web安全基础笔记总结"></a>web安全基础笔记总结</h1><h3 id="Kali-Linux基本配置及相关指令"><a href="#Kali-Linux基本配置及相关指令" class="headerlink" title="Kali-Linux基本配置及相关指令"></a>Kali-Linux基本配置及相关指令</h3><p>更换系统源  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* #aliyun 阿里云  ##推荐阿里云</span><br><span class="line">* deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">* deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">* # ustc 中科大</span><br><span class="line">* deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">* deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">* #deb http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free</span><br><span class="line">* #deb-src http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free</span><br><span class="line">* # kali 官方源</span><br><span class="line">* deb http://http.kali.org/kali kali-rolling main non-free contrib</span><br><span class="line">* deb-src http://http.kali.org/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
 
 <p>更新</p>
@@ -604,12 +604,12 @@
 <p>（1.）8种请求类型介绍</p>
 <p>1.GET 向特定的资源发出请求</p>
 <p>2.POST 向指定的资源提交数据进行请求，数据包含在请求体内，POST请求可能会导致新资源的创建和已有资源的更改。</p>
-<p>3.OPITONS 返回服务器针对特定资源所支持的HTTP请求方法。 options </p>
-<p>4.HEAD 向服务器索要与GET请求相一致的响应，只不过响应体不会被返回。 head </p>
-<p>5.PUT 向指定资源位置上传其最新内容。 put </p>
-<p>6.DELETE 请求服务器删除Request-URL所标识的资源。 delete</p>
-<p>7.TRACE 回显服务器收到的请求，主要用于测试或诊断。 trace</p>
-<p>8.CONNECT HTTP/1.1协议中预留给能将连接改为管道方式的代理服务器。 connect</p>
+<p>3.OPITONS 返回服务器针对特定资源所支持的HTTP请求方法。 </p>
+<p>4.HEAD 向服务器索要与GET请求相一致的响应，只不过响应体不会被返回。 </p>
+<p>5.PUT 向指定资源位置上传其最新内容。</p>
+<p>6.DELETE 请求服务器删除Request-URL所标识的资源。 </p>
+<p>7.TRACE 回显服务器收到的请求，主要用于测试或诊断。 </p>
+<p>8.CONNECT HTTP/1.1协议中预留给能将连接改为管道方式的代理服务器。 </p>
 <p>（2.）http请求响应原理</p>
 <p>1.客户端与服务端建立连接 tcp三次握手</p>
 <p>2.客户端发送一个请求给服务器</p>
@@ -620,8 +620,8 @@
 <p>2.发起tcp三次握手 </p>
 <p>3.建立tcp连接后发起http请求 </p>
 <p>4.服务器段响应http请求,浏览器得到html代码</p>
-<p>5.浏览器解析html代码，并请求html代码中的资源6.浏览器对页面进行渲染呈现给用户（</p>
-<p>4.）http请求报文</p>
+<p>5.浏览器解析html代码，并请求html代码中的资源6.浏览器对页面进行渲染呈现给用户</p>
+<p>（4.）http请求报文</p>
 <p>1.请求行 （方法字段、URL字段、http版本协议）</p>
 <p>2.请求头部 </p>
 <p>3.空行 （\r\n 告诉服务器请求头部到此为止）</p>
@@ -951,6 +951,8 @@
 <td>服务器不支持请求的HTTP协议的版本，无法完成处理</td>
 </tr>
 </tbody></table>
+<p>未完待续……</p>
+<p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
 	
 	</div>
 	
@@ -969,6 +971,10 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
+			<a href="/2019/08/11/渗透测试中的信息收集/" title="渗透测试中的信息收集" rel="prev">
+				&laquo;上一篇
+			</a>
+		
 			
 	</span>
 
@@ -983,7 +989,62 @@
 
 <div class="relate-post">
 	
-		<div>Please check the post_relate setting in config.yml of hexo-theme-Annie! You should make sure 'postsEnable == true' and the number of site posts greater than 1.</div>	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/08/11/渗透测试中的杀伤利器/" title="渗透测试中的杀伤利器">
+								渗透测试中的杀伤利器			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 11日, 2019				
+							</p>
+							<p class="relate-post-content">
+								BurpHttps证书配置：
+burp官网下载CA证书，浏览器设置配置，导入证书机构勾选服务权限进行抓包。
+
+
+BurpSuite 模块介绍：
+
+targer 显示历史站点 收入到scope中 可特别显示
+spider 爬虫  右键s...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/08/11/渗透测试中的杀伤利器/" title="渗透测试中的杀伤利器">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="渗透测试中的杀伤利器"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/08/11/渗透测试中的信息收集/" title="渗透测试中的信息收集">
+								渗透测试中的信息收集			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 11日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/08/11/渗透测试中的信息收集/" title="渗透测试中的信息收集">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="渗透测试中的信息收集"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
 	
 </div>	
 			</div>
