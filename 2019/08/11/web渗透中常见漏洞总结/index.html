@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      渗透测试中的杀伤利器 | 能同途偶遇在这星球上，我多么够运
+      web渗透中常见漏洞总结 | 能同途偶遇在这星球上，我多么够运
     
   </title>
   <meta name="author" content="Hades">
@@ -164,7 +164,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《渗透测试中的杀伤利器》
+			当前文章&nbsp;:&nbsp;《web渗透中常见漏洞总结》
 		
 	</p>
 
@@ -285,8 +285,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/08/11/渗透测试中的杀伤利器/" itemprop="url">
-		渗透测试中的杀伤利器
+	<a href="/2019/08/11/web渗透中常见漏洞总结/" itemprop="url">
+		web渗透中常见漏洞总结
 	</a>
 
 	</div>
@@ -299,8 +299,8 @@
 
 	发布于
 
-	<a href="/2019/08/11/渗透测试中的杀伤利器/" itemprop="url">
-		<time datetime="2019-08-11T02:44:24.000Z" itemprop="datePublished">
+	<a href="/2019/08/11/web渗透中常见漏洞总结/" itemprop="url">
+		<time datetime="2019-08-11T02:45:33.000Z" itemprop="datePublished">
 	  		2019-08-11
 	  </time>
 	</a>
@@ -317,8 +317,8 @@
 
 	更新于
 
-	<a href="/2019/08/11/渗透测试中的杀伤利器/" itemprop="url">
-		<time datetime="2019-08-11T02:44:24.000Z" itemprop="dateUpdated">
+	<a href="/2019/08/11/web渗透中常见漏洞总结/" itemprop="url">
+		<time datetime="2019-08-11T02:45:33.000Z" itemprop="dateUpdated">
 	  		2019-08-11
 	  </time>
 	</a> 
@@ -344,127 +344,35 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h3 id="Burp"><a href="#Burp" class="headerlink" title="Burp"></a>Burp</h3><p>Https证书配置：</p>
-<p>burp官网下载CA证书，浏览器设置配置，导入证书机构勾选服务权限进行抓包。</p>
-<p><img src="D:%5CGit%5CBlog%5Chexo%5Csource_posts%5C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%E6%9D%80%E4%BC%A4%E5%88%A9%E5%99%A8%5C1.png" alt="1"></p>
-<p><img src="D:%5CGit%5CBlog%5Chexo%5Csource_posts%5C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%E6%9D%80%E4%BC%A4%E5%88%A9%E5%99%A8%5C2.png" alt="2"></p>
-<p>BurpSuite 模块介绍：</p>
-<ul>
-<li>targer 显示历史站点 收入到scope中 可特别显示</li>
-<li>spider 爬虫  右键send to spider </li>
-<li>scanner 扫描 静态扫描/动态扫描</li>
-<li>extender 插件 java/ruby/python</li>
-<li>comparer 比较 对收集的数据包进行比较</li>
-<li>repeater 复现 方便对收集的数据包进行更改以及查看更改后的结果</li>
-<li>sequencer 计数器 cookie伪造 可以对网站cookie的复杂度进行分析</li>
-<li>intruder 攻击</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sniper模式</th>
-<th>Battering ram模式</th>
-<th>Pitchfork模式</th>
-<th>Clusterbomd模式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>一个变量单一匹配爆破</td>
-<td>一个变量重复匹配爆破</td>
-<td>两个变量单一匹配爆破</td>
-<td>两个变量交叉匹配爆破</td>
-</tr>
-</tbody></table>
-<p>Payload的几种模式</p>
-<p>simple list 简单表单</p>
-<p>runtime file  文件字典</p>
-<p>case modification 大小写改变</p>
-<p>number 自动生成数字</p>
-<p>date 日期</p>
-<p>brute forcer 暴力枚举</p>
-<p>null payloads  空payloads</p>
-<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>nmap 【空格】 【选项|多选项|协议】 空格 目标 masscan 快速扫描端口</p>
-<p>nmap支持的协议和对应编号：</p>
-<p>（1.）TCP    6（2.）ICMP  1（3.）igmp  2（4.）udp   17</p>
-<p>可指定协议向目标主机发送数据包判断目标主机是否在线。</p>
-<p>1.-A 全面扫描  2.ip/20 扫描网段 3.-p 端口 指定端口扫描 4.-v 查看版本 5.-sP ping扫描 6.P0 无ping扫描 </p>
-<p>7.nmap -PS tcp syn ping扫描  -v显示过程 8.-PA tcp ack ping扫描 9. -PU udp</p>
-<p>8.-PE  icmp -PP icmp时间戳 -PM icmp地址掩码</p>
-<p>9.-PR  ARP扫描 10.-PY  SCTP init ping扫描 11.-n  禁止dns反向解析 12.-R  反向域名解析</p>
-<p>13.–system-dns 使用系统域名解析器 14.-sL 列表扫描 15.-6 扫描tpv6地址 17.–traceroute 路由跟踪</p>
-<p>15.-F 快速扫描端口，扫描有限的端口 16.-r 随机扫描 17.–top-ports 数量（默认高危端口数量）</p>
-<p>18.-sS tcp syn 扫描 19.-sT TCP连接扫描 最稳定的扫描方式 20.-sU udp扫描  非常缓慢</p>
-<p>21.-sN 空扫描  22.-sF fin扫描 使用tcp syn 扫描被防火墙拦截后 使用fin扫描穿透防火墙</p>
-<p>22.-sA  tcp ack扫描 不能确定端口是开放还是被过滤</p>
-<p>端口状态：</p>
-<p>open   close   </p>
-<p>filtered 防火墙过滤或者网络堵塞  unfitered 未被过滤，端口可访问 但是无法判断开发还是关闭</p>
-<p>open|fitered 开放还是过滤    close|fitered 不能确定是关闭还是被过滤 只可能出现在ipid idle</p>
-<p>时序选项：</p>
-<p>使用-T（0-5）启动时序扫描</p>
-<p>-T0 慢  -T1 缓慢 -T2 降低速度 -T3 根据目标自动调整 -T4 野蛮的 -T5 疯狂的 急速扫描</p>
-<p>指纹识别：</p>
-<p>1.-sV 版本探测 </p>
-<p>2.-sV –allports nmap默认跳过9100tcp端口 只有使用–allports 才可以扫描所有端口   </p>
-<p>3.-version-intensity 0-9 扫描强度设置 默认7  –version-light 2 –version-all 9</p>
-<p>4.–version-trace 获取详细版本信息</p>
-<p>5.-sS -sR rpc扫描 扫描对所以被发现开发的tcp/udp端口执行sunrpc程序null命令来确定是否为rpc端口，是则返回程序和版本号</p>
-<p>6.-O 启用操作系统扫描 </p>
-<p>7.–osscan-limit 对指定的目标进行操作系统检测 –osscan-guess 推测系统并识别</p>
-<p>结果输出：</p>
-<p>nmap -F -oN text.txt IP地址 标准保存txt</p>
-<p>-oX  xml保存  -oS  133t保存  -oG  grep保存  -oA  所有格式保存  –append-output -oN 补充保存文件</p>
-<p>脚本引擎：</p>
-<p>–script=类别这种方式 脚本目录/usr/share/nmap/scriptnmap </p>
-<p>防火墙欺骗：</p>
-<p>-f        报文分段</p>
-<p>–mtu 指定偏移大小 设置输出数据包时的最大传输大小 8的倍数</p>
-<p>-D      ip欺骗nmap </p>
-<p>-D 【dacoy1，docoy2…|RND:number】【目标】</p>
-<p>使用-D选项可以指定多个ip地址 或使用rnd 随机生成几个ip地址 </p>
-<p>源地址欺骗-sL 地址</p>
-<p>源端口欺骗 –source-port 端口 IP地址</p>
-<p>指定发包长度–date-length</p>
-<p>mac地址欺骗–spoof-mac 参数 0随机 MAC Address用户手动指定 Vendor Name指定厂商生成 </p>
-<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><p>-v 查看过程 七个顶级 默认1 </p>
-<p>-u 或-url  目标url 可直接查看目标网站是否具有注入</p>
-<p>-l   可以导入burp proxy中的日志</p>
-<p>-m 将文本中的url以此检测 可将多个目标网站url保存文本文件进行注入判断</p>
-<p>-r   从一个文本中获取http请求 可以跳过设置一些参数 可以使用burp抓包 用于对需要cookie的网站</p>
-<p>-r -force-ssl  https 或者在数据包文件中设置端口443</p>
-<p>–data 允许把数据以post请求发生 参数加引号参数 </p>
-<p>-cookie -load-cookies -drop-set-cookie  对于不采用-r 请求网站报文文件 但是需要cookie的 可以设置cookie值</p>
-<p>-user-agent，-random-agent 设置伪造http请求头中user-agent值</p>
-<p>-referer    设置位置请求中的http头的referer 当-lever参数设定为3或者为3以上的时候会尝试referer或user-angent注入</p>
-<p>-headers  额外的http头  可以通过-headers参数增加额外的https</p>
-<p>-delay      http请求延迟  可以设定两个http（s）请求间的延迟 默认没有延迟</p>
-<p>-timeout   设定超时时间  设置一个http（s）请求超过多少时间判断为超时 默认30秒</p>
-<p>-retries    设置重试超时  当http（s）超时时，可以设置重新尝试连接次数 默认3次</p>
-<p>-eval      每次请求时候执行自定义的python代码</p>
-<p>-p   手动设置想要测试的参数  -skip    手动设置不想要测试的参数   -dbms    指定数据库</p>
-<p>-os  指定数据库服务器系统    -invalid-bignum   指定无效的大数字    报错注入时使用</p>
-<p>-prefix -suffix     在payload 前后加字符    </p>
-<p>-level    五个等级  使用的payload 在xml/payloads.xml中可以看到 默认为1</p>
-<p>-risk     四个风险等级 </p>
-<p>1测试大部分语句        2会增加基于事件的测试语句         3会增加or语句的sql注入测试</p>
-<p>-time-sec        设定延迟注入的时间      默认5秒</p>
-<p>-union-cols     设定union查询字段数   默认1-10 </p>
-<p>-b -banner     返回数据库的版本号 通常是函数version（） 或者变量@@version</p>
-<p>-current-user 在大多数数据库中可以获取到数据库的用户</p>
-<p>-current-db    返回当前连接的数据库</p>
-<p>-is-dba           用户是否为管理 返回true</p>
-<p>–users           列出数据库用户</p>
-<p>-password     列出并破解数据库用户的hash</p>
-<p>-privileges     列出数据库管理员权限</p>
-<p>–roles           列出数据库管理员角色</p>
-<p>-dbs              列出系统数据库</p>
-<p>-dump -C -T -D 列出整个表的数据</p>
-<p>-dump-all      获取所以数据库表的内容</p>
-<p>-sql-query -sql-shell 运行自定义的sql语句</p>
-<p>-schema -exclude-sysdbs 列出数据库系统的架构</p>
-<p>-count   取表中数据的个数</p>
-<p>-tables -exclude-sysdbs -D 列出数据库表</p>
-<p>-columns -C -T -D  列出数据库表中的字段</p>
+		<p>web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！</p>
+<p>总结就当是加深印象吧！</p>
+<h4 id="第一大漏洞：Sql注入"><a href="#第一大漏洞：Sql注入" class="headerlink" title="第一大漏洞：Sql注入"></a>第一大漏洞：Sql注入</h4><p>参见另一篇 <a href="SQL注入.md">SQL注入.md</a> 。</p>
+<h4 id="第二大漏洞：Xss跨站脚本"><a href="#第二大漏洞：Xss跨站脚本" class="headerlink" title="第二大漏洞：Xss跨站脚本"></a>第二大漏洞：Xss跨站脚本</h4><p>使用到的技术主要为HTML javascript vbscript actionscript</p>
+<p>1.xss分类</p>
+<p>反射性xss     构造在网址的某个get参数的值里</p>
+<p>存储性xss     每次访问该页面都触发xss DOM型        </p>
+<p>客户端dommXSS          </p>
+<p>突变型xssuXSS            </p>
+<p>通用性xssflasc XSSutf-7 xssmhtml xsscss xssvbscript xss</p>
+<p>2.xss的危害:</p>
+<p>钓鱼欺骗  网站挂马  身份盗用 xss盗取cookie:（寻找留言处  插入payload  获得cookie 登录后台）</p>
+<p>盗取网站用户信息  垃圾信息发送   劫持用户web行为  xss蠕虫</p>
+<p>3.xss测试、绕过</p>
+<p>（1.）测试</p>
+<p>手工测试  拆分跨站法  批量测试  短信处测试  xss-getshell emlog-xss 漏洞getshell</p>
+<p>工具测试：brutexss   xsser     ezxss</p>
+<p>（2.）绕过：</p>
+<p>利用&lt;&gt;标记  利用html标签属性值  空格回车tab  对标签属性值转码  产生自己的时间  利用css跨站  扰乱过滤规则</p>
+<h4 id="第三大漏洞：Csrf"><a href="#第三大漏洞：Csrf" class="headerlink" title="第三大漏洞：Csrf"></a>第三大漏洞：Csrf</h4><p>1.攻击方法：</p>
+<p>Forms ：创建一个form表单，内容为隐藏，用户不可见（可post，get）</p>
+<p>iFrame：创建一个iframe框架，高度为0， 用户不可见（可post，get）</p>
+<p>img：创建一个img标签（只能get）</p>
+<p>XHR：创建一个ajax请求（可post，get） 有跨域限制</p>
+<p>Link：创建一个a标签的超链接（只能get）</p>
+<p>2.csrf挖掘</p>
+<p>目标表单是否有有效的token随机串</p>
+<p>目标表单是否有验证码目标是否判断了referer来源</p>
+<p>网站根目录下crossdomain.xml的“allow-access-from domain”是否是通配符</p>
 <p>未完待续……</p>
 <p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
 	
@@ -485,12 +393,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/08/11/web渗透中常见漏洞总结/" title="web渗透中常见漏洞总结" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/08/11/渗透测试中的信息收集/" title="渗透测试中的信息收集" rel="next">
+			<a href="/2019/08/11/渗透测试中的杀伤利器/" title="渗透测试中的杀伤利器" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -511,25 +415,29 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/08/11/web渗透中常见漏洞总结/" title="web渗透中常见漏洞总结">
-								web渗透中常见漏洞总结			
+							<a class="relate-post-title" href="/2019/08/11/渗透测试中的杀伤利器/" title="渗透测试中的杀伤利器">
+								渗透测试中的杀伤利器			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
 								八月 11日, 2019				
 							</p>
 							<p class="relate-post-content">
-								web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！
-总结就当是加深印象吧！
-第一大漏洞：Sql注入参见另一篇 SQL注入.md 。
-第二大漏洞：Xss跨站脚本使用到的技术主要为HTML javascript vbscrip...
+								BurpHttps证书配置：
+burp官网下载CA证书，浏览器设置配置，导入证书机构勾选服务权限进行抓包。
+
+
+BurpSuite 模块介绍：
+
+targer 显示历史站点 收入到scope中 可特别显示
+spider 爬虫  右键s...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/08/11/web渗透中常见漏洞总结/" title="web渗透中常见漏洞总结">				
+							<a href="/2019/08/11/渗透测试中的杀伤利器/" title="渗透测试中的杀伤利器">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="web渗透中常见漏洞总结"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="渗透测试中的杀伤利器"/>
 							</a>
 						</div>
 					</li>											
