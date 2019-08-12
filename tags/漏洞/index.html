@@ -1,136 +1,186 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hades</title>
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url()">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>Hades</div>
-        
-        <ul>
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-    </section>
-</aside>
-
-    <div class="container">
-        <div data-pager-shell>
-            <ul class="Index">
-  
-    <header class='PageTitle'>
-        <h1>{ 漏洞 }</h1>
-    </header>
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2019/08/11/web渗透中常见漏洞总结/">web渗透中常见漏洞总结</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2019-08-11T02:45:33.000Z" itemprop="datePublished">
-    2019-08-11
-  </time>
-  
-  | 
-  <ul>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-  <li class="meta-text">
-  { <a href="/tags/漏洞/">漏洞</a> }
-  </li>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
 
 
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <p>web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！</p>
-<p>总结就当是加深印象吧！</p>
-<h4 id="第一大漏洞：Sql注入"><a href="#第一大漏洞：Sql注入" class="headerlink" title="第一大漏洞：Sql注入"></a>第一大漏洞：Sql注入</h4><p>参见另一篇 <a href="SQL注入.md">SQL注入.md</a> 。</p>
-<h4 id="第二大漏洞：Xss跨站脚本"><a href="#第二大漏洞：Xss跨站脚本" class="headerlink" title="第二大漏洞：Xss跨站脚本"></a>第二大漏洞：Xss跨站脚本</h4><p>使用到的技术主要为HTML javascript vbscript actionscript</p>
-<p>1.xss分类</p>
-<p>反射性xss     构造在网址的某个get参数的值里</p>
-<p>存储性xss     每次访问该页面都触发xss DOM型        </p>
-<p>客户端dommXSS          </p>
-<p>突变型xssuXSS            </p>
-<p>通用性xssflasc XSSutf-7 xssmhtml xsscss xssvbscript xss</p>
-<p>2.xss的危害:</p>
-<p>钓鱼欺骗  网站挂马  身份盗用 xss盗取cookie:（寻找留言处  插入payload  获得cookie 登录后台）</p>
-<p>盗取网站用户信息  垃圾信息发送   劫持用户web行为  xss蠕虫</p>
-<p>3.xss测试、绕过</p>
-<p>（1.）测试</p>
-<p>手工测试  拆分跨站法  批量测试  短信处测试  xss-getshell emlog-xss 漏洞getshell</p>
-<p>工具测试：brutexss   xsser     ezxss</p>
-<p>（2.）绕过：</p>
-<p>利用&lt;&gt;标记  利用html标签属性值  空格回车tab  对标签属性值转码  产生自己的时间  利用css跨站  扰乱过滤规则</p>
-<h4 id="第三大漏洞：Csrf"><a href="#第三大漏洞：Csrf" class="headerlink" title="第三大漏洞：Csrf"></a>第三大漏洞：Csrf</h4><p>1.攻击方法：</p>
-<p>Forms ：创建一个form表单，内容为隐藏，用户不可见（可post，get）</p>
-<p>iFrame：创建一个iframe框架，高度为0， 用户不可见（可post，get）</p>
-<p>img：创建一个img标签（只能get）</p>
-<p>XHR：创建一个ajax请求（可post，get） 有跨域限制</p>
-<p>Link：创建一个a标签的超链接（只能get）</p>
-<p>2.csrf挖掘</p>
-<p>目标表单是否有有效的token随机串</p>
-<p>目标表单是否有验证码目标是否判断了referer来源</p>
-<p>网站根目录下crossdomain.xml的“allow-access-from domain”是否是通配符</p>
-<p>未完待续……</p>
-<p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-</ul>
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-            <footer>
-    <div>© 2019 - Hades </div>
-    <div>
-        <span>
-            Powered by <a href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
-    </div>
-</footer>
 
-        </div>
-    </div>
-</div>
-<script src="/js/pager/dist/singlepager.js"></script>
-<script>
-var sp = new Pager('data-pager-shell')
 
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/tags/漏洞/">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hades">
+<meta property="og:url" content="http://yoursite.com/tags/漏洞/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hades">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
 </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+
+
+
+  
+
+
+
+    <title>
+  
+    漏洞 - Hades
+  
+</title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+  
+<div id="primary">
+  <section id="archive" class="archive">
+    
+      
+        <div class="archive-title tag">
+          <h2 class="archive-name">漏洞</h2>
+        </div>
+      
+    
+
+    
+      
+
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2019-08-11
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2019/08/11/web渗透中常见漏洞总结/" class="archive-post-link">
+            web渗透中常见漏洞总结
+          </a>
+        </span>
+      </div>
+    
+  </section>
+ </div>
+
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+
+
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

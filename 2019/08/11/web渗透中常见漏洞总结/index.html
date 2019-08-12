@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="web渗透中常见漏洞总结">
+
+
+
+
+  <meta name="keywords" content="漏洞,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/11/web渗透中常见漏洞总结/">
+
+
+<meta name="description" content="web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！ 总结就当是加深印象吧！ 第一大漏洞：Sql注入参见另一篇 SQL注入.md 。 第二大漏洞：Xss跨站脚本使用到的技术主要为HTML javascript vbscript actionscript 1.xss分类 反射性xss     构造在网址的某个get参数的值里 存储性xss     每次访问该页面都触发xss DOM型">
+<meta name="keywords" content="漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web渗透中常见漏洞总结">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/web渗透中常见漏洞总结/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！ 总结就当是加深印象吧！ 第一大漏洞：Sql注入参见另一篇 SQL注入.md 。 第二大漏洞：Xss跨站脚本使用到的技术主要为HTML javascript vbscript actionscript 1.xss分类 反射性xss     构造在网址的某个get参数的值里 存储性xss     每次访问该页面都触发xss DOM型">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-12T04:10:23.404Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web渗透中常见漏洞总结">
+<meta name="twitter:description" content="web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！ 总结就当是加深印象吧！ 第一大漏洞：Sql注入参见另一篇 SQL注入.md 。 第二大漏洞：Xss跨站脚本使用到的技术主要为HTML javascript vbscript actionscript 1.xss分类 反射性xss     构造在网址的某个get参数的值里 存储性xss     每次访问该页面都触发xss DOM型">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> web渗透中常见漏洞总结 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          web渗透中常见漏洞总结
+        
+      </h1>
+
+      <time class="post-time">
+          8月 11 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>web端的漏洞并没有多少，但是发挥到极致也能打出一刀999啊！</p>
+<p>总结就当是加深印象吧！</p>
+<h4 id="第一大漏洞：Sql注入"><a href="#第一大漏洞：Sql注入" class="headerlink" title="第一大漏洞：Sql注入"></a>第一大漏洞：Sql注入</h4><p>参见另一篇 <a href="SQL注入.md">SQL注入.md</a> 。</p>
+<h4 id="第二大漏洞：Xss跨站脚本"><a href="#第二大漏洞：Xss跨站脚本" class="headerlink" title="第二大漏洞：Xss跨站脚本"></a>第二大漏洞：Xss跨站脚本</h4><p>使用到的技术主要为HTML javascript vbscript actionscript</p>
+<p>1.xss分类</p>
+<p>反射性xss     构造在网址的某个get参数的值里</p>
+<p>存储性xss     每次访问该页面都触发xss DOM型        </p>
+<p>客户端dommXSS          </p>
+<p>突变型xssuXSS            </p>
+<p>通用性xssflasc XSSutf-7 xssmhtml xsscss xssvbscript xss</p>
+<p>2.xss的危害:</p>
+<p>钓鱼欺骗  网站挂马  身份盗用 xss盗取cookie:（寻找留言处  插入payload  获得cookie 登录后台）</p>
+<p>盗取网站用户信息  垃圾信息发送   劫持用户web行为  xss蠕虫</p>
+<p>3.xss测试、绕过</p>
+<p>（1.）测试</p>
+<p>手工测试  拆分跨站法  批量测试  短信处测试  xss-getshell emlog-xss 漏洞getshell</p>
+<p>工具测试：brutexss   xsser     ezxss</p>
+<p>（2.）绕过：</p>
+<p>利用&lt;&gt;标记  利用html标签属性值  空格回车tab  对标签属性值转码  产生自己的时间  利用css跨站  扰乱过滤规则</p>
+<h4 id="第三大漏洞：Csrf"><a href="#第三大漏洞：Csrf" class="headerlink" title="第三大漏洞：Csrf"></a>第三大漏洞：Csrf</h4><p>1.攻击方法：</p>
+<p>Forms ：创建一个form表单，内容为隐藏，用户不可见（可post，get）</p>
+<p>iFrame：创建一个iframe框架，高度为0， 用户不可见（可post，get）</p>
+<p>img：创建一个img标签（只能get）</p>
+<p>XHR：创建一个ajax请求（可post，get） 有跨域限制</p>
+<p>Link：创建一个a标签的超链接（只能get）</p>
+<p>2.csrf挖掘</p>
+<p>目标表单是否有有效的token随机串</p>
+<p>目标表单是否有验证码目标是否判断了referer来源</p>
+<p>网站根目录下crossdomain.xml的“allow-access-from domain”是否是通配符</p>
+<p>未完待续……</p>
+<p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/漏洞/">漏洞</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/08/12/基于centos的linux学习/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">基于centos的linux学习</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/08/11/渗透测试中的杀伤利器/">
+        <span class="next-text nav-default">渗透测试中的杀伤利器</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
