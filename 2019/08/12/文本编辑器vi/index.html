@@ -35,18 +35,18 @@
 <link rel="canonical" href="http://yoursite.com/2019/08/12/文本编辑器vi/">
 
 
-<meta name="description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline i 插入命令 a附加命令 o打开命令 c修改命令 r取代命名 s替代命令">
+<meta name="description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline 普通模式下的操作   命令 说明 命令 说明    i 从光标所在位置前开始插入文本 I 将光标移到当前行的行首，在其前面插入文本   a 用于在光标当前所在位置之后追加新文本 A 将光标移到当前行的行尾，在后面插入文本   o 将在光标所在行的下面新开一行，置于该行行首 O 将在光标所在行的上面新开一行，置于该行">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文本编辑器vi">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/文本编辑器vi/index.html">
 <meta property="og:site_name" content="Hades">
-<meta property="og:description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline i 插入命令 a附加命令 o打开命令 c修改命令 r取代命名 s替代命令">
+<meta property="og:description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline 普通模式下的操作   命令 说明 命令 说明    i 从光标所在位置前开始插入文本 I 将光标移到当前行的行首，在其前面插入文本   a 用于在光标当前所在位置之后追加新文本 A 将光标移到当前行的行尾，在后面插入文本   o 将在光标所在行的下面新开一行，置于该行行首 O 将在光标所在行的上面新开一行，置于该行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-12T13:05:58.369Z">
+<meta property="og:updated_time" content="2019-08-13T06:05:12.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文本编辑器vi">
-<meta name="twitter:description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline i 插入命令 a附加命令 o打开命令 c修改命令 r取代命名 s替代命令">
+<meta name="twitter:description" content="Vi的3种运行模式普通模式normal 插入模式insert 命令行cmdline 普通模式下的操作   命令 说明 命令 说明    i 从光标所在位置前开始插入文本 I 将光标移到当前行的行首，在其前面插入文本   a 用于在光标当前所在位置之后追加新文本 A 将光标移到当前行的行尾，在后面插入文本   o 将在光标所在行的下面新开一行，置于该行行首 O 将在光标所在行的上面新开一行，置于该行">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -135,7 +135,146 @@
             <h3 id="Vi的3种运行模式"><a href="#Vi的3种运行模式" class="headerlink" title="Vi的3种运行模式"></a>Vi的3种运行模式</h3><p>普通模式normal</p>
 <p>插入模式insert</p>
 <p>命令行cmdline</p>
-<p>i 插入命令 a附加命令 o打开命令 c修改命令 r取代命名 s替代命令</p>
+<h3 id="普通模式下的操作"><a href="#普通模式下的操作" class="headerlink" title="普通模式下的操作"></a>普通模式下的操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>从光标所在位置前开始插入文本</td>
+<td>I</td>
+<td>将光标移到当前行的行首，在其前面插入文本</td>
+</tr>
+<tr>
+<td>a</td>
+<td>用于在光标当前所在位置之后追加新文本</td>
+<td>A</td>
+<td>将光标移到当前行的行尾，在后面插入文本</td>
+</tr>
+<tr>
+<td>o</td>
+<td>将在光标所在行的下面新开一行，置于该行行首</td>
+<td>O</td>
+<td>将在光标所在行的上面新开一行，置于该行行首</td>
+</tr>
+<tr>
+<td>G</td>
+<td>将光标移至最后一行的行首</td>
+<td>$</td>
+<td>移动到光标所在行的行尾</td>
+</tr>
+<tr>
+<td>nG</td>
+<td>光标移至第n行首</td>
+<td>n/rc</td>
+<td>用字符c替换光标所指向的当前/前n个字符</td>
+</tr>
+<tr>
+<td>n/x</td>
+<td>删除光标处的/向右的n个字符</td>
+<td>n/dd</td>
+<td>删除光标所在的整/当前及后n-1行</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>将当前行的内容复制到缓冲区</td>
+<td>p</td>
+<td>将缓冲区的内容写到光标所在位置</td>
+</tr>
+<tr>
+<td>/str</td>
+<td>往右移动到有str的地方</td>
+<td>n</td>
+<td>向相同的方向移动到有str的地方</td>
+</tr>
+<tr>
+<td>?str</td>
+<td>往左移动到有str的地方</td>
+<td>N</td>
+<td>向相反的方向移动到有str的地方</td>
+</tr>
+<tr>
+<td>u</td>
+<td>取消前一次的误操作</td>
+<td>.</td>
+<td>再执行一次前面刚完成的某个命令</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>存盘退出</td>
+<td>ZQ</td>
+<td>不保存退出</td>
+</tr>
+</tbody></table>
+<h3 id="命令模式下的操作"><a href="#命令模式下的操作" class="headerlink" title="命令模式下的操作"></a>命令模式下的操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:n</td>
+<td>跳转到指定行</td>
+<td>:/str/w file</td>
+<td>将包含有str的行写到文件file中</td>
+</tr>
+<tr>
+<td>:s/str1/str2/g c</td>
+<td>将找到的第一个str1替换为str2<br>g所有替换   c替换询问</td>
+<td>：n1，n2 co/m n3</td>
+<td>将从n1开始到n2为止的所以内容复制/移动到n3后面</td>
+</tr>
+<tr>
+<td>:d</td>
+<td>删除当前行</td>
+<td>:w /file</td>
+<td>将当前编辑的内容存盘 / 写到file中</td>
+</tr>
+<tr>
+<td>:r file</td>
+<td>打开另一个文件file</td>
+<td>:e file</td>
+<td>新建file文件</td>
+</tr>
+<tr>
+<td>:f file</td>
+<td>把当前文件改名为file文件</td>
+<td>:!Cmd</td>
+<td>运行shell命令cmd</td>
+</tr>
+<tr>
+<td>:n1,n2 w ! Cmd</td>
+<td>将n1到n2行的内容作为cmd命令输入，不指定整个文件全部输入</td>
+<td>:r ! Cmd</td>
+<td>将命令运行的结果写入当前行位置</td>
+</tr>
+<tr>
+<td>:set autuindent /noautoindent</td>
+<td>缩进/取消缩进</td>
+<td>:set number /nonumber</td>
+<td>编辑时显示行号/取消显示</td>
+</tr>
+<tr>
+<td>:set ruler /noruler</td>
+<td>显示光标所在行列位置/取消显示</td>
+<td>:set tabstop=value</td>
+<td>设置显示制表符的空格字符个数</td>
+</tr>
+<tr>
+<td>:set wrapmargin=value</td>
+<td>设置显示器的右边页，自动换行</td>
+<td>:set / all</td>
+<td>显示设置的所以选项/显示所有可以设置的选项</td>
+</tr>
+</tbody></table>
 
             </div>
           

