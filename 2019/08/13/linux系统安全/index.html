@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="linux系统安全">
+
+
+
+
+  <meta name="keywords" content="liunx,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/13/linux系统安全/">
+
+
+<meta name="description" content="1.Linux环境下的账户系统文件/etc/passwd/etc/passwd文件中每行定义一个用户账户，一行中又划分为多个字段定义用户账户的不同属性，各字段间用”:’’分割。任意用户可读。     字段 说明    用户名 用户登录系统时使用的用户名，在系统中唯一。   口令 存放加密的口令，x表示用户的口令是被/etc/shadow文件保护的。   用户标识符 是一个整数，系统内部用它来标识用">
+<meta name="keywords" content="liunx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux系统安全">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/linux系统安全/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="1.Linux环境下的账户系统文件/etc/passwd/etc/passwd文件中每行定义一个用户账户，一行中又划分为多个字段定义用户账户的不同属性，各字段间用”:’’分割。任意用户可读。     字段 说明    用户名 用户登录系统时使用的用户名，在系统中唯一。   口令 存放加密的口令，x表示用户的口令是被/etc/shadow文件保护的。   用户标识符 是一个整数，系统内部用它来标识用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/RKMB7HS0MQQ%28WFBLAS%7B%5D0%25L.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/4PCS$WYBARF%28JF%5BQ4LQ91RY.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/5HLR5%29FRBDXWU%60E@QM%5BDFJ5.png">
+<meta property="og:updated_time" content="2019-08-14T13:11:23.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux系统安全">
+<meta name="twitter:description" content="1.Linux环境下的账户系统文件/etc/passwd/etc/passwd文件中每行定义一个用户账户，一行中又划分为多个字段定义用户账户的不同属性，各字段间用”:’’分割。任意用户可读。     字段 说明    用户名 用户登录系统时使用的用户名，在系统中唯一。   口令 存放加密的口令，x表示用户的口令是被/etc/shadow文件保护的。   用户标识符 是一个整数，系统内部用它来标识用">
+<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> linux系统安全 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          linux系统安全
+        
+      </h1>
+
+      <time class="post-time">
+          8月 13 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="1-Linux环境下的账户系统文件"><a href="#1-Linux环境下的账户系统文件" class="headerlink" title="1.Linux环境下的账户系统文件"></a>1.Linux环境下的账户系统文件</h3><h5 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h5><p>/etc/passwd文件中每行定义一个用户账户，一行中又划分为多个字段定义用户账户的不同属性，各字段间用”:’’分割。任意用户可读。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png" alt="1"></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户名</td>
+<td>用户登录系统时使用的用户名，在系统中唯一。</td>
+</tr>
+<tr>
+<td>口令</td>
+<td>存放加密的口令，x表示用户的口令是被/etc/shadow文件保护的。</td>
+</tr>
+<tr>
+<td>用户标识符</td>
+<td>是一个整数，系统内部用它来标识用户，每个用户的UID都是唯一的。root的为0，从1-499是系统的标准账户。普通用户的UID从500开始。</td>
+</tr>
+<tr>
+<td>组标识符号</td>
+<td>是一个整数，系统用它来标识用户所属的组。每个用户账户在建立好后都会有一个主组，主组相同的账号其GID相同。</td>
+</tr>
+<tr>
+<td>GECOS</td>
+<td>存放用户全名、地理位置等信息。</td>
+</tr>
+<tr>
+<td>宿主目录</td>
+<td>用户登录系统后进入的目录。</td>
+</tr>
+<tr>
+<td>命令解释器</td>
+<td>指示该用户使用的shell，默认bash。</td>
+</tr>
+</tbody></table>
+<h5 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h5><p>/etc/shadow中存放加密的用户口令，只对root用户可读且提供一些口令时效字段。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/RKMB7HS0MQQ%28WFBLAS%7B%5D0%25L.png" alt="2"></p>
+<table>
+<thead>
+<tr>
+<th align="left">栏位</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">用户名</td>
+<td align="left">用户的账户名</td>
+</tr>
+<tr>
+<td align="left">口令</td>
+<td align="left">用户的口令，经过SHA512加密</td>
+</tr>
+<tr>
+<td align="left">最后一次修改的时间</td>
+<td align="left">uninx元年到最后一次修改的天数</td>
+</tr>
+<tr>
+<td align="left">最小时间间隔</td>
+<td align="left">unix元年到用户可以更改口令的天数</td>
+</tr>
+<tr>
+<td align="left">最大时间间隔</td>
+<td align="left">unix元年到用户必须更改口令的天数</td>
+</tr>
+<tr>
+<td align="left">警告时间</td>
+<td align="left">在用户口令过期之前多少天提醒用户更新</td>
+</tr>
+<tr>
+<td align="left">不活动时间</td>
+<td align="left">在用户口令过期之后到禁用账户的天数</td>
+</tr>
+<tr>
+<td align="left">失效时间</td>
+<td align="left">unix元年到账户被禁用的天数</td>
+</tr>
+<tr>
+<td align="left">标志</td>
+<td align="left">保留位</td>
+</tr>
+</tbody></table>
+<h5 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group"></a>/etc/group</h5><p>/etc/group中存放用户的组信息，当一个用户同时是多个组的成员是，在/etc/passwd文件中记录的是用户所属的主组，也就是登陆时所属的主组，而其他组成为附加组。用户要访问附件组的文件时，必须要使用newgrp命令是自己成为该组成员。该文件对所以用户可读。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/4PCS$WYBARF%28JF%5BQ4LQ91RY.png" alt="3"></p>
+<table>
+<thead>
+<tr>
+<th>栏名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组名</td>
+<td>该组的名称</td>
+</tr>
+<tr>
+<td>组口令</td>
+<td>由于安全原因，x占位</td>
+</tr>
+<tr>
+<td>GID</td>
+<td>组的识别号</td>
+</tr>
+<tr>
+<td>组成员</td>
+<td>属于该组的成员，用“，”分割</td>
+</tr>
+</tbody></table>
+<h5 id="etc-gshadow"><a href="#etc-gshadow" class="headerlink" title="/etc/gshadow"></a>/etc/gshadow</h5><p>/etc/gshadow用于定义用户组口令、组管理员等信息。只有root用户可读取。</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/5HLR5%29FRBDXWU%60E@QM%5BDFJ5.png" alt="4"></p>
+<table>
+<thead>
+<tr>
+<th>栏名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组名</td>
+<td>组名称，该字段与group文件中的组名称对应</td>
+</tr>
+<tr>
+<td>组口令</td>
+<td>组口令，该字段用于保存已加密的口令</td>
+</tr>
+<tr>
+<td>组的管理员账户</td>
+<td>组的管理员账号，管理员有权对该组添加，删除账号</td>
+</tr>
+<tr>
+<td>组成员</td>
+<td>属于该组的用户成员列表，列表中多个用户间用‘，’分隔</td>
+</tr>
+</tbody></table>
+<h3 id="2-管理账户的命令行工具"><a href="#2-管理账户的命令行工具" class="headerlink" title="2.管理账户的命令行工具"></a>2.管理账户的命令行工具</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>useradd[选项]&lt;用户名&gt;</td>
+<td>添加新用户</td>
+</tr>
+<tr>
+<td>usermod[选项]&lt;用户名&gt;</td>
+<td>修改已经存在的指导用户</td>
+</tr>
+<tr>
+<td>userdel[-r]&lt;用户名&gt;</td>
+<td>删除已经存在的指导目录，-r参数用于删除用户自家目录</td>
+</tr>
+<tr>
+<td>groupadd[选项]&lt;用户名&gt;</td>
+<td>添加新的组</td>
+</tr>
+<tr>
+<td>groupmod[选项]&lt;用户名&gt;</td>
+<td>修改已经存在的组</td>
+</tr>
+<tr>
+<td>groupdel&lt;用户名&gt;</td>
+<td>删除已经存在的指定组</td>
+</tr>
+</tbody></table>
+<h3 id="3-口令管理和口令时效"><a href="#3-口令管理和口令时效" class="headerlink" title="3.口令管理和口令时效"></a>3.口令管理和口令时效</h3><p>(1.)使用passwd命令进行口令管理</p>
+<p>格式：<code>passwd[选项][用户名]</code></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-S</td>
+<td>列出口令的状态信息</td>
+<td>-d</td>
+<td>删除口令</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>锁定用户账户</td>
+<td>-k</td>
+<td>保持口令不变，直到口令过期失效后方能更改</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>解除已锁定账户</td>
+<td>–stdin</td>
+<td>从标准输入读取口令（非交互模式）</td>
+</tr>
+</tbody></table>
+<p>（2.）chage命令</p>
+<p>口令时效：强制用户在一段时间之后修改口令的机制成为口令时效。</p>
+<p>liunx系统上，修改口令时效分为</p>
+<ul>
+<li>对于未来要创建的所以用户的口令时效需修改/etc/login.defs文件的相关参数</li>
+<li>对以及存在的用户修改口令时效是通过chage命令来管理</li>
+</ul>
+<p>设置新添用户的口令时效</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PASS_MAX_DAYS</td>
+<td>设置在多少天后要求用户修改口令，默认口令时效天数为99999</td>
+</tr>
+<tr>
+<td>PASS_MIN_DAYS</td>
+<td>设置口令修改后，至少要经过多少天后才允许修改</td>
+</tr>
+<tr>
+<td>PASS_WARN_AGE</td>
+<td>设定在口令时效前多少天开始通知用户更改口令</td>
+</tr>
+</tbody></table>
+<p>设置已经存在用户的口令时效</p>
+<p>格式：<code>chage[选项]&lt;用户登录名&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-m days</td>
+<td>指定用户必须改变口令所间隔的最少天数，值为0，口令不会过期</td>
+</tr>
+<tr>
+<td>-M days</td>
+<td>指定口令有效的最多天数</td>
+</tr>
+<tr>
+<td>-d days</td>
+<td>指定自从unix元年其，口令被改变的天数</td>
+</tr>
+<tr>
+<td>-I  days</td>
+<td>指定口令过期后，账户被锁前不活跃的天数，值为0，账户在口令过期后不会被锁</td>
+</tr>
+<tr>
+<td>-E date</td>
+<td>指定账号被锁的日期</td>
+</tr>
+<tr>
+<td>-W days</td>
+<td>指定口令过期前要警告用户的天数</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>列出指定用户当前的口令时效信息</td>
+</tr>
+</tbody></table>
+<h3 id="4-用户和组状态"><a href="#4-用户和组状态" class="headerlink" title="4.用户和组状态"></a>4.用户和组状态</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>whoami</td>
+<td>用于显示当前用户的名称</td>
+</tr>
+<tr>
+<td>id</td>
+<td>用于显示用户身份</td>
+</tr>
+<tr>
+<td>groups</td>
+<td>用于显示指定用户所属的组</td>
+</tr>
+<tr>
+<td>newgrp</td>
+<td>用于将用户从当前组转换到附加组，用户必须属于该组才可以</td>
+</tr>
+</tbody></table>
+<p>未完待续……</p>
+<p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/liunx/">liunx</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/08/13/linux中的shell使用/">
+        <span class="next-text nav-default">linux中的shell使用</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
