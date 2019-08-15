@@ -35,15 +35,15 @@
 <link rel="canonical" href="http://yoursite.com/2019/08/15/sqli-labs1-20/">
 
 
-<meta name="description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  #    /**/  1-2就是单纯的引号的闭合第一题后端主要代码$">
+<meta name="description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  # --  /**/  1-2就是单纯的引号的闭合第一题后端主要代码">
 <meta name="keywords" content="sql注入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqli-labs1-20">
 <meta property="og:url" content="http://yoursite.com/2019/08/15/sqli-labs1-20/index.html">
 <meta property="og:site_name" content="Hades">
-<meta property="og:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  #    /**/  1-2就是单纯的引号的闭合第一题后端主要代码$">
+<meta property="og:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  # --  /**/  1-2就是单纯的引号的闭合第一题后端主要代码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/5M%28@8DVRQXZFA~%29~XMLB%60UP.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/U0%28I@%5D%29%7BF%5B3B%60%7B%7DEX~J9JFS.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/YXS@1KQMY8E@FLTPT$@R6GX.png">
@@ -57,11 +57,11 @@
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%250DLYH%29%5DXA0OMHPBA5~J25U.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/VDRK05$1C$IK1%60@J005N0DH.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/EUQQSU5DML7JQYJ7GRZAIFP.png">
-<meta property="og:updated_time" content="2019-08-15T15:33:02.257Z">
+<meta property="og:updated_time" content="2019-08-15T15:43:56.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs1-20">
-<meta name="twitter:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  #    /**/  1-2就是单纯的引号的闭合第一题后端主要代码$">
-<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png">
+<meta name="twitter:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  # --  /**/  1-2就是单纯的引号的闭合第一题后端主要代码">
+<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -153,9 +153,7 @@
 <p>复习一下mysql中的三种注释方式：</p>
 <ul>
 <li>#</li>
-</ul>
-<hr>
-<ul>
+<li>-- </li>
 <li>/**/</li>
 </ul>
 <h3 id="1-2就是单纯的引号的闭合"><a href="#1-2就是单纯的引号的闭合" class="headerlink" title="1-2就是单纯的引号的闭合"></a>1-2就是单纯的引号的闭合</h3><p>第一题后端主要代码<code>$sql=&quot;SELECT * FROM users WHERE id=&#39;$id&#39; LIMIT 0,1&quot;;</code></p>
@@ -175,7 +173,7 @@
 <p>语句：<code>union select count(*),1,concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x</code></p>
 <p>语句中用到了几个函数：</p>
 <p>rand() 随机生成0-1之间的数</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/0U$O7%7B_6S8JGB%28C%257E%60%7DX3K.png" alt="1"></p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png" alt="1"></p>
 <p>floor() 向下取整</p>
 <p><img src="http://pw5q6scnw.bkt.clouddn.com/5M%28@8DVRQXZFA~%29~XMLB%60UP.png" alt="2"></p>
 <p>concat() 字符串拼接</p>
@@ -194,7 +192,7 @@
 <p><img src="http://pw5q6scnw.bkt.clouddn.com/%7DBFD~%60%25XRUHJ%7DFJUWG$5YCU.png" alt="6"></p>
 <p>看完整代码</p>
 <p><code>union select count(*),1,concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x</code></p>
-<p>加上<code>count(*)</code>就构成了报错注入，主要是因为在count()和group by进行分组排序计数的时候，默认x的值为主键，<del>db_name0     ~db_name1 插入新表时，不会报错，下一个</del>db_name1插入时，由于主键重复，就会报错~db_name1的内容。</p>
+<p>加上<code>count(*)</code>就构成了报错注入，主要是因为在count()和group by进行分组排序计数的时候，默认x的值为主键，~db_name0     ~db_name1 插入新表时，不会报错，下一个~db_name1插入时，由于主键重复，就会报错~db_name1的内容。</p>
 <p><img src="http://pw5q6scnw.bkt.clouddn.com/2UQ@D%280EWPRFHS%29GUF%7D1OFF.png" alt="7"></p>
 <p>updatexml 和extractvalue报错原理</p>
 <p>正常情况下updatexml函数的使用方式：<code>UPDATEXML (XML_document, XPath_string, new_value);</code></p>
