@@ -35,18 +35,26 @@
 <link rel="canonical" href="http://yoursite.com/2019/08/18/基于centos的linux学习7/">
 
 
-<meta name="description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。">
+<meta name="description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。 使用文件系统的基本步骤： 1.在硬盘上创建分区或逻辑卷 2.在分区或逻辑卷上创建文件系统 3.挂载文件系统到系统中  手动挂装文件系统可以使用 mount 命令 若需要系统每次启动时都自动挂装文件系统，需修改 /etc/fstab 文件  4.卸载文件系统 对于可移动介质上的文件系统，使用完毕后，需要使用 umount 命">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于centos的linux学习7">
 <meta property="og:url" content="http://yoursite.com/2019/08/18/基于centos的linux学习7/index.html">
 <meta property="og:site_name" content="Hades">
-<meta property="og:description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。">
+<meta property="og:description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。 使用文件系统的基本步骤： 1.在硬盘上创建分区或逻辑卷 2.在分区或逻辑卷上创建文件系统 3.挂载文件系统到系统中  手动挂装文件系统可以使用 mount 命令 若需要系统每次启动时都自动挂装文件系统，需修改 /etc/fstab 文件  4.卸载文件系统 对于可移动介质上的文件系统，使用完毕后，需要使用 umount 命">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-26T05:29:01.012Z">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/PE24~GOFO@_%7B$QL~7%25PM2PW.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%2967YJ%29F7%7D%25V0YBOR%60O9%606_I.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/BJY%291NVF6%60T4_LJEBAH6X%5DN.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%7DAR4_%28L4%5DS_36Q%7DJ%605Q@ASY.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/E0RDPSH%5B%28%5B%25B@R~Z%7DBLC%5DZB.png">
+<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/H4B%5DUZ_F5QQ7U06GKO6%7B0PB.png">
+<meta property="og:image" content="c:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566882379890.png">
+<meta property="og:updated_time" content="2019-08-27T05:12:21.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于centos的linux学习7">
-<meta name="twitter:description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。">
+<meta name="twitter:description" content="本地存储管理本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。 使用文件系统的基本步骤： 1.在硬盘上创建分区或逻辑卷 2.在分区或逻辑卷上创建文件系统 3.挂载文件系统到系统中  手动挂装文件系统可以使用 mount 命令 若需要系统每次启动时都自动挂装文件系统，需修改 /etc/fstab 文件  4.卸载文件系统 对于可移动介质上的文件系统，使用完毕后，需要使用 umount 命">
+<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/PE24~GOFO@_%7B$QL~7%25PM2PW.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -133,6 +141,150 @@
     
             <div class="post-content">
             <h3 id="本地存储管理"><a href="#本地存储管理" class="headerlink" title="本地存储管理"></a>本地存储管理</h3><p>本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。</p>
+<p>使用文件系统的基本步骤：</p>
+<p>1.在硬盘上创建分区或逻辑卷</p>
+<p>2.在分区或逻辑卷上创建文件系统</p>
+<p>3.挂载文件系统到系统中</p>
+<ul>
+<li>手动挂装文件系统可以使用 mount 命令</li>
+<li>若需要系统每次启动时都自动挂装文件系统，需修改 /etc/fstab 文件</li>
+</ul>
+<p>4.卸载文件系统</p>
+<p>对于可移动介质上的文件系统，使用完毕后，需要使用 umount 命令实施卸载操作或执行eject命令直接弹出光盘。</p>
+<h3 id="linux-中支持的文件系统"><a href="#linux-中支持的文件系统" class="headerlink" title="linux 中支持的文件系统"></a>linux 中支持的文件系统</h3><p>linux 的内核采用了虚拟文件系统（VFS），支持多种不同的类型格式，每一种类型的文件系统都提供一个公共的软件接口给 VFS。</p>
+<p>Centos 7 中支持的常见文件系统</p>
+<table>
+<thead>
+<tr>
+<th>文件系统</th>
+<th>软件包</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ext2</td>
+<td>e2fsprogs</td>
+<td>linux 的标准文件系统，是 ext 文件系统的后续版本。</td>
+</tr>
+<tr>
+<td>ext3，ext4</td>
+<td>e2fsprogs</td>
+<td>由 ext2 扩展的日志文件系统。</td>
+</tr>
+<tr>
+<td>xfs</td>
+<td>xfsprogs</td>
+<td>由 SGI 开发的一种日志文件系统，RHEL/Centos7 默认使用的文件系统。</td>
+</tr>
+<tr>
+<td>btrfs</td>
+<td>btrfs-progs</td>
+<td>有望成为下一代linux标准文件系统，支持可写的磁盘快照（snapshots）、内建的磁盘阵列(RAID)和子卷（Subvolumes)等功能。</td>
+</tr>
+<tr>
+<td>vfats</td>
+<td>dosfstools</td>
+<td>windows95 和 windowNT 上使用的支持长文件名的DOS文件系统扩展。</td>
+</tr>
+<tr>
+<td>ntfs-3g</td>
+<td>ntfs-3g</td>
+<td>windows 的 NTFS 系统。</td>
+</tr>
+<tr>
+<td>ISO9660</td>
+<td>genisoimage</td>
+<td>标准 CD-ROM 文件系统类型。</td>
+</tr>
+<tr>
+<td>swap</td>
+<td>util-linux</td>
+<td>在 linux 中作为交换分区使用，交换分区用于操作系统管理内存的交换空间。</td>
+</tr>
+</tbody></table>
+<h3 id="硬盘及分区"><a href="#硬盘及分区" class="headerlink" title="硬盘及分区"></a>硬盘及分区</h3><h5 id="1-硬盘及其分类"><a href="#1-硬盘及其分类" class="headerlink" title="1.硬盘及其分类"></a>1.硬盘及其分类</h5><p>机械硬盘：主要由盘片、磁头、盘片转轴及控制电机、磁头控制器、数据转换器、接口、缓存等几个部分组成。</p>
+<p>固态硬盘：由固态电子存储芯片阵列而制成的，无机械部件。</p>
+<h5 id="硬盘接口方式"><a href="#硬盘接口方式" class="headerlink" title="硬盘接口方式"></a>硬盘接口方式</h5><p>PATA(俗称IDE) 接口、SATA 接口、SCSI 接口、SAS 接口和 FC-AL 接口。</p>
+<p>个人桌面多采用 SATA 接口，服务器多采用 SCSI、SAS 和 FC-AL 接口。</p>
+<p>FC-AL 接口主要应用于任务级的关键数据的大容量实时存储。可以满足高性能、高可靠性和高扩展性的存储需要。</p>
+<p>SCSI 接口主要应用于商业级的关键数据和大容量存储。</p>
+<p>SAS 接口可以支持 SAS 和 SATA 磁盘，很方便的满足不同性价比的存储需求。</p>
+<p>SATA 接口主要应用于非关键数据的大量存储，进线存储和非关键性应用。</p>
+<h3 id="使用fdisk分区"><a href="#使用fdisk分区" class="headerlink" title="使用fdisk分区"></a>使用fdisk分区</h3><p>格式:</p>
+<p><code>fdisk &lt;硬盘设备名&gt;</code>   //进入fdisk的交互操作方式，对指定的硬盘进行分区操作。</p>
+<p><code>fdisk -l &lt;硬盘设备名&gt;</code> //在命令行方式下显示指定硬盘的分区表信息</p>
+<p>fdisk 的子命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>可分区设置可启动标志</td>
+<td>p</td>
+<td>列出硬盘分区表</td>
+</tr>
+<tr>
+<td>d</td>
+<td>删除一个硬盘分区</td>
+<td>q</td>
+<td>退出fdisk，不保存更改</td>
+</tr>
+<tr>
+<td>l</td>
+<td>列出所以支持的分区类型</td>
+<td>t</td>
+<td>更改分区类型</td>
+</tr>
+<tr>
+<td>m</td>
+<td>列出所有命令说明</td>
+<td>u</td>
+<td>切换所显示的分区大小的单位</td>
+</tr>
+<tr>
+<td>n</td>
+<td>创建一个新的分区</td>
+<td>w</td>
+<td>把设置写入硬盘分区表，然后退出</td>
+</tr>
+<tr>
+<td>o</td>
+<td>创建 DOS  类型的空分区表</td>
+<td>g</td>
+<td>创建 GPT 类型的空分区表</td>
+</tr>
+</tbody></table>
+<p>进入分区设置</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/PE24~GOFO@_%7B$QL~7%25PM2PW.png" alt="6"></p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/%2967YJ%29F7%7D%25V0YBOR%60O9%606_I.png" alt="1"></p>
+<p>o: 创建 DOS 类型的空分区表</p>
+<p>n: 创建新的分区</p>
+<p>参数：</p>
+<p><code>Partion number</code> 分区号 <code>First sector</code> 起始扇区 <code>Last sector</code> last 扇区 可选大小 </p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/BJY%291NVF6%60T4_LJEBAH6X%5DN.png" alt="3"></p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/%7DAR4_%28L4%5DS_36Q%7DJ%605Q@ASY.png" alt="2"></p>
+<p>p:显示当前分区</p>
+<p>d:删除已经存在的分区</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/E0RDPSH%5B%28%5B%25B@R~Z%7DBLC%5DZB.png" alt="5"></p>
+<p>e:对所有磁盘剩余空间创建编号为3的扩展分区</p>
+<p>l:创建逻辑分区</p>
+<p><img src="http://pw5q6scnw.bkt.clouddn.com/H4B%5DUZ_F5QQ7U06GKO6%7B0PB.png" alt="6"></p>
+<p>t:修改分区类型</p>
+<p>参数：</p>
+<p><code>partition number</code> 分区号 <code>Hex code</code> Hex代码</p>
+<p>5 Extened</p>
+<p>82 linux swap / Solaris</p>
+<p>83 linux</p>
+<p>8e linux LVM</p>
+<p><img src="C:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566882379890.png" alt="w"></p>
+<p>w:保存 </p>
+<p>partprobe /dev/sda 重新读取分区表</p>
 
             </div>
           
