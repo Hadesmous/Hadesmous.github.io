@@ -43,25 +43,25 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  # --  /**/  1-2就是单纯的引号的闭合第一题后端主要代码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/5M%28@8DVRQXZFA~%29~XMLB%60UP.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/U0%28I@%5D%29%7BF%5B3B%60%7B%7DEX~J9JFS.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/YXS@1KQMY8E@FLTPT$@R6GX.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/L8HUKZE29GD%25%28P%5B9A_TRNNN.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%7DBFD~%60%25XRUHJ%7DFJUWG$5YCU.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/2UQ@D%280EWPRFHS%29GUF%7D1OFF.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/HV1BTVEWUY0IF3C5G45MSBA.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/FB$UD1IF$1KIW~%5DJ7ARO%7D6Q.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/7TV%7BU9TLQU@RCD~8NY1LQZT.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/E8XQMIN%7D%5B6A41KY%5BN19MPG6.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/55EUMA%249N8E4VLT%5D%60EK%25VXL.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/5M%28%408DVRQXZFA_%29_XMLB%60UP.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/U0%28I%40%5D%29%7BF%5B3B%60%7B%7DEX_J9JFS.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/YXS%401KQMY8E%40FLTPT%24%40R6GX.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/L8HUKZE29GD%25%28P%5B9A_TRNNN.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/%7DBFD_%60%25XRUHJ%7DFJUWG%245YCU.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/1OFF.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/HV1BTVEWUY0IF3C5G45MSBA.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/FB%24UD1IF%241KIW_%5DJ7ARO%7D6Q.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/7TV%7BU9TLQU%40RCD_8NY1LQZT.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/E8XQMIN%7D%5B6A41KY%5BN19MPG6.png">
 <meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%250DLYH%29%5DXA0OMHPBA5~J25U.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/VDRK05$1C$IK1%60@J005N0DH.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/EUQQSU5DML7JQYJ7GRZAIFP.png">
-<meta property="og:updated_time" content="2019-08-15T15:43:56.157Z">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/VDRK05%241C%24IK1%60%40J005N0DH.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/EUQQSU5DML7JQYJ7GRZAIFP.png">
+<meta property="og:updated_time" content="2019-09-08T12:54:59.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs1-20">
 <meta name="twitter:description" content="想想自己最开始瞎搞，接触到的东西就是sql注入，但是除了网站url后面加单引号就啥也不会了。 这次系统的学完sql注入，也再尝试着去把这些知识学明白，渗透还是要去多练习的，就自己搭了sqli-labs的靶场，记一下学习过程。 不一定按照关卡来，一类的就归在一起了，主要是记录自己学习的东西。 复习一下mysql中的三种注释方式：  # --  /**/  1-2就是单纯的引号的闭合第一题后端主要代码">
-<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/55EUMA%249N8E4VLT%5D%60EK%25VXL.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -173,27 +173,27 @@
 <p>语句：<code>union select count(*),1,concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x</code></p>
 <p>语句中用到了几个函数：</p>
 <p>rand() 随机生成0-1之间的数</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/55EUMA$9N8E4VLT%5D%60EK%25VXL.png" alt="1"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/55EUMA%249N8E4VLT%5D%60EK%25VXL.png" alt="1"></p>
 <p>floor() 向下取整</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/5M%28@8DVRQXZFA~%29~XMLB%60UP.png" alt="2"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/5M%28%408DVRQXZFA_%29_XMLB%60UP.png" alt="2"></p>
 <p>concat() 字符串拼接</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/U0%28I@%5D%29%7BF%5B3B%60%7B%7DEX~J9JFS.png" alt="4"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/U0%28I%40%5D%29%7BF%5B3B%60%7B%7DEX_J9JFS.png" alt="4"></p>
 <p>count() 计数</p>
 <p>group by 分组排序</p>
 <p>对语句进行分析：</p>
 <p><code>(select schema_name from information_schema.schemata limit 0,1)</code>  取出第一个数据库名</p>
 <p><code>floor(rand(0)*2)</code>生成有规律的数字0,1,1,0,1,1,1………..</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/YXS@1KQMY8E@FLTPT$@R6GX.png" alt="3"></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/L8HUKZE29GD%25%28P%5B9A_TRNNN.png" alt="5"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/YXS%401KQMY8E%40FLTPT%24%40R6GX.png" alt="3"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/L8HUKZE29GD%25%28P%5B9A_TRNNN.png" alt="5"></p>
 <p><code>concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x</code>拼接出以下字符串取别名x</p>
 <p><code>~db_name0     ~db_name1  ~db_name1   ~db_name0</code> …….</p>
 <p><code>concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x</code></p>
 <p>以别名x分组排序，这个时候并不能完成报错注入 执行结果如下：</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/%7DBFD~%60%25XRUHJ%7DFJUWG$5YCU.png" alt="6"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/%7DBFD_%60%25XRUHJ%7DFJUWG%245YCU.png" alt="6"></p>
 <p>看完整代码</p>
 <p><code>union select count(*),1,concat(&#39;~&#39;,(select schema_name from information_schema.schemata limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x</code></p>
 <p>加上<code>count(*)</code>就构成了报错注入，主要是因为在count()和group by进行分组排序计数的时候，默认x的值为主键，~db_name0     ~db_name1 插入新表时，不会报错，下一个~db_name1插入时，由于主键重复，就会报错~db_name1的内容。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/2UQ@D%280EWPRFHS%29GUF%7D1OFF.png" alt="7"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/1OFF.png" alt="7"></p>
 <p>updatexml 和extractvalue报错原理</p>
 <p>正常情况下updatexml函数的使用方式：<code>UPDATEXML (XML_document, XPath_string, new_value);</code></p>
 <p>第一个参数：XML_document是String格式，为XML文档对象的名称，文中为Doc<br>第二个参数：XPath_string (Xpath格式的字符串)<br>第三个参数：new_value，String格式，替换查找到的符合条件的数据<br>作用：改变文档中符合条件的节点的值</p>
@@ -206,8 +206,8 @@
 <p>如何查看是否开启：<code>SHOW variables like &#39;%secure%&#39;;</code></p>
 <p>查看是否具有读写权限：<code>and (select count(*) from mysql.user)&gt;0</code></p>
 <p>写入文件：<code>union select 1,&quot;&lt;?php phpinfo(); ?&gt;&quot;,3 into outfile &quot;F:\\service\\php_study\\PHPTutorial\\WWW\\sql\\sqli-labs\\Less-7\\1.php&quot;</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/HV1BTVEWUY0IF3C5G45MSBA.png" alt="1"></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/FB$UD1IF$1KIW~%5DJ7ARO%7D6Q.png" alt="4"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/HV1BTVEWUY0IF3C5G45MSBA.png" alt="1"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/FB%24UD1IF%241KIW_%5DJ7ARO%7D6Q.png" alt="4"></p>
 <h3 id="8-10布尔型注入"><a href="#8-10布尔型注入" class="headerlink" title="8-10布尔型注入"></a>8-10布尔型注入</h3><ul>
 <li>时间判断</li>
 <li>返回页面判断</li>
@@ -234,18 +234,18 @@
 <p>payload：<code>uname=admin&quot;) # &amp;passwd=1</code></p>
 <p>第十七题后台主要代码:<code>$update=&quot;UPDATE users SET password = &#39;$passwd&#39; WHERE username=&#39;$row1&#39;&quot;;</code></p>
 <p>payload：<code>uname=admin &amp;passwd=1&#39;#</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/7TV%7BU9TLQU@RCD~8NY1LQZT.png" alt="17"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/7TV%7BU9TLQU%40RCD_8NY1LQZT.png" alt="17"></p>
 <h3 id="18-19head头注入"><a href="#18-19head头注入" class="headerlink" title="18-19head头注入"></a>18-19head头注入</h3><p>源码中对传入的uname和passwd都进行了检查，但是我们可以利用对http请求头中内容从查询<code>$uagent = $_SERVER[&#39;HTTP_USER_AGENT&#39;];$IP = $_SERVER[&#39;REMOTE_ADDR&#39;];</code>进行注入。</p>
 <p>第十八题后台主要代码：<code>$insert=&quot;INSERT INTO</code>security<code>.</code>uagents<code>(</code>uagent<code>,</code>ip_address<code>,</code>username<code>) VALUES (&#39;$uagent&#39;, &#39;$IP&#39;, $uname)&quot;;;</code></p>
 <p>利用burp抓包更改User-Agent</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/E8XQMIN%7D%5B6A41KY%5BN19MPG6.png" alt="1"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/E8XQMIN%7D%5B6A41KY%5BN19MPG6.png" alt="1"></p>
 <p>payload：<code>&#39;and &#39;1&#39;=&#39;1</code></p>
 <p><img src="http://pw5q6scnw.bkt.clouddn.com/%250DLYH%29%5DXA0OMHPBA5~J25U.png" alt="11"></p>
 <p>第十九题后台主要代码：<code>$insert=&quot;INSERT INTO</code>security<code>.</code>referers<code>(</code>referer<code>,</code>ip_address<code>) VALUES (&#39;$uagent&#39;, &#39;$IP&#39;)&quot;;</code></p>
 <p>利用burp抓包更改Referer</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/VDRK05$1C$IK1%60@J005N0DH.png" alt="6"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/VDRK05%241C%24IK1%60%40J005N0DH.png" alt="6"></p>
 <p>payload：<code>and &#39;1&#39;=&#39;1</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/EUQQSU5DML7JQYJ7GRZAIFP.png" alt="9"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/EUQQSU5DML7JQYJ7GRZAIFP.png" alt="9"></p>
 <p>未完待续……</p>
 <p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
 

