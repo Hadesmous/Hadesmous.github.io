@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="指令系统">
+
+
+
+
+  <meta name="keywords" content="汇编,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/08/指令系统/">
+
+
+<meta name="description" content="指令系统概述计算机的指令系统是指其处理器所能执行的各种指令的集合。指令有机器指令和汇编指令两种形式，机器指令用二进制代码表示，便于机器识别；汇编指令则是用助记符来表示机器指令。 机器指令格式： 机器指令通常由操作码字段和操作数字段两部分组成。 操作码字段指示计算机所要执行的操作类似。操作数字段指出指令执行操作所需的数据和操作结果存放的位置。 根据一条指令操作数字段提供的操作数个数，可将指令分为以下">
+<meta name="keywords" content="汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指令系统">
+<meta property="og:url" content="http://yoursite.com/2019/09/08/指令系统/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="指令系统概述计算机的指令系统是指其处理器所能执行的各种指令的集合。指令有机器指令和汇编指令两种形式，机器指令用二进制代码表示，便于机器识别；汇编指令则是用助记符来表示机器指令。 机器指令格式： 机器指令通常由操作码字段和操作数字段两部分组成。 操作码字段指示计算机所要执行的操作类似。操作数字段指出指令执行操作所需的数据和操作结果存放的位置。 根据一条指令操作数字段提供的操作数个数，可将指令分为以下">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100736.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100749.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100754.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112823.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112826.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112837.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112841.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112844.jpg">
+<meta property="og:updated_time" content="2019-09-09T03:36:51.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="指令系统">
+<meta name="twitter:description" content="指令系统概述计算机的指令系统是指其处理器所能执行的各种指令的集合。指令有机器指令和汇编指令两种形式，机器指令用二进制代码表示，便于机器识别；汇编指令则是用助记符来表示机器指令。 机器指令格式： 机器指令通常由操作码字段和操作数字段两部分组成。 操作码字段指示计算机所要执行的操作类似。操作数字段指出指令执行操作所需的数据和操作结果存放的位置。 根据一条指令操作数字段提供的操作数个数，可将指令分为以下">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100736.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 指令系统 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          指令系统
+        
+      </h1>
+
+      <time class="post-time">
+          9月 08 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="指令系统概述"><a href="#指令系统概述" class="headerlink" title="指令系统概述"></a>指令系统概述</h3><p>计算机的指令系统是指其处理器所能执行的各种指令的集合。指令有机器指令和汇编指令两种形式，机器指令用二进制代码表示，便于机器识别；汇编指令则是用助记符来表示机器指令。</p>
+<h4 id="机器指令格式："><a href="#机器指令格式：" class="headerlink" title="机器指令格式："></a>机器指令格式：</h4><p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100736.jpg" alt></p>
+<p>机器指令通常由操作码字段和操作数字段两部分组成。</p>
+<p>操作码字段指示计算机所要执行的操作类似。操作数字段指出指令执行操作所需的数据和操作结果存放的位置。</p>
+<p>根据一条指令操作数字段提供的操作数个数，可将指令分为以下3种：</p>
+<p>双操作数指令：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100749.jpg" alt></p>
+<p>双操作数中的操作数字段提供两个操作数，中间用逗号分隔，逗号前面的数称为目的操作数，逗号后面的数称为源操作数。</p>
+<p>eg：<code>MOV AL,05H</code>   ； 将8位立即数 05H 存入寄存器 AL中</p>
+<p>eg：<code>MOV AL,BL</code>    ；将寄存器 AL 和 BL 中的数相加，结果放入 AL 中</p>
+<p>单操作数指令：</p>
+<p>操作数字段只提供一个操作数。这类指令有两种情况，一是只需要一个操作数；二是指令中只需给出一个指令，另一个操作数是隐含指出的。</p>
+<p>eg：<code>INC AX</code>    ；加1指令，将 寄存器AX的内容加1</p>
+<p>eg：<code>PUSH BX</code>  ；进栈指令，只需给出源操作数，目的操作数是栈顶单元</p>
+<p>零操作数指令：</p>
+<p>这类指令只有操作码字段，没有操作数字段。</p>
+<p>eg：<code>HLT</code> ；停机指令</p>
+<p>eg：<code>CBW</code> ；符号扩展指令，隐含的操作数在 AL 和 AX 中</p>
+<p>单操作数指令和零操作数指令格式如下：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100754.jpg" alt></p>
+<h4 id="寻址技术"><a href="#寻址技术" class="headerlink" title="寻址技术"></a>寻址技术</h4><p>指令中操作数字段可能直接给出操作数，也可能给出操作数的存放地址，若指令中给出的是操作数的存放地址，则在执行指令前要根据指令中的地址信息来寻找操作数，这个过程叫做寻址。</p>
+<h5 id="立即寻址："><a href="#立即寻址：" class="headerlink" title="立即寻址："></a>立即寻址：</h5><p>立即寻址方式是指操作数直接包含在指令中，紧跟在操作码之后，作为指令的一部分存放在代码段中。立即寻址方式只能用于源操作数，不能用于目的操作数。</p>
+<p>eg：<code>MOV BL,20H</code>     ；将8位立即数 20H 存入寄存器 BL 中</p>
+<p>eg：<code>MOV AX,12BCH</code>  ；将16位立即数 12BCH 存入寄存器 AX 中</p>
+<p>eg：<code>MOV BX,&quot;AB&quot;</code>    ；将字符串 “AB” 存入寄存器 BX 中</p>
+<h5 id="寄存器寻址："><a href="#寄存器寻址：" class="headerlink" title="寄存器寻址："></a>寄存器寻址：</h5><p>寄存器寻址方式是指操作数存放在寄存器中，指令中直接给出寄存器名，通过寄存器名找到操作数。寄存器寻址即可用于源操作数，又可用于目的操作数。</p>
+<p>eg：<code>MOV CX,1234H</code>  ；将16位立即数 1234H 放入寄存器 CX 中</p>
+<p>eg：<code>MOV BL,AL</code>       ；将寄存器 AL 中的内容存入寄存器 BL 中</p>
+<p>eg：<code>MOV DS,BX</code>       ；将通用寄存器 BX 中的内容存入段寄存器 DS</p>
+<h5 id="存储器寻址方式："><a href="#存储器寻址方式：" class="headerlink" title="存储器寻址方式："></a>存储器寻址方式：</h5><p>操作数在存储器单元中，存储器单元作为操作数时，CPU 必须通过指令提供的信息计算出该存储单元的物理地址，物理地址由段基址和偏移量组成。</p>
+<p>在 80X86 中，根据对存储器单元地址偏移量的不同计算方式，可以分为以下5中不同的寻址方式。</p>
+<h6 id="直接寻址方式："><a href="#直接寻址方式：" class="headerlink" title="直接寻址方式："></a>直接寻址方式：</h6><p>直接寻址方式是指指令所需的操作数存放在存储器单元中，其地址偏移量由指令代码中的偏移量直接给出。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112823.jpg" alt></p>
+<p>操作数格式：<code>[常数]|变量名</code></p>
+<p>源操作数采用直接寻址方式：</p>
+<p>eg：<code>MOV BL,[100H]</code>     ；将当前数据段偏移量为 100H 的字节单元内容存入 BL 中</p>
+<p>eg：<code>MOV AX,DW_WORD</code>   ；将 DW_WORD 指向的字单元内容存入 AX</p>
+<p>目的操作数采用直接寻址方式：</p>
+<p>eg：<code>DW_WORD,OFFH</code>       ；将立即数 0FFH 存入 DA_WORD 指向的字节单元</p>
+<p>eg：<code>ES:[100H],AX</code>       ；将 AX 中的内容存入附加段 ES 中偏移 100H 的字单元</p>
+<h6 id="寄存器间接寻址："><a href="#寄存器间接寻址：" class="headerlink" title="寄存器间接寻址："></a>寄存器间接寻址：</h6><p>指指令所需的操作数存放在存储器单元中，其地址偏移量由基址寄存器 BX 、BP 或变址寄存器 SI、DI 给出。BP 默认段 SS；BX，SI，DI 默认段 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112826.jpg" alt></p>
+<p>操作数格式：<code>[BX|BP|SI|DI]</code></p>
+<p>目的操作数采用寄存器间接寻址：</p>
+<p>eg：<code>MOV [BX],1234H</code> ；设 BX 的内容为 100H ，将 1234H 存入 DS 段偏移 100H 的字单元</p>
+<p>eg：<code>MOV [BP],BL</code>      ；设 BP 的内容为 100H ，将 BL 存入 SS 段偏移 100H 的字节单元</p>
+<p>源操作数采用寄存器间接寻址：</p>
+<p>eg：<code>MOV AL,[SI]</code>      ；设 SI 的内容为 100H ，将 DS 段偏移 100H 的字节单元的内容存入 AL</p>
+<p>eg：<code>MOV AX,DS:[BP]</code> ；设 BP 的内容为 1000H ，将 DS 段偏移 1000H 的字单元的内容存入 AX</p>
+<p>注：当存入内容为16位时，存入字单元，8位时存入字节单元。</p>
+<h6 id="寄存器相对寻址方式："><a href="#寄存器相对寻址方式：" class="headerlink" title="寄存器相对寻址方式："></a>寄存器相对寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定的一个基址寄存器或变址寄存器名（BX,BP,SI,DI）和一个8位或16位的相对位移量，两者之和位操作数的地址偏移量。使用 BP ，默认段为 SS ；使用其他寄存器，默认段为 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112837.jpg" alt></p>
+<p>操作数格式：<code>位移量 [Bx|BP|SI|DI]</code></p>
+<p>eg：<code>MOV AL,ES:VAR[SI]</code>  ；设 SI 的内容为 100H ，VAR 所指存储单元的偏移量为200H，</p>
+<p>​                                         ；则源操作数偏移量为 300H ,将 ES 段偏移量为 300H 的字节单元内容存入 AL</p>
+<p>eg：<code>MOV 10H[BX],1234H</code>  ；设 BX 的内容为 100H ，则目的操作数偏移量为 110H，</p>
+<p>​                                          ；将 1234H存入 DS 段偏移量为 110H 的字单元</p>
+<h6 id="基址变址寻址方式："><a href="#基址变址寻址方式：" class="headerlink" title="基址变址寻址方式："></a>基址变址寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定的一个基址寄存器名 （BX或BP）和一个变址寄存器名 （SI或DI），两者内容之和为操作数的地址偏移量。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112841.jpg" alt></p>
+<p>操作数格式：<code>[BX|BP+SI|DI</code></p>
+<p>eg：<code>AX,ES:[BX+SI]</code>   ；设 BX 的内容为 100H ，SI 的内容为 20H ,则源操作数偏移量为 120H </p>
+<p>​                                   ；将 ES 段偏移为 120H 字单元内容存入 AX</p>
+<p>eg：<code>[BP+DI],AL</code>        ；设 BP 的内容为 1000H ，DI 的内容为 50H ，则目的操作数的偏移量为1050H </p>
+<p>​                                   ；将 AL 的内容存入 SS 段偏移量为 1050H 的字节单元</p>
+<h6 id="相对基址变址寻址方式："><a href="#相对基址变址寻址方式：" class="headerlink" title="相对基址变址寻址方式："></a>相对基址变址寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定一个基址寄存器名（BX或BP)、一个变址寄存器名（SI或DI）和一个8位或16位的相对地址位移量，三者内容之和为操作数的偏移量。若基址寄存器使用BP ，默认段 SS，基址寄存器使用 BX ，默认段 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112844.jpg" alt></p>
+<p>操作数格式：<code>位移量[BX|BP+SI|DI]</code></p>
+<p>eg：<code>MOV AL,[BX+DI-20H]</code>   ；设 BX 的内容为 100H， DI 的内容为 20H ，则源操作数的偏移量为 100H</p>
+<p>​                                            ；将 DS 段偏移量为 100H 的字单元内容存入 AL</p>
+<p>eg：<code>MOV [BP+SI+100H],AX</code>  ；设 BP 的内容为 1000H， DI 的内容为 200H ，则目的操作数的偏移量为 1300H</p>
+<p>​                                             ；将 AX 的内容存入 DS 段偏移量为 1300H 的字单元</p>
+<p>[^]:  注：本篇中所有配图均来自《汇编语言程序设计实用教程》–任向民 ，如有侵权，请联系作者删除！</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/汇编/">汇编</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/08/微型计算机系统/">
+        <span class="next-text nav-default">微型计算机系统</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
