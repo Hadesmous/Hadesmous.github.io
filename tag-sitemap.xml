@@ -4,21 +4,42 @@
 
     <url>
         <loc>http://yoursite.com/tags/%E6%B1%87%E7%BC%96/</loc>
-        <lastmod>2019-09-09T03:36:51.965Z</lastmod>
+        <lastmod>2019-09-09T03:53:17.538Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/python/</loc>
+        <lastmod>2019-09-09T03:45:43.936Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/</loc>
-        <lastmod>2019-09-09T03:31:56.016Z</lastmod>
+        <lastmod>2019-09-09T03:42:27.772Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
+        <lastmod>2019-09-09T03:42:23.747Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/tools/</loc>
+        <lastmod>2019-09-09T03:41:32.469Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2019-09-08T13:05:57.958Z</lastmod>
+        <lastmod>2019-09-09T03:41:13.418Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -26,27 +47,6 @@
     <url>
         <loc>http://yoursite.com/tags/kali/</loc>
         <lastmod>2019-09-08T12:59:43.070Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
-        <lastmod>2019-09-08T12:58:00.550Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/tools/</loc>
-        <lastmod>2019-09-08T12:21:21.349Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/python/</loc>
-        <lastmod>2019-08-28T12:13:15.160Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
