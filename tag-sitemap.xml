@@ -3,15 +3,15 @@
 
 
     <url>
-        <loc>http://yoursite.com/tags/%E6%B1%87%E7%BC%96/</loc>
-        <lastmod>2019-09-09T03:53:17.538Z</lastmod>
+        <loc>http://yoursite.com/tags/python/</loc>
+        <lastmod>2019-09-10T12:27:52.563Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/python/</loc>
-        <lastmod>2019-09-09T03:45:43.936Z</lastmod>
+        <loc>http://yoursite.com/tags/%E6%B1%87%E7%BC%96/</loc>
+        <lastmod>2019-09-09T03:53:17.538Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
