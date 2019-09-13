@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="8086数据传送指令">
+
+
+
+
+  <meta name="keywords" content="汇编,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/11/8086指令系统/">
+
+
+<meta name="description" content="数据传输指令用于在寄存器、存储器和输入输出端口之间传送数据或地址，可分为通用数据传送指令、累加器专用传送指令、地址传送指令和标志传送指令。 通用数据传送指令：传送指令 MOV 格式：MOV 目的操作数，源操作数 功能：将源操作数存入目的地址中，执行后，源操作数不变。对标志位无影响。 应注意：源操作数和目的操作数的数据类型必须一致。立即数和 CS （代码段寄存器）不能作为目的操作数，不能将立即数直接">
+<meta name="keywords" content="汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8086数据传送指令">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/8086指令系统/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="数据传输指令用于在寄存器、存储器和输入输出端口之间传送数据或地址，可分为通用数据传送指令、累加器专用传送指令、地址传送指令和标志传送指令。 通用数据传送指令：传送指令 MOV 格式：MOV 目的操作数，源操作数 功能：将源操作数存入目的地址中，执行后，源操作数不变。对标志位无影响。 应注意：源操作数和目的操作数的数据类型必须一致。立即数和 CS （代码段寄存器）不能作为目的操作数，不能将立即数直接">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175639.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175651.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175658.jpg">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175702.jpg">
+<meta property="og:updated_time" content="2019-09-13T10:03:22.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8086数据传送指令">
+<meta name="twitter:description" content="数据传输指令用于在寄存器、存储器和输入输出端口之间传送数据或地址，可分为通用数据传送指令、累加器专用传送指令、地址传送指令和标志传送指令。 通用数据传送指令：传送指令 MOV 格式：MOV 目的操作数，源操作数 功能：将源操作数存入目的地址中，执行后，源操作数不变。对标志位无影响。 应注意：源操作数和目的操作数的数据类型必须一致。立即数和 CS （代码段寄存器）不能作为目的操作数，不能将立即数直接">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175639.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 8086数据传送指令 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          8086数据传送指令
+        
+      </h1>
+
+      <time class="post-time">
+          9月 11 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="数据传输指令"><a href="#数据传输指令" class="headerlink" title="数据传输指令"></a>数据传输指令</h3><p>用于在寄存器、存储器和输入输出端口之间传送数据或地址，可分为通用数据传送指令、累加器专用传送指令、地址传送指令和标志传送指令。</p>
+<h4 id="通用数据传送指令："><a href="#通用数据传送指令：" class="headerlink" title="通用数据传送指令："></a>通用数据传送指令：</h4><p>传送指令 MOV</p>
+<p>格式：<code>MOV 目的操作数，源操作数</code></p>
+<p>功能：将源操作数存入目的地址中，执行后，源操作数不变。对标志位无影响。</p>
+<p>应注意：源操作数和目的操作数的数据类型必须一致。立即数和 CS （代码段寄存器）不能作为目的操作数，不能将立即数直接送到段寄存器；两个存储器之间不能直接进行数据传送；两个段寄存器之间也不能直接进行数据传送。</p>
+<p>MOV 指令的传送方向示意图：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175639.jpg" alt></p>
+<p>根据对传送方向的规定，MOV 指令有以下几种使用形式：</p>
+<p>1.）将立即数传送到通用寄存器或存储单元</p>
+<p>MOV 指令可以实现立即数到通用寄存器或存储单元的传送，源操作数为8位或16位的立即数，立即数的类型必须与寄存器字长或存储单元类型一致，8位立即数可以送入8位或16位寄存器，16位只能送入16位的寄存器或存储单元。</p>
+<p>eg：</p>
+<p><code>MOV CL,4BH</code>                     ；将8 位立即数 4BH 送入通用寄存器 CL </p>
+<p><code>MOV DI,COUNT</code>                  ；COUNT 为符号常数，将其值传送到通用寄存器 DI </p>
+<p><code>MOV DI,2008</code>                    ；将十进制数 2008 传送到 DS 段 DI 内容所指地址的字单元</p>
+<p><code>MOV ES:[100H],&#39;B&#39;</code>          ；将字符 B 的 ASCII 码传送到 ES 段偏移 100H 的字节单元</p>
+<p>2.）寄存器之间的数据传送</p>
+<p>MOV 指令可以实现寄存器之间的数据传送，注意两个寄存器的数据类型必须一致，即两个寄存器应同为8位或16位寄存器。</p>
+<p>eg：</p>
+<p><code>MOV CL,DL</code>                        ；将8位通用寄存器 DL 的内容传送到8位通用寄存器 CH</p>
+<p><code>MOV DI,BX</code>                        ；将16位通用寄存器 BX 的内容传送到 16 位通用寄存器 DI</p>
+<p><code>MOV DS,AX</code>                        ；将16位通用寄存器 AX 的内容传到数据段寄存器 DS</p>
+<p>3.）寄存器与存储单元之间的数据传送</p>
+<p>MOV 指令可以实现寄存器到存储单元的数据传送，也可以实现存储单元到寄存器的数据传送。操作数类型必须一致。</p>
+<p>eg：</p>
+<p><code>MOV [200H],DX</code>                 ；将 DX 中的内容传送到 DS 段偏移 200H 的字单元</p>
+<p><code>MOV AL,VAR</code>                       ；将符号地址 VAR 所指的字符单元内容传到 AL</p>
+<p><code>MOV [SI],DS</code>                      ；将 DS 的内容传送到 SI 所指的字单元</p>
+<p><code>MOV ES,DX</code>                          ；将 BX 所指的存储单元的内容传送到 ES</p>
+<p>堆栈操作指令：</p>
+<p>堆栈是在存储器中开辟的一个特殊区域，遵循“后进先出”的存取原则，段基地址存放在堆栈段寄存器 SS 中。堆栈操作只能在栈顶进行，堆栈的操作有进栈和出栈两种。</p>
+<p>1.）进栈指令 PUSH </p>
+<p>格式：<code>PUSH 源操作数</code></p>
+<p>功能：修改堆栈指针 SP ，然后将源操作数压入栈顶单元。</p>
+<p>说明：源操作数可以是寄存器操作数、段寄存器操作数或存储器操作数。长度必须是16位。</p>
+<p>2.）出栈指令 POP</p>
+<p>格式：<code>POP 目的操作数</code></p>
+<p>功能：将栈顶单元的内容弹出到目的地址中，然后修改堆栈指针 SP。</p>
+<p>说明：目的操作数可以是通用寄存器操作数、除 CS 以外的段寄存器操作数或字类型的存储器操作数，长度必须为16位。</p>
+<p>3.）交换指令 XCHG</p>
+<p>格式：<code>XCHG 目的操作数，源操作数</code></p>
+<p>功能：将源操作数和目的操作数互换。</p>
+<h4 id="累计器专用传送指令"><a href="#累计器专用传送指令" class="headerlink" title="累计器专用传送指令"></a>累计器专用传送指令</h4><p>1.）XTAT 换码指令</p>
+<p>一般用来实现码制之间的转换，又称查表转换指令。</p>
+<p>格式：<code>XTAT</code></p>
+<p>功能：将累加器 AL 中的一个值转换为内存表格中的一个值，再传送到累加器 AL 中。</p>
+<p>eg：</p>
+<p><code>MOV BX, 4C02H</code></p>
+<p><code>MOV AL,08H</code></p>
+<p><code>XTAT</code></p>
+<p>指令执行时，先计算 BX+ AL ，得到有效地址 4C0AH ，在将 4C0AH 所指的字节单元中的数据送入 AL 寄存器。</p>
+<p>2.）输入输出指令</p>
+<p>专门用于在输入输出端口和累加器之间进行数据传送的指令。</p>
+<p>（1.）输入指令 IN</p>
+<p>短格式：<code>IN AL/AX ,PORT</code></p>
+<p>长格式：<code>IN AL/AX,DX</code></p>
+<p>功能：从无符号数 PORT 或 DX 寄存器所指的端口输入一个字节数据到累加器 AL 中，或输入一个字数据到累加器 AX 中。</p>
+<p>说明：可以用一个无符号数 PORT 直接给出外设端口地址，取值为 0-FFH ，也可以用 DX 寄存器间接给出外设端口地址，取值 0-FFFFH。</p>
+<p>eg：</p>
+<p><code>IN AL,60H</code>               ；将 60H 端口中的数据读到 AL 中</p>
+<p><code>IN AX,60H</code>               ；将 60H 端口中的数据读到 AX 中</p>
+<p><code>MOV DX,3FFH</code>            ；将端口地址寄存到 DX 中</p>
+<p><code>IN AL,DX</code>                  ；将 DX 所指定的端口中的数据读到 AL 中</p>
+<p><code>IN AX,DX</code>                  ；将 DX 所指定的端口中的数据读到 AL 中，将 （DX）+1 所指定的端口中内容数据读到 AH 中。</p>
+<p>（2.）输出指令 OUT</p>
+<p>短格式：<code>OUT PORT ,AL/AX</code></p>
+<p>长格式：<code>OUT DX,AL/AX</code></p>
+<p>功能：实现输出，其数据传送方向与 IN 指令相反。</p>
+<h4 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h4><p>地址传送指令实现操作数地址信息的传送。</p>
+<p>1.）有效地址送寄存器指令 LEA</p>
+<p>格式：<code>LEA 通用寄存器，源操作数</code></p>
+<p>功能：将源操作数的偏移地址送入通用寄存器。</p>
+<p>说明：指令中的目的操作数只能使用 16 位通用寄存器，不能使用段寄存器，源操作数只能是存储器操作数。</p>
+<p>eg：</p>
+<p><code>MOV BX,0200H</code></p>
+<p><code>MOV SI,3000H</code></p>
+<p><code>LEA BP.[BX+SI+6]</code>   ；将源操作数的有效地址 3206H 送到 BP 寄存器中</p>
+<p>2.）指针送寄存器和 DS 指令 LDS</p>
+<p>格式：<code>LDS 通用寄存器，源操作数</code></p>
+<p>功能：将源操作数指示的双字节内容送入通用寄存器和 DS ，低两字节内容送到通用寄存器，高两字节内容送入 DS。</p>
+<p>说明：指令中的目的操作数只能使用 16 位通用寄存器，不能使用段寄存器，源操作数只能是存储器操作数。</p>
+<p>eg：</p>
+<p><code>LDS BX,[100H]</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175651.jpg" alt></p>
+<p>3.）指针送寄存器和 ES 指令 LES</p>
+<p>LES 和 LDS 的区别在于，传送地址时将高地址两字节送入 ES ，而不是 DS。</p>
+<h4 id="标志传送指令"><a href="#标志传送指令" class="headerlink" title="标志传送指令"></a>标志传送指令</h4><p>标志传送指令专门用于对标志寄存器进行操作。    LAHF 和 SAHF 只对标志寄存器的低8位进行操作，而 PUSHF 和 POPF 对整个标志寄存器进行操作。</p>
+<p>1.）取标志指令 LAHF</p>
+<p>格式：<code>LAHF</code></p>
+<p>功能：将标志寄存器的低8位传送到累加器 AH。</p>
+<p>标准寄存器中低8位中有五个状态标志位，LAHF 指令将这些标志位传送到 AH 中的对应位。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175658.jpg" alt></p>
+<p>2.）置标志指令 SAHF</p>
+<p>格式：<code>SAHF</code></p>
+<p>功能：将累加器 AH 中的内容送到标志寄存器的低8位。影响低8位中的五种状态标志位。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175702.jpg" alt></p>
+<p>3.）标志进栈/出栈指令 PUSHF/POPF</p>
+<p>格式：<code>PUSHF</code></p>
+<p>格式：<code>POPF</code></p>
+<p>功能：与 PUSH 不同之处在于，压入堆栈的是标志寄存器的内容；与 POP 不同之处在于，弹出的栈顶元素进入标志寄存器中。</p>
+<hr>
+<p>[^]:  注：本篇中所有配图均来自《汇编语言程序设计实用教程》–任向民 ，如有侵权，请联系作者删除！</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/汇编/">汇编</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/10/模块的概念/">
+        <span class="next-text nav-default">模块的概念、包</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
