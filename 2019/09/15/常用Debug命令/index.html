@@ -17,6 +17,8 @@
 
 
 
+  <meta name="keywords" content="汇编,">
+
 
 
 
@@ -33,14 +35,29 @@
 <link rel="canonical" href="http://yoursite.com/2019/09/15/常用Debug命令/">
 
 
+<meta name="description" content="检查和修改寄存器内容命令 R格式：-R [寄存器名|F] 功能：显示和修改 CPU 中寄存器的内容，或显示或修改标志位的状态 显示 CPU 内所有寄存器内容 使用不带参数的 -R 可以显示 CPU 内容所有寄存器内容。  显示和修改 CPU 内某个寄存器内容 格式：-r/R[寄存器名]  显示标志位的状态 格式：-rf/RF  各符号的含义如下：    表示符号 含义 表示符号 含义    OV">
+<meta name="keywords" content="汇编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用Debug命令">
 <meta property="og:url" content="http://yoursite.com/2019/09/15/常用Debug命令/index.html">
 <meta property="og:site_name" content="Hades">
+<meta property="og:description" content="检查和修改寄存器内容命令 R格式：-R [寄存器名|F] 功能：显示和修改 CPU 中寄存器的内容，或显示或修改标志位的状态 显示 CPU 内所有寄存器内容 使用不带参数的 -R 可以显示 CPU 内容所有寄存器内容。  显示和修改 CPU 内某个寄存器内容 格式：-r/R[寄存器名]  显示标志位的状态 格式：-rf/RF  各符号的含义如下：    表示符号 含义 表示符号 含义    OV">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-15T09:35:11.888Z">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4666.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/566.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/489.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/146.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4598.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4596.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/1656.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4569.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/79.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/799.png">
+<meta property="og:updated_time" content="2019-09-15T12:34:55.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用Debug命令">
+<meta name="twitter:description" content="检查和修改寄存器内容命令 R格式：-R [寄存器名|F] 功能：显示和修改 CPU 中寄存器的内容，或显示或修改标志位的状态 显示 CPU 内所有寄存器内容 使用不带参数的 -R 可以显示 CPU 内容所有寄存器内容。  显示和修改 CPU 内某个寄存器内容 格式：-r/R[寄存器名]  显示标志位的状态 格式：-rf/RF  各符号的含义如下：    表示符号 含义 表示符号 含义    OV">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4666.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -135,12 +152,119 @@
 
     
             <div class="post-content">
-            
+            <h4 id="检查和修改寄存器内容命令-R"><a href="#检查和修改寄存器内容命令-R" class="headerlink" title="检查和修改寄存器内容命令 R"></a>检查和修改寄存器内容命令 R</h4><p>格式：<code>-R [寄存器名|F]</code></p>
+<p>功能：显示和修改 CPU 中寄存器的内容，或显示或修改标志位的状态</p>
+<p>显示 CPU 内所有寄存器内容</p>
+<p>使用不带参数的 -R 可以显示 CPU 内容所有寄存器内容。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4666.png" alt></p>
+<p>显示和修改 CPU 内某个寄存器内容</p>
+<p>格式：<code>-r/R[寄存器名]</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/566.png" alt></p>
+<p>显示标志位的状态</p>
+<p>格式：<code>-rf/RF</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/489.png" alt></p>
+<p>各符号的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>表示符号</th>
+<th>含义</th>
+<th>表示符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OV</td>
+<td>OF=1</td>
+<td>NV</td>
+<td>OF=0</td>
+</tr>
+<tr>
+<td>DN</td>
+<td>DF=1</td>
+<td>UP</td>
+<td>DF=0</td>
+</tr>
+<tr>
+<td>EI</td>
+<td>IF=1</td>
+<td>DI</td>
+<td>IF=0</td>
+</tr>
+<tr>
+<td>NG</td>
+<td>SF=1</td>
+<td>PL</td>
+<td>SF=0</td>
+</tr>
+<tr>
+<td>ZR</td>
+<td>ZF=1</td>
+<td>NZ</td>
+<td>ZF=0</td>
+</tr>
+<tr>
+<td>AC</td>
+<td>AF=1</td>
+<td>NA</td>
+<td>AF=0</td>
+</tr>
+<tr>
+<td>PE</td>
+<td>PF=1</td>
+<td>PO</td>
+<td>PF=0</td>
+</tr>
+<tr>
+<td>CY</td>
+<td>CF=1</td>
+<td>NC</td>
+<td>CF=0</td>
+</tr>
+</tbody></table>
+<h4 id="显示存储单元命令-D"><a href="#显示存储单元命令-D" class="headerlink" title="显示存储单元命令 D"></a>显示存储单元命令 D</h4><p>格式：<code>-D[地址][地址范围]</code></p>
+<p>功能：显示指定地址或地址范围内存储单元的内容。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/146.png" alt></p>
+<p>不带参数的 D 命令</p>
+<p>如果第一次使用，则显示代码段的内容，如果不是第一次使用，将在上一次显示内容的基础上，显示其后的128个字节单元的内容。</p>
+<p>带地址参数的 D 命令</p>
+<p>显示指定地址开始的128个字节单元的内容，地址中如果省略段前缀，默认是 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4598.png" alt></p>
+<p>带地址范围参数的 D 命令</p>
+<p>显示指定地址范围内存储单元的内容。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4596.png" alt></p>
+<h4 id="修改存储单元命令-E"><a href="#修改存储单元命令-E" class="headerlink" title="修改存储单元命令 E"></a>修改存储单元命令 E</h4><p>格式：<code>-E[地址 内容表]</code></p>
+<p>功能：将指定地址的内存储单元修改为内容表的内容。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/1656.png" alt></p>
+<h4 id="汇编命令-A"><a href="#汇编命令-A" class="headerlink" title="汇编命令 A"></a>汇编命令 A</h4><p>格式：<code>-A[地址]</code></p>
+<p>功能：该命令允许输入汇编语言，并能把它们汇编成机器代码，相继的存放在从指定地址开始的存储区中，如果不指定汇编地址，则以 CS:IP 为地址。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/4569.png" alt></p>
+<h4 id="反汇编命令-U"><a href="#反汇编命令-U" class="headerlink" title="反汇编命令 U"></a>反汇编命令 U</h4><p>格式：<code>-U[地址][地址范围]</code></p>
+<p>功能：将指定地址的机器代码翻译成汇编语言指令显示出来，同时显示地址和代码。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/79.png" alt></p>
+<h4 id="命名命令-N"><a href="#命名命令-N" class="headerlink" title="命名命令 N"></a>命名命令 N</h4><p>格式：<code>-N[驱动器][路径]文件名[.扩展名]</code></p>
+<p>功能：指定要用 L 命令装入内存或用 W 命令写到磁盘的文件的名字。</p>
+<h4 id="装入命令-L"><a href="#装入命令-L" class="headerlink" title="装入命令 L"></a>装入命令 L</h4><p>格式：<code>-L[地址][驱动器 扇区号 扇区数]</code></p>
+<p>功能：把磁盘上的指定文件或指定扇区的内容装入到内存储器从指定开始的地址中，若未指定地址，则从 CS:0100开始。</p>
+<h4 id="执行命令-G"><a href="#执行命令-G" class="headerlink" title="执行命令 G"></a>执行命令 G</h4><p>格式：<code>-G[=起始地址][终止地址]</code></p>
+<p>功能：执行从起始地址开始，到终止地址结束的程序，如果程序能够正确的执行到结束，则显示当前寄存器的执行结果以及下一条要执行的指令。</p>
+<h4 id="跟踪运行命令-T"><a href="#跟踪运行命令-T" class="headerlink" title="跟踪运行命令 T"></a>跟踪运行命令 T</h4><p>格式：<code>-T[=起始格式][指令条数]</code></p>
+<p>功能：从起始地址开始跟踪执行指定条数的指令，每执行一条指令，显示所有寄存器内容，状态标识和下一条要执行的指令。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/799.png" alt></p>
+<h4 id="退出-Debug-命令-Q"><a href="#退出-Debug-命令-Q" class="headerlink" title="退出 Debug 命令 Q"></a>退出 Debug 命令 Q</h4><p>格式：<code>-Q</code></p>
+<p>功能：退出 Debug，返回 Dos。</p>
+
             </div>
           
 
     
       <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/汇编/">汇编</a>
+		  
+		</div>
 		
 
         
