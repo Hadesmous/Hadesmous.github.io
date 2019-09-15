@@ -43,7 +43,7 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="汇编语言语句分类语句是汇编语言程序的基本组成单位，有三种常见类型：指令语句、伪指令语句和宏指令语句。 指令语句：在汇编源程序时，每条指令语句都要产生相应的机器语言目标代码，对应着机器的每一天条操作。 伪指令语句：用于指示汇编语言如何对源程序进行汇编工作，伪指令语句的功能在汇编阶段已经全部完成，所以不产生相应的目标代码。 宏指令语句：在不同位置重复执行的多条指令的指令序列，可定义为宏指令，出现时进行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-14T11:44:11.572Z">
+<meta property="og:updated_time" content="2019-09-15T07:51:17.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编语言语句">
 <meta name="twitter:description" content="汇编语言语句分类语句是汇编语言程序的基本组成单位，有三种常见类型：指令语句、伪指令语句和宏指令语句。 指令语句：在汇编源程序时，每条指令语句都要产生相应的机器语言目标代码，对应着机器的每一天条操作。 伪指令语句：用于指示汇编语言如何对源程序进行汇编工作，伪指令语句的功能在汇编阶段已经全部完成，所以不产生相应的目标代码。 宏指令语句：在不同位置重复执行的多条指令的指令序列，可定义为宏指令，出现时进行">
@@ -321,6 +321,67 @@
 <p>段超越前缀运算符“：”：该运算符用于给变量、标号或地址表达式临时指定一个段属性。</p>
 <p>格式：<code>段寄存器名：地址表达式 或段名：地址表达式</code></p>
 <p>类型设定运算符 PTR、THIS、SHORT。</p>
+<ul>
+<li>PTR 运算符的功能就是地址表达式所确定的存储单元临时设定为指定类型（BYTE、WORD、DWORD、NEAR、FAR）这种临时设定的类型仅在含有该运算符的语句内有效， PTR 的格式如下：<code>PTR 地址表达式</code></li>
+<li>THIS 运算符的功能与 PTR 类似，但具体用法不同，格式如下：<code>变量名 EQU THIS 类型</code></li>
+<li>SHORT 运算符用于说明其后的标号在短距离（-128~127之间）内，一般用在向后转移的 JMP 指令中，格式如下：<code>JMP SHORT 目标地址</code></li>
+</ul>
+<p>分离运算符：</p>
+<p>分离高字节运算符 HIGH：该运算的结果是其后的运算对象的高字节。</p>
+<p>分离低字节运算符 LOW：该运算的结果是其后的运算对象的低字节。</p>
+<p>eg：</p>
+<p><code>MOV BX,0ABCDH</code></p>
+<p><code>MOV HIGH BX</code></p>
+<p><code>MOV LOW BX</code></p>
+<p><code>MOV BX,AX</code></p>
+<p>以上代码实现 BX 内容高、低字节的内容互换。</p>
+<p>运算符的优先级：</p>
+<ul>
+<li>先计算圆括号内的运算，如果圆括号有嵌套，按照由内而外的顺序。</li>
+<li>没有圆括号或对于一对圆括号内的运算按照运算符的优先级从高到低的顺序。</li>
+<li>对于优先级相同的运算按照从左到右的顺序计算。</li>
+</ul>
+<p>运算符的优先级表：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>级别</th>
+<th>运算符</th>
+<th>级别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LENGTH、SIZE</td>
+<td>1</td>
+<td>EQ、NE、LT、LE、GT、GE</td>
+<td>6</td>
+</tr>
+<tr>
+<td>：、PTR、OFFSET、SEG、TYPE、THIS</td>
+<td>2</td>
+<td>NOT</td>
+<td>7</td>
+</tr>
+<tr>
+<td>HIGH、LOW</td>
+<td>3</td>
+<td>AND</td>
+<td>8</td>
+</tr>
+<tr>
+<td>*、/、MOD、SHL、SHR</td>
+<td>4</td>
+<td>OR、XOR</td>
+<td>9</td>
+</tr>
+<tr>
+<td>+、-</td>
+<td>5</td>
+<td>SHORT</td>
+<td>10</td>
+</tr>
+</tbody></table>
 
             </div>
           
@@ -338,6 +399,12 @@
         
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2019/09/15/伪指令、宏指令/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">伪指令、宏指令</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
       <a class="next" href="/2019/09/13/8086运算、位移、处理器指令/">

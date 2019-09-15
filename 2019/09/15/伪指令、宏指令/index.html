@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="伪指令、宏指令">
+
+
+
+
+  <meta name="keywords" content="汇编,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/15/伪指令、宏指令/">
+
+
+<meta name="description" content="段结构伪指令汇编语言程序是按段来组织程序和使用存储器的，段结构伪指令的作用是在汇编语言程序中定义逻辑段，指明段的名称、范围、定义类型、组合类型和类别等。 完整端定义由 SEGMENT、ENDS、ASSUME 和 ORG 等。 完整端定义的一般格式如下： 1234段名  SEGMENT [类型属性列表]true.true.段名  ENDS  其中, SEGMENT 表示逻辑段的开始，ENDS 表示逻">
+<meta name="keywords" content="汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="伪指令、宏指令">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/伪指令、宏指令/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="段结构伪指令汇编语言程序是按段来组织程序和使用存储器的，段结构伪指令的作用是在汇编语言程序中定义逻辑段，指明段的名称、范围、定义类型、组合类型和类别等。 完整端定义由 SEGMENT、ENDS、ASSUME 和 ORG 等。 完整端定义的一般格式如下： 1234段名  SEGMENT [类型属性列表]true.true.段名  ENDS  其中, SEGMENT 表示逻辑段的开始，ENDS 表示逻">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-15T09:30:28.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="伪指令、宏指令">
+<meta name="twitter:description" content="段结构伪指令汇编语言程序是按段来组织程序和使用存储器的，段结构伪指令的作用是在汇编语言程序中定义逻辑段，指明段的名称、范围、定义类型、组合类型和类别等。 完整端定义由 SEGMENT、ENDS、ASSUME 和 ORG 等。 完整端定义的一般格式如下： 1234段名  SEGMENT [类型属性列表]true.true.段名  ENDS  其中, SEGMENT 表示逻辑段的开始，ENDS 表示逻">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 伪指令、宏指令 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/Story">
+                            
+                            
+                                Story
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          伪指令、宏指令
+        
+      </h1>
+
+      <time class="post-time">
+          9月 15 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="段结构伪指令"><a href="#段结构伪指令" class="headerlink" title="段结构伪指令"></a>段结构伪指令</h3><p>汇编语言程序是按段来组织程序和使用存储器的，段结构伪指令的作用是在汇编语言程序中定义逻辑段，指明段的名称、范围、定义类型、组合类型和类别等。</p>
+<p>完整端定义由 SEGMENT、ENDS、ASSUME 和 ORG 等。</p>
+<p>完整端定义的一般格式如下：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">段名  <span class="symbol">SEGMENT</span> [类型属性列表]</span><br><span class="line">true.</span><br><span class="line">true.</span><br><span class="line">段名  <span class="symbol">ENDS</span></span><br></pre></td></tr></table></figure>
+
+<p>其中, SEGMENT 表示逻辑段的开始，ENDS 表示逻辑段的结束。</p>
+<h4 id="段首伪指令-SEFMENT"><a href="#段首伪指令-SEFMENT" class="headerlink" title="段首伪指令 SEFMENT"></a>段首伪指令 SEFMENT</h4><p>该指令标志着一个段的开始，并可以给段赋予边界属性、组合类型、使用类型和类型别名等属性。</p>
+<p>格式：<code>段名 SEFMENT [边界类型] [组合属性] [使用类型] [‘类别名’]</code></p>
+<p>段名由用户指定，对属性如不指定，采用默认值，若指定，必须按照以上次序。</p>
+<p>边界类型：边界类型指明该段装入内容时，对段起始边界的要求。有以下四种。</p>
+<ul>
+<li>BYTE(字节边界)：表示本段从一个字节的边界开始，即任一地址开始。</li>
+<li>WORD(字边界)：表示本段从一个偶字节的边界开始，所以段的起始地址一定可以被2整除，用二进制表示，最后一位为0。</li>
+<li>PAPA(节边界)：表示本段从一个小节的边界开始（一个小节为16个字节），所以段的起始地址一定可以被16整除，用二进制表示，最后4位为0。</li>
+<li>PAGE(页边界)：表示本段从一个页的边界开始，存储器从0号单元开始，每256个字节为一页，所以段的起始地址一定可以被256整除，用二进制表示，最后8位为0。</li>
+</ul>
+<p>注：省略边界类型时，默认 PAPA。</p>
+<p>合并类型：指示连接程序本段与同段名同类别的其他段合并与否以及合并方式。有以下5种。</p>
+<ul>
+<li>NONE；表示本段与其他段无连接关系，因此在逻辑上是分离的。</li>
+<li>PUBLIC；连接程序在满足边界类型的前提下，将本段与其他段具有相同段名并且也用 PUBLIC 说明的段放在连续的存储空间中，形成一个新的逻辑段，其长度为各段长度之和。</li>
+<li>COMMON：产生一个覆盖段，连接程序将相同段名、相同类别的 COMMON 段重叠放置，共享一个存储区，覆盖段的长度是各段最大长度。</li>
+<li>STACK：用于指定一个堆栈段，连接程序对 STACK 和 PUBLIC 段同样处理，此外还要指示装入程序把合并后的段基址送入 SS ，并将 SP 设置成堆栈段的长度。</li>
+<li>AT节地址：表示本段可定位在表达式所指定的小节边界上。</li>
+</ul>
+<p>类型名：写在一对单引号中的名字，由用户自己选定。</p>
+<h4 id="段尾伪指令-ENDS"><a href="#段尾伪指令-ENDS" class="headerlink" title="段尾伪指令 ENDS"></a>段尾伪指令 ENDS</h4><p>该伪指令标志着一个段的结束。</p>
+<p>格式：<code>段名 ENDS</code></p>
+<p>注：段名必须与 SEGMENT 指令中的段名一致。</p>
+<h4 id="段寻址伪指令-ASSUME"><a href="#段寻址伪指令-ASSUME" class="headerlink" title="段寻址伪指令 ASSUME"></a>段寻址伪指令 ASSUME</h4><p>用来说明各个段寄存器分别装入哪个逻辑段的段起始地址。</p>
+<p>格式：<code>ASSUME 段寄存器名：段名，段寄存器名：段名...</code></p>
+<h4 id="ORG-伪指令"><a href="#ORG-伪指令" class="headerlink" title="ORG 伪指令"></a>ORG 伪指令</h4><p>设置其后的指令或数据的起始地址，使指令或数据从指定的偏移地址开始存放。</p>
+<p>格式：<code>ORG 表达式</code></p>
+<p>注：表达式的值应在 0000H–0FFFFH 之间。</p>
+<h4 id="地址计数器"><a href="#地址计数器" class="headerlink" title="地址计数器 $"></a>地址计数器 $</h4><p>表示下一个可用单元的地址。</p>
+<p>eg：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ORG <span class="number">0050</span>H                 ; 使变量从偏移地址 <span class="number">005</span>H 开始存放</span><br><span class="line">DATA1 DW <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>          </span><br><span class="line">ORG $+<span class="number">30</span>H                 ；使变量从偏移地址 <span class="number">0088</span>H 开始存放</span><br><span class="line">DATA2 DB 'ABCD'</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整端定义结构"><a href="#完整端定义结构" class="headerlink" title="完整端定义结构"></a>完整端定义结构</h3><p>典型结构格式如下：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">数据段名    SEGMENT         ；数据段开始</span><br><span class="line">           .</span><br><span class="line">           .</span><br><span class="line">数据段名    ENDS			；数据段结束</span><br><span class="line">堆栈段名    SEFMENT			；堆栈段开始</span><br><span class="line">truetrue   .</span><br><span class="line">           .</span><br><span class="line">堆栈段名    ENDS			；堆栈段结束</span><br><span class="line">代码段名    SEGMENT			；代码段开始</span><br><span class="line">truetrue   ASSUME ...	   ；代码段装填</span><br><span class="line">START：    ...</span><br><span class="line">truetrue   .</span><br><span class="line">truetrue   .</span><br><span class="line">truetrue   MOV AH,<span class="number">4</span>CH</span><br><span class="line">truetrue   INT <span class="number">21</span>H		    ；返回 DOS</span><br><span class="line">truetrue   .</span><br><span class="line">truetrue   .</span><br><span class="line">代码段名    ENDS			 ；代码段结束</span><br><span class="line">truetrue   END START</span><br></pre></td></tr></table></figure>
+
+<h3 id="过程定义伪指令"><a href="#过程定义伪指令" class="headerlink" title="过程定义伪指令"></a>过程定义伪指令</h3><p>在程序设计中，通常把一些相对独立的语句序列组成一个过程，供程序调用执行，过程又称为子程序，过程定义伪指令 PROC/ENDP 的格式如下：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">过程名  PROC [<span class="built_in">NEAR</span>|<span class="built_in">FAR</span>]</span><br><span class="line">true   . </span><br><span class="line">true   .	</span><br><span class="line">true   <span class="keyword">RET</span>            ；返回指令</span><br><span class="line">过程名  ENDP</span><br></pre></td></tr></table></figure>
+
+<p>定义一个过程必须在一个逻辑段中，过程名相当于标号，表示本过程的符号地址，过程有 NEAR 和 FAR 两种，NEAR 类型的过程仅供段内调用，FAR 类型的过程可供段间调用。类型默认 NEAR。</p>
+<h3 id="模块定义伪指令"><a href="#模块定义伪指令" class="headerlink" title="模块定义伪指令"></a>模块定义伪指令</h3><h4 id="NAME-伪指令"><a href="#NAME-伪指令" class="headerlink" title="NAME 伪指令"></a>NAME 伪指令</h4><p>用于给源程序汇编以后得到的目标程序指定一个模块名，连接目标程序时，将使用该模块名表示目标程序。</p>
+<p>格式：<code>NAME 模块名</code></p>
+<h4 id="TITLE-伪指令"><a href="#TITLE-伪指令" class="headerlink" title="TITLE 伪指令"></a>TITLE 伪指令</h4><p>用于给程序指定一个标题，一般不超过60个字符，以后的列表文件会在每一页的每一行显示这个标题。</p>
+<p>格式：<code>TITLE 文本</code></p>
+<h4 id="END-伪指令"><a href="#END-伪指令" class="headerlink" title="END 伪指令"></a>END 伪指令</h4><p>指示用标号指定的地址作为程序执行的启动地址。</p>
+<p>格式：<code>END [标号]</code></p>
+<p>注：如果源程序中没有用 NAME 伪指令指定模块名，则汇编程序将 TITLE 伪指令给出的标题名中前6个字符作为模块名，如果源程序中即无 NAME 伪指令，也无 TITLE 伪指令，则汇编程序将源程序的文件名作为模块名。</p>
+<h3 id="宏指令"><a href="#宏指令" class="headerlink" title="宏指令"></a>宏指令</h3><h4 id="宏指令定义、调用和展开"><a href="#宏指令定义、调用和展开" class="headerlink" title="宏指令定义、调用和展开"></a>宏指令定义、调用和展开</h4><p>宏定义 MACRO/ENDM 格式：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">宏指令名 <span class="symbol">MACRO</span> [形参列表]</span><br><span class="line">truetruetrue.</span><br><span class="line">truetruetrue.     ; 宏体</span><br><span class="line">truetrue<span class="symbol">ENDM</span></span><br></pre></td></tr></table></figure>
+
+<p>在宏定义时，宏指令名必须唯一，允许修改的部分作为形式参数来表示，在宏调用时使用实参代替。</p>
+<p>宏调用格式：</p>
+<p><code>宏指令名 [实参列表]</code></p>
+<p>宏展开：用宏定义中宏体的目标代码替换宏调用。</p>
+<h4 id="宏操作符"><a href="#宏操作符" class="headerlink" title="宏操作符"></a>宏操作符</h4><p>连接操作符 &amp;</p>
+<p>在宏定义时，&amp;作为形参的前缀或后缀，宏展开时，连接操作符&amp;前后的两个符号连接在一起构成新的符号。</p>
+<p>eg：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SHIFT_VAR MARCO RM,DIRECT,COUNT</span><br><span class="line">truetrue  <span class="keyword">MOV</span>   <span class="built_in">CL</span>,COUNT</span><br><span class="line">truetrue  S&amp;DIRECT RM,<span class="built_in">CL</span></span><br><span class="line">truetrue  ENDM</span><br><span class="line">SHIFT_VAR <span class="built_in">AX</span>,HL,<span class="number">2</span></span><br><span class="line"></span><br><span class="line">SHIFT_VAR <span class="built_in">BX</span>,HR,<span class="number">3</span></span><br><span class="line"></span><br><span class="line">两次调用的宏展开分别如下：</span><br><span class="line">+<span class="keyword">MOV</span> <span class="built_in">CL</span>,<span class="number">2</span></span><br><span class="line">+<span class="keyword">SHL</span> <span class="built_in">AX</span>,<span class="built_in">CL</span></span><br><span class="line"></span><br><span class="line">+<span class="keyword">MOV</span> <span class="built_in">CL</span>,<span class="number">3</span></span><br><span class="line">+<span class="keyword">SHR</span> <span class="built_in">BX</span>,<span class="built_in">CL</span></span><br></pre></td></tr></table></figure>
+
+<p>表达式操作符 %</p>
+<p>格式：<code>%表达式</code></p>
+<p>在宏调用时，表达式操作符强制后面的表达式立即求值，并将表达式的值作为实参替换。</p>
+<p>文本操作符 &lt;&gt;</p>
+<p>在宏调用时，若某个实参中包含逗号或空格等间隔符，则必须用文本操作符将该实参括起来，以保证将他作为一个单独的参数而不是多个参数。</p>
+<p>字符操作符 ！</p>
+<p>格式：<code>!字符</code></p>
+<p>指示宏指令在汇编时，把后面的字符当做普通的字符对待，而不使用它的特殊含义。</p>
+<p>宏注解符 ;;</p>
+<p>格式：<code>;;文本</code></p>
+<h4 id="LOCAL-伪指令"><a href="#LOCAL-伪指令" class="headerlink" title="LOCAL 伪指令"></a>LOCAL 伪指令</h4><p>宏定义中如果包含标号或变量名，且在同一个源程序中调用多次，则在宏展开时，就要产生多个相同的变量名或标号，为了避免这种错误，可在宏定义中使用 LOCAL 伪指令。</p>
+<p>格式：<code>LOCAL &lt;局部符号表&gt;</code></p>
+<p>LOCAL 指定的变量名或标号在宏展开时会自动生成 ?? XXXX 的符号，XXXX 的范围在 0000H - 0FFFFH。</p>
+<h3 id="重复汇编"><a href="#重复汇编" class="headerlink" title="重复汇编"></a>重复汇编</h3><p>重复汇编结构有三种，分别使用 REPT、IPR 和 IRPC。</p>
+<h4 id="REPT-ENDM-伪指令"><a href="#REPT-ENDM-伪指令" class="headerlink" title="REPT/ENDM 伪指令"></a>REPT/ENDM 伪指令</h4><p>格式：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPT 数值表达式</span><br><span class="line">true.</span><br><span class="line">true.	</span><br><span class="line">trueENDM</span><br></pre></td></tr></table></figure>
+
+<p>REPT/ENDM 伪指令指示汇编程序重复执行重复块的指令序列，重复次数由数字表达式的值确定。</p>
+<h4 id="IRP-ENDM-伪指令"><a href="#IRP-ENDM-伪指令" class="headerlink" title="IRP/ENDM 伪指令"></a>IRP/ENDM 伪指令</h4><p>格式：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPR 形式参数，&lt;实参数&gt;</span><br><span class="line">true.</span><br><span class="line">true.</span><br><span class="line">trueENDM</span><br></pre></td></tr></table></figure>
+
+<p>IPR/ENDM 伪指令指示汇编程序使重复块的内容重复多次，重复次数等于实参数的个数。每次重复都用一个实参数替换形式参数，直到用完为止。</p>
+<h4 id="IRPC-ENDM-伪指令"><a href="#IRPC-ENDM-伪指令" class="headerlink" title="IRPC/ENDM 伪指令"></a>IRPC/ENDM 伪指令</h4><p>格式：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IRPC 形式参数，串</span><br><span class="line">true.</span><br><span class="line">true.</span><br><span class="line">trueENDM</span><br></pre></td></tr></table></figure>
+
+<p>IRPC/ENDM 伪指令指示汇编程序使重复块的内容重复多次，重复次数等于串中的数字或符号的个数。每次重复用串中的一个数字或符号替换形式参数。如果串中有空格，需要用&lt;&gt;括起来。</p>
+<h3 id="条件汇编"><a href="#条件汇编" class="headerlink" title="条件汇编"></a>条件汇编</h3><p>根据条件来确定否把一段源代码汇编成对应的目标代码。有以下两种格式：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">格式1：</span><br><span class="line">IFXX 条件</span><br><span class="line">.</span><br><span class="line"><span class="bullet">.       </span>；语句序列1</span><br><span class="line">ELSE</span><br><span class="line"><span class="bullet">.		</span></span><br><span class="line"><span class="bullet">.		</span>；语句序列2</span><br><span class="line">ENDIF</span><br><span class="line">格式2：</span><br><span class="line">IFXX 条件</span><br><span class="line">.</span><br><span class="line"><span class="bullet">.		</span>；语句序列</span><br><span class="line">ENDIF</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/汇编/">汇编</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/14/汇编语言语句/">
+        <span class="next-text nav-default">汇编语言语句</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
