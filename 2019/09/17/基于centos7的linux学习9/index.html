@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="基于centos7的linux学习9">
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/17/基于centos7的linux学习9/">
+
+
+<meta name="description" content="文件系统管理创建文件系统创建文件系统的命令格式： mkfs.ext4 &amp;lt;设备名&amp;gt; 创建 ext4 类型的文件系统 mkfs.xfs &amp;lt;设备名&amp;gt; 创建 xfs 类型的文件系统 也可以使用带 -t&amp;lt;fstype&amp;gt; 选项的 mkfs 命令创建各种类型的文件系统。 使用 mount 命令挂载文件系统mount 的命令格式如下： 格式1：mount [-t&amp;lt;文件系统">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于centos7的linux学习9">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/基于centos7的linux学习9/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="文件系统管理创建文件系统创建文件系统的命令格式： mkfs.ext4 &amp;lt;设备名&amp;gt; 创建 ext4 类型的文件系统 mkfs.xfs &amp;lt;设备名&amp;gt; 创建 xfs 类型的文件系统 也可以使用带 -t&amp;lt;fstype&amp;gt; 选项的 mkfs 命令创建各种类型的文件系统。 使用 mount 命令挂载文件系统mount 的命令格式如下： 格式1：mount [-t&amp;lt;文件系统">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-17T11:28:55.574Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于centos7的linux学习9">
+<meta name="twitter:description" content="文件系统管理创建文件系统创建文件系统的命令格式： mkfs.ext4 &amp;lt;设备名&amp;gt; 创建 ext4 类型的文件系统 mkfs.xfs &amp;lt;设备名&amp;gt; 创建 xfs 类型的文件系统 也可以使用带 -t&amp;lt;fstype&amp;gt; 选项的 mkfs 命令创建各种类型的文件系统。 使用 mount 命令挂载文件系统mount 的命令格式如下： 格式1：mount [-t&amp;lt;文件系统">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 基于centos7的linux学习9 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/Story">
+                            
+                            
+                                Story
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          基于centos7的linux学习9
+        
+      </h1>
+
+      <time class="post-time">
+          9月 17 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="文件系统管理"><a href="#文件系统管理" class="headerlink" title="文件系统管理"></a>文件系统管理</h3><h4 id="创建文件系统"><a href="#创建文件系统" class="headerlink" title="创建文件系统"></a>创建文件系统</h4><p>创建文件系统的命令格式：</p>
+<p><code>mkfs.ext4 &lt;设备名&gt;</code> 创建 ext4 类型的文件系统</p>
+<p><code>mkfs.xfs &lt;设备名&gt;</code> 创建 xfs 类型的文件系统</p>
+<p>也可以使用带 -t&lt;fstype&gt; 选项的 mkfs 命令创建各种类型的文件系统。</p>
+<h4 id="使用-mount-命令挂载文件系统"><a href="#使用-mount-命令挂载文件系统" class="headerlink" title="使用 mount 命令挂载文件系统"></a>使用 mount 命令挂载文件系统</h4><p>mount 的命令格式如下：</p>
+<p>格式1：<code>mount [-t&lt;文件系统类型&gt;] [-o&lt;挂载选项&gt;] &lt;设备名&gt; &lt;挂装点&gt;</code></p>
+<ul>
+<li>用于挂载 /etc/fstab 中为列出的文件系统</li>
+<li>使用 -t 选项可以指定文件类型</li>
+<li>若省略，以此试探 /proc/filesystems 中不包含 nodev 的行</li>
+<li>必须同时指定使用&lt;设备名&gt;或&lt;挂装点&gt;</li>
+</ul>
+<p>格式2：<code>mount [-o&lt;挂载选项&gt;] &lt;设备名&gt;或&lt;挂装点&gt;</code> </p>
+<ul>
+<li>用于挂载 /etc/fstab 中以列出的文件系统</li>
+<li>选择使用&lt;设备名&gt;或&lt;挂装点&gt;</li>
+<li>若 -o 省略，使用 /etc/fstab 中该文件系统的挂装选项。</li>
+</ul>
+<p>格式3：<code>mount -a  [-t&lt;文件系统类型&gt;] [-o&lt;挂载选项&gt;]</code></p>
+<ul>
+<li>用于挂载 /etc/fstab 中所有不包含 noauto （非自动挂装）挂装选择的文件系统</li>
+<li>-t 若指定此参数，则只挂装 /etc/fstab 中指定类型的文件系统</li>
+<li>-o 用于指定挂装 /etc/fstab 中包含指定挂装选项的文件系统</li>
+<li>若同时指定 -t 和 -o ，则为或者的关系</li>
+</ul>
+<p>使用 mount 命令可查看当前挂装的文件系统。</p>
+<p>挂装点就是文件系统中的一个目录，必须把文件系统挂装在目录树中的某个目录中。</p>
+<p>挂装点目录在实施挂装操作之前必须存在，如其不存在则应该使用 mkidir 命令创建。</p>
+<p>通常挂装点目录必须是空的，否则目录中原有文件将内系统隐藏。</p>
+<p><img src alt></p>
+<h4 id="使用-umount-命令卸载文件系统"><a href="#使用-umount-命令卸载文件系统" class="headerlink" title="使用 umount 命令卸载文件系统"></a>使用 umount 命令卸载文件系统</h4><p>格式：<code>umount &lt;设备名或挂装点&gt;</code></p>
+<p>注：如果一个文件系统处于 busy 状态，则不能卸载该文件系统。</p>
+<h4 id="fuser-命令"><a href="#fuser-命令" class="headerlink" title="fuser 命令"></a>fuser 命令</h4><p>fuser 命令可以根据文件（目录、设备）查找使用它的进程，同时也提供了杀死这些进程的方法。当文件处于 busy 状态时可以使用该命令。</p>
+<p><code>fuser -cu /mount_point</code>     查看挂接点有哪些进程需要杀掉</p>
+<p><code>fuser -ck /mount_point</code>     杀死这些进程，发送 kill -9 命令</p>
+<p><code>fuser -c  /mount_point</code>     查看是否还有进程在访问挂接点</p>
+<p><code>umount /mount_point</code>           卸载挂接点上的设备</p>
+<h4 id="在系统启动时自动挂载文件系统"><a href="#在系统启动时自动挂载文件系统" class="headerlink" title="在系统启动时自动挂载文件系统"></a>在系统启动时自动挂载文件系统</h4><p>使用 mount 命令手动挂装的文件系统在关机时会被自动卸载，但系统再次启动时不会被自动挂装，要在启动时自动挂装文件系统必须修改挂装表配置文件 /etc/fstab。</p>
+<p>/etc/fstab     文件每一行书写一个文件系统的挂装情况，以#开头的行为注释行，文件中每一列的说明如下表：</p>
+<table>
+<thead>
+<tr>
+<th>栏名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file system</td>
+<td>要挂装的设备，可以使用设备名，也可以通过 UUID=&lt;uuid&gt; 或 LABEL=&lt;label&gt; 来指定。</td>
+</tr>
+<tr>
+<td>mount point</td>
+<td>挂装点的目录</td>
+</tr>
+<tr>
+<td>type</td>
+<td>挂装的文件类型</td>
+</tr>
+<tr>
+<td>options</td>
+<td>挂装选项，挂装设备是可以设置多选项，不同选项间逗号隔开</td>
+</tr>
+<tr>
+<td>dump</td>
+<td>使用 dump 命令备份文件系统的频率，空白或值为0时，系统认为不需要备份</td>
+</tr>
+<tr>
+<td>pass</td>
+<td>开机时， fsck 命令会自动检查文件系统 ，pass 规定了检查的顺序。挂装到 / 分区的文件系统，此栏位应是1，其余是2,0表示不需要检查。</td>
+</tr>
+</tbody></table>
+<p>修改 /etc/fstab 文件后，执行 <code>mount -a</code> 使当前修改生效。</p>
+<p>注：在 mini 情况下的 centos 需要先执行安装命令<code>yum install psmisc</code>，否则不能使用 fuser 命令。</p>
+<h3 id="磁盘限额"><a href="#磁盘限额" class="headerlink" title="磁盘限额"></a>磁盘限额</h3><h4 id="磁盘限额的概念"><a href="#磁盘限额的概念" class="headerlink" title="磁盘限额的概念"></a>磁盘限额的概念</h4><p>在一个多用户的系统上，必须限制每个用户的磁盘使用空间，以免个别用户占用过多的磁盘空间影响系统运行或其他用户使用。</p>
+<p>磁盘限额是系统管理员用来监控和限制用户或组对磁盘使用的工具，磁盘限额可以从两个方面限制：</p>
+<p>1.限制用户或组可以拥有的 inode 数（文件数）</p>
+<p>2.限制分配给用户或组的磁盘块的数目（以千字节为单位的磁盘空间）</p>
+<p>设置磁盘限额还涉及如下与限制策略相关的3个概念：</p>
+<ul>
+<li>硬限制：超过此设定值后不能继续存储新的文件</li>
+<li>软限制：超过此设定值后仍旧可以继续存储新的文件，同时系统发出警告信息，建议用户清理自己的文件，释放出更多空间。</li>
+<li>宽限期：超过软限制多长时间之内（默认7天）可以继续存储新的文件。</li>
+</ul>
+<h4 id="centos-下的磁盘限额支持"><a href="#centos-下的磁盘限额支持" class="headerlink" title="centos 下的磁盘限额支持"></a>centos 下的磁盘限额支持</h4><p>磁盘限额有 linux 的内核支持， centos 提供 cfsold（v1)、vsfv0（v2）、xfs 三种不同的配额支持。</p>
+<p>对于 ext3/4 文件系统，磁盘限额的配置和查看工具由 quota 软件包提供，对于 xfs 文件系统，磁盘限额的配置和查看工具由 xfsprogs 软件包的 xfs_quota 提供。</p>
+<p>quota 提供的常用的磁盘配额管理工具：</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/linux/">linux</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/15/常用Debug命令/">
+        <span class="next-text nav-default">常用Debug命令</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

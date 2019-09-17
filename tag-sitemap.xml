@@ -4,28 +4,42 @@
 
     <url>
         <loc>http://yoursite.com/tags/%E6%B1%87%E7%BC%96/</loc>
-        <lastmod>2019-09-15T12:34:55.470Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/python/</loc>
-        <lastmod>2019-09-10T13:31:03.287Z</lastmod>
+        <lastmod>2019-09-17T12:49:16.601Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/</loc>
-        <lastmod>2019-09-09T03:42:27.772Z</lastmod>
+        <lastmod>2019-09-17T12:48:08.231Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/python/</loc>
+        <lastmod>2019-09-17T12:47:15.375Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/</loc>
+        <lastmod>2019-09-17T12:46:14.904Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
-        <lastmod>2019-09-09T03:42:23.747Z</lastmod>
+        <lastmod>2019-09-17T12:45:26.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/linux/</loc>
+        <lastmod>2019-09-17T11:28:55.574Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -38,22 +52,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2019-09-09T03:41:13.418Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/kali/</loc>
         <lastmod>2019-09-08T12:59:43.070Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/</loc>
-        <lastmod>2019-08-13T05:29:03.605Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
