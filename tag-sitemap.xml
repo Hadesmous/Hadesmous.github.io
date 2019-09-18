@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://yoursite.com/tags/ctf/</loc>
+        <lastmod>2019-09-18T14:45:23.341Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/linux/</loc>
         <lastmod>2019-09-18T00:56:47.960Z</lastmod>
         <changefreq>weekly</changefreq>

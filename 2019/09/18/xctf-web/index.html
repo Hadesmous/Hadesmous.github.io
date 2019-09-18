@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="xctf-web">
+
+
+
+
+  <meta name="keywords" content="ctf,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/18/xctf-web/">
+
+
+<meta name="description" content="xctf-web backup打开靶场看见的就是 index.php 的备份文件，最开始以为是 svn 源码泄露的题，后来 url 加上 /.svn/entries 没反应。 查了一下常见的备份文件名：.git .svn .swp .svn .~ .bak .bash_history 加上 index.php.bak 以后，下载了该文件，源码里有 flag。   xctf-web simple_j">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xctf-web">
+<meta property="og:url" content="http://yoursite.com/2019/09/18/xctf-web/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="xctf-web backup打开靶场看见的就是 index.php 的备份文件，最开始以为是 svn 源码泄露的题，后来 url 加上 /.svn/entries 没反应。 查了一下常见的备份文件名：.git .svn .swp .svn .~ .bak .bash_history 加上 index.php.bak 以后，下载了该文件，源码里有 flag。   xctf-web simple_j">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/1.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/2.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/3.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/4.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/5.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/6.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/7.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/8.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/9.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/10.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/11.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/12.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/13.png">
+<meta property="og:image" content="c:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1568816549961.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/14.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/16.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/17.png">
+<meta property="og:updated_time" content="2019-09-18T14:45:23.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xctf-web">
+<meta name="twitter:description" content="xctf-web backup打开靶场看见的就是 index.php 的备份文件，最开始以为是 svn 源码泄露的题，后来 url 加上 /.svn/entries 没反应。 查了一下常见的备份文件名：.git .svn .swp .svn .~ .bak .bash_history 加上 index.php.bak 以后，下载了该文件，源码里有 flag。   xctf-web simple_j">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> xctf-web - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/Story">
+                            
+                            
+                                Story
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          xctf-web
+        
+      </h1>
+
+      <time class="post-time">
+          9月 18 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h4 id="xctf-web-backup"><a href="#xctf-web-backup" class="headerlink" title="xctf-web backup"></a>xctf-web backup</h4><p>打开靶场看见的就是 index.php 的备份文件，最开始以为是 svn 源码泄露的题，后来 url 加上 /.svn/entries 没反应。</p>
+<p>查了一下常见的备份文件名：.git .svn .swp .svn .~ .bak .bash_history</p>
+<p>加上 index.php.bak 以后，下载了该文件，源码里有 flag。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/1.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/2.png" alt></p>
+<h4 id="xctf-web-simple-js"><a href="#xctf-web-simple-js" class="headerlink" title="xctf-web simple_js"></a>xctf-web simple_js</h4><p>看名字感觉是 javaScript 的题，靶场地址打开是一个弹窗，让输密码。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/3.png" alt></p>
+<p>不过不管输入啥都只返回 FAUX PASSWORD HAHA 。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/4.png" alt></p>
+<p>用 burp 抓了下包，看到了 JavaScript 的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dechiffre</span>(<span class="params">pass_enc</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> pass = <span class="string">"70,65,85,88,32,80,65,83,83,87,79,82,68,32,72,65,72,65"</span>;</span><br><span class="line">        <span class="keyword">var</span> tab  = pass_enc.split(<span class="string">','</span>);</span><br><span class="line">        <span class="keyword">var</span> tab2 = pass.split(<span class="string">','</span>);</span><br><span class="line">    	<span class="keyword">var</span> i,j,k,l=<span class="number">0</span>,m,n,o,p = <span class="string">""</span>;</span><br><span class="line">    	i = <span class="number">0</span>;j = tab.length;</span><br><span class="line">        k = j + (l) + (n=<span class="number">0</span>);</span><br><span class="line">        n = tab2.length;</span><br><span class="line">        <span class="keyword">for</span>(i = (o=<span class="number">0</span>); i &lt; (k = j = n); i++ )</span><br><span class="line">        &#123;</span><br><span class="line">            o = tab[i-l];</span><br><span class="line">            p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">5</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i = (o=<span class="number">0</span>); i &lt; (k = j = n); i++ )</span><br><span class="line">        &#123;</span><br><span class="line">        	o = tab[i-l];</span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">5</span> &amp;&amp; i &lt; k<span class="number">-1</span>)</span><br><span class="line">            p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">         &#125;</span><br><span class="line">		p += <span class="built_in">String</span>.fromCharCode(tab2[<span class="number">17</span>]);</span><br><span class="line">        pass = p;<span class="keyword">return</span> pass;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">String</span>[<span class="string">"fromCharCode"</span>](dechiffre(<span class="string">"\x35\x35\x2c\x35\x36\x2c\x35\x34\x2c\x37\x39\x2c\x31\x31\x35\x2c\x36\x39\x2c\x31\x31\x34\x2c\x31\x31\x36\x2c\x31\x30\x37\x2c\x34\x39\x2c\x35\x30"</span>));</span><br><span class="line"></span><br><span class="line">h = <span class="built_in">window</span>.prompt(<span class="string">'Enter password'</span>);</span><br><span class="line">alert( dechiffre(h) );</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>正好在看 JavaScript 的书，来分析一下代码。</p>
+<p>先了解几个里面用到的函数 ：</p>
+<p>String.fromCharCode(): 将 Unicode 编码转换成字符。</p>
+<p>split(): 将字符串以指定的符号分开，返回字符串数组。</p>
+<p>1.首先是定义了一个 dechiffre 函数，形参变量为 pass_enc。</p>
+<p>2.既然有函数定义，总要使用把：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>[<span class="string">"fromCharCode"</span>](dechiffre(<span class="string">"\x35\x35\x2c\x35\x36\x2c\x35\x34\x2c\x37\x39\x2c\x31\x31\x35\x2c\x36\x39\x2c\x31\x31\x34\x2c\x31\x31\x36\x2c\x31\x30\x37\x2c\x34\x39\x2c\x35\x30"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>首先，将 Unicode 编码转换成字符：”55,56,54,79,115,69,114,116,107,49,50”，然后传入函数 dechiffre，实参为转换的字符。</p>
+<p>3.然后对传入的变量，和在函数内部定义的变量进行处理，利用 split() 分开，返回两个字符串数组。</p>
+<p>tab=[55,56,54,79,115,69,114,116,107,49,50]</p>
+<p>tab2=[70,65,85,88,32,80,65,83,83,87,79,82,68,32,72,65,72,65]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tab  = pass_enc.split(<span class="string">','</span>);</span><br><span class="line"><span class="keyword">var</span> tab2 = pass.split(<span class="string">','</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4.然后函数内部定义了几个变量，i、j、k 、m、n、o 都没有赋值，为 undefined 类型；l=0，p= “”；然后给 i 赋值 0；j 赋值为 tab 长度 11；k 的值为11；n 的值为18。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i,j,k,l=<span class="number">0</span>,m,n,o,p = <span class="string">""</span>;</span><br><span class="line">i = <span class="number">0</span>;j = tab.length;</span><br><span class="line">k = j + (l) + (n=<span class="number">0</span>);</span><br><span class="line">n = tab2.length;</span><br></pre></td></tr></table></figure>
+
+<p>5.然后是两个 for 循环，这个代码很乱，先简化一下。for 循环中第一次对 o 的赋值没有，因为在执行 <code>p += String.fromCharCode((o = tab2[i]));</code> 的时候，o 被重新赋值，第一个循环执行到 i=5 ，break。所以此时 p 的值为 FAUX P；然后开始第二次循环输出，此时 p 的值为 FAUX PASSWORD HAH；最后加上 tab2 中的最后一个值的 Ascii 编码，返回最后 p 的值为 FAUX PASSWORD HAHA。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#简化前</span><br><span class="line"><span class="keyword">for</span>(i = (o=<span class="number">0</span>); i &lt; (k = j = n); i++ )</span><br><span class="line">&#123;</span><br><span class="line">    o = tab[i-l];</span><br><span class="line">    p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">	<span class="keyword">if</span>(i == <span class="number">5</span>)<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i = (o=<span class="number">0</span>); i &lt; (k = j = n); i++ )</span><br><span class="line">&#123;</span><br><span class="line">	o = tab[i-l];</span><br><span class="line">	<span class="keyword">if</span>(i &gt; <span class="number">5</span> &amp;&amp; i &lt; k<span class="number">-1</span>)</span><br><span class="line">	p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">&#125;</span><br><span class="line">p += <span class="built_in">String</span>.fromCharCode(tab2[<span class="number">17</span>]);</span><br><span class="line">pass = p;</span><br><span class="line"><span class="keyword">return</span> pass;</span><br><span class="line">#简化后</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">18</span>; i++ )</span><br><span class="line">&#123;</span><br><span class="line">    o = tab[i-l];</span><br><span class="line">    p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">	<span class="keyword">if</span>(i == <span class="number">5</span>)<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">18</span>; i++ )</span><br><span class="line">&#123;</span><br><span class="line">	o = tab[i-l];</span><br><span class="line">	<span class="keyword">if</span>(i &gt; <span class="number">5</span> &amp;&amp; i &lt; k<span class="number">-1</span>)</span><br><span class="line">	p += <span class="built_in">String</span>.fromCharCode((o = tab2[i]));</span><br><span class="line">&#125;</span><br><span class="line">p += <span class="built_in">String</span>.fromCharCode(tab2[<span class="number">17</span>]);</span><br><span class="line">pass = p;</span><br><span class="line"><span class="keyword">return</span> pass;</span><br></pre></td></tr></table></figure>
+
+<p>6.所以不管输入啥，都只能返回 FAUX PASSWORD HAHA。所以传进来的参数溜达了一圈啥也没干？所以把这个不知道干啥的函数去了吧，直接执行转换然后输出。得到 flag。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n=<span class="built_in">String</span>.fromCharCode(<span class="number">55</span>,<span class="number">56</span>,<span class="number">54</span>,<span class="number">79</span>,<span class="number">115</span>,<span class="number">69</span>,<span class="number">114</span>,<span class="number">116</span>,<span class="number">107</span>,<span class="number">49</span>,<span class="number">50</span>);</span><br><span class="line"><span class="built_in">document</span>.write(n);</span><br></pre></td></tr></table></figure>
+
+<h4 id="xctf-web-xff-referer"><a href="#xctf-web-xff-referer" class="headerlink" title="xctf-web xff_referer"></a>xctf-web xff_referer</h4><p>打开靶场显示，ip地址必须来自123.123.123.123。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/5.png" alt></p>
+<p>所以肯定要改 http 请求头，尝试加 referer 不对，题目是 xff_referer，查了一下这个。</p>
+<p>维基百科：</p>
+<blockquote>
+<p>X-Forwarded-For（XFF）是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端<strong>最原始的IP地址</strong>的HTTP请求头字段。</p>
+</blockquote>
+<p>所以直接用 burp 在 http 请求中加入该参数。抓了响应包，还要求请求来自goole。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/6.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/7.png" alt></p>
+<p>再上 Referer 参数就可以了。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/8.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/9.png" alt></p>
+<h4 id="xctf-web-command-execution"><a href="#xctf-web-command-execution" class="headerlink" title="xctf-web command_execution"></a>xctf-web command_execution</h4><p>看题目简介感觉应该是命令执行，进了靶场就看见 ping ，直接尝试命令执行。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/10.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/11.png" alt></p>
+<p>flag 文件在 /home 下。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/12.png" alt></p>
+<h4 id="xctf-web-simple-php"><a href="#xctf-web-simple-php" class="headerlink" title="xctf-web simple_php"></a>xctf-web simple_php</h4><p>打开之后是一段 php 代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line">$a=@$_GET[<span class="string">'a'</span>];</span><br><span class="line">$b=@$_GET[<span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">if</span>($a==<span class="number">0</span> <span class="keyword">and</span> $a)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(is_numeric($b))&#123;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($b&gt;<span class="number">1234</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>先来看里面用到的函数:</p>
+<p>show_source()： 对文件进行语法高亮显示。</p>
+<p>is_numeric()：用于检测变量是否为数字或数字字符串。</p>
+<p>1.定义两个变量 a，b 分别接收 GET 方式传入的参数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$a=@$_GET[<span class="string">'a'</span>];</span><br><span class="line">$b=@$_GET[<span class="string">'b'</span>];</span><br></pre></td></tr></table></figure>
+
+<p>2.三个判断条件，第一个要求同时满足 $a==0 and $a，因为 php 是弱语言类型，这里直接在 url 后面加上 ?a=’0’。可以看到输出一般 flag。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($a==<span class="number">0</span> <span class="keyword">and</span> $a)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(is_numeric($b))&#123;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($b&gt;<span class="number">1234</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/13.png" alt></p>
+<p>3.后面的两个判断，先检查 b 是不是数字或数字字符，然后判断是否大于 1234，同样的道理，因为 php 语言的性质，传入 b=1235a 会转换为 1235。得到 flag。</p>
+<p><img src="C:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1568816549961.png" alt></p>
+<h4 id="xctf-web-cat"><a href="#xctf-web-cat" class="headerlink" title="xctf-web cat"></a>xctf-web cat</h4><p>看题目信息没什么东西，“抓住那只猫？” </p>
+<p>进靶场环境让输入域名，最开始也是以为是命令执行什么的，但是加上命令特殊字符被转义而且提示  Invalid URL 。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/14.png" alt></p>
+<p>不知道从哪下手，太菜了。查看了官方给的 wp 学习了一下。</p>
+<p>后台执行了两部分文件，一部分是 php，一部分是 Django。</p>
+<p>题目利用的点有以下两个：</p>
+<p>Django使用的是gbk编码，超过%F7的编码不在gbk中有意义。所以使用%80以后的编码会报错。</p>
+<p>当 <code>CURLOPT_SAFE_UPLOAD</code> 为 true 时，如果在请求前面加上@的话phpcurl组件是会把后面的当作绝对路径请求，来读取文件。</p>
+<p>结合这两点来找一下 flag。首先加上 %80 查看报错文件。报错内容很多，</p>
+<p>我们需要的是 Django 的配置文件 settings.py 的路径信息。</p>
+<p>payload:<code>?url=@/opt/api/api/settings.py</code>     获取数据库名</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/16.png" alt></p>
+<p>payload:<code>?url=@/opt/api/database.sqlite3</code>     获取数据库内容</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/17.png" alt></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/ctf/">ctf</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/17/基于centos7的linux学习9/">
+        <span class="next-text nav-default">基于centos7的linux学习9</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
