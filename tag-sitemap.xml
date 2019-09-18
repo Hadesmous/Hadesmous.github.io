@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://yoursite.com/tags/linux/</loc>
+        <lastmod>2019-09-18T00:56:47.960Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/python/</loc>
         <lastmod>2019-09-17T12:51:10.943Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,13 +40,6 @@
     <url>
         <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
         <lastmod>2019-09-17T12:45:26.423Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2019-09-17T11:28:55.574Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

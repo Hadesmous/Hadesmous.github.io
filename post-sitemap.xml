@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2019/09/17/%E5%9F%BA%E4%BA%8Ecentos7%E7%9A%84linux%E5%AD%A6%E4%B9%A09/</loc>
+        <lastmod>2019-09-18T00:56:47.960Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2019/09/16/json%E3%80%81pickle%E7%AD%89/</loc>
         <lastmod>2019-09-17T12:51:10.943Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -90,14 +98,6 @@
     <url>
         <loc>http://yoursite.com/2019/08/27/python%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
         <lastmod>2019-09-17T12:37:55.095Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2019/09/17/%E5%9F%BA%E4%BA%8Ecentos7%E7%9A%84linux%E5%AD%A6%E4%B9%A09/</loc>
-        <lastmod>2019-09-17T11:28:55.574Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

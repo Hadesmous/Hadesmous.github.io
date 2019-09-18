@@ -43,10 +43,14 @@
 <meta property="og:site_name" content="Hades">
 <meta property="og:description" content="文件系统管理创建文件系统创建文件系统的命令格式： mkfs.ext4 &amp;lt;设备名&amp;gt; 创建 ext4 类型的文件系统 mkfs.xfs &amp;lt;设备名&amp;gt; 创建 xfs 类型的文件系统 也可以使用带 -t&amp;lt;fstype&amp;gt; 选项的 mkfs 命令创建各种类型的文件系统。 使用 mount 命令挂载文件系统mount 的命令格式如下： 格式1：mount [-t&amp;lt;文件系统">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-17T11:28:55.574Z">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/1456.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/7864.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/9456.png">
+<meta property="og:updated_time" content="2019-09-18T00:56:47.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于centos7的linux学习9">
 <meta name="twitter:description" content="文件系统管理创建文件系统创建文件系统的命令格式： mkfs.ext4 &amp;lt;设备名&amp;gt; 创建 ext4 类型的文件系统 mkfs.xfs &amp;lt;设备名&amp;gt; 创建 xfs 类型的文件系统 也可以使用带 -t&amp;lt;fstype&amp;gt; 选项的 mkfs 命令创建各种类型的文件系统。 使用 mount 命令挂载文件系统mount 的命令格式如下： 格式1：mount [-t&amp;lt;文件系统">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/1456.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -153,6 +157,7 @@
 <li>若省略，以此试探 /proc/filesystems 中不包含 nodev 的行</li>
 <li>必须同时指定使用&lt;设备名&gt;或&lt;挂装点&gt;</li>
 </ul>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/1456.png" alt></p>
 <p>格式2：<code>mount [-o&lt;挂载选项&gt;] &lt;设备名&gt;或&lt;挂装点&gt;</code> </p>
 <ul>
 <li>用于挂载 /etc/fstab 中以列出的文件系统</li>
@@ -166,11 +171,12 @@
 <li>-o 用于指定挂装 /etc/fstab 中包含指定挂装选项的文件系统</li>
 <li>若同时指定 -t 和 -o ，则为或者的关系</li>
 </ul>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/7864.png" alt></p>
 <p>使用 mount 命令可查看当前挂装的文件系统。</p>
 <p>挂装点就是文件系统中的一个目录，必须把文件系统挂装在目录树中的某个目录中。</p>
 <p>挂装点目录在实施挂装操作之前必须存在，如其不存在则应该使用 mkidir 命令创建。</p>
 <p>通常挂装点目录必须是空的，否则目录中原有文件将内系统隐藏。</p>
-<p><img src alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/9456.png" alt></p>
 <h4 id="使用-umount-命令卸载文件系统"><a href="#使用-umount-命令卸载文件系统" class="headerlink" title="使用 umount 命令卸载文件系统"></a>使用 umount 命令卸载文件系统</h4><p>格式：<code>umount &lt;设备名或挂装点&gt;</code></p>
 <p>注：如果一个文件系统处于 busy 状态，则不能卸载该文件系统。</p>
 <h4 id="fuser-命令"><a href="#fuser-命令" class="headerlink" title="fuser 命令"></a>fuser 命令</h4><p>fuser 命令可以根据文件（目录、设备）查找使用它的进程，同时也提供了杀死这些进程的方法。当文件处于 busy 状态时可以使用该命令。</p>
@@ -227,6 +233,162 @@
 <h4 id="centos-下的磁盘限额支持"><a href="#centos-下的磁盘限额支持" class="headerlink" title="centos 下的磁盘限额支持"></a>centos 下的磁盘限额支持</h4><p>磁盘限额有 linux 的内核支持， centos 提供 cfsold（v1)、vsfv0（v2）、xfs 三种不同的配额支持。</p>
 <p>对于 ext3/4 文件系统，磁盘限额的配置和查看工具由 quota 软件包提供，对于 xfs 文件系统，磁盘限额的配置和查看工具由 xfsprogs 软件包的 xfs_quota 提供。</p>
 <p>quota 提供的常用的磁盘配额管理工具：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>quota</td>
+<td>查看磁盘的使用和限额</td>
+</tr>
+<tr>
+<td>requota</td>
+<td>显示文件系统的磁盘限额汇总信息</td>
+</tr>
+<tr>
+<td>quotacheck</td>
+<td>从 /etc/mtab 中扫描支持配额的文件系统、生成、检查、修复限额文件</td>
+</tr>
+<tr>
+<td>edquota</td>
+<td>使用编辑器编辑用户或组的限额</td>
+</tr>
+<tr>
+<td>setquota</td>
+<td>使用命令行设置用户或组的限额</td>
+</tr>
+<tr>
+<td>quotaon</td>
+<td>启用文件系统的磁盘限额</td>
+</tr>
+<tr>
+<td>convertquota</td>
+<td>停用文件系统的磁盘限额</td>
+</tr>
+<tr>
+<td>quotastats</td>
+<td>显示内核的限额统计信息</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="配置磁盘限额"><a href="#配置磁盘限额" class="headerlink" title="配置磁盘限额"></a>配置磁盘限额</h4><p>在 centos 下配置磁盘限额的步骤如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置步骤</th>
+<th>ext3 / 4文件系统</th>
+<th>xfs 文件系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编辑 /etc/fstab文件<br>启用文件系统的 quota 挂装选项</td>
+<td>usrquota<br>grpquota</td>
+<td>uquota<br>gquota</td>
+</tr>
+<tr>
+<td>创建 quota 数据库文件并启用 quota</td>
+<td>quotacheck -cmvug &lt;文件系统&gt;<br>quotaon -avug</td>
+<td>xfs 文件系统的 quota 结构信息包含在数据和日志中，无需此步骤</td>
+</tr>
+<tr>
+<td>设置 quota</td>
+<td>使用 setquota 或 edquota 配置</td>
+<td>使用 xfs_quota 配置</td>
+</tr>
+</tbody></table>
+<p>setquota 命令设置磁盘限额的方法：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>为指定的用户设置配额</td>
+<td>setquota [-u] &lt;用户名&gt; &lt;块软限制 块硬设置 inode 软设置 inode 硬设置&gt;  &lt; -a 文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定组的设置配额</td>
+<td>setquota -g &lt;块软限制 块硬设置 inode 软设置 inode 硬设置&gt;  &lt; -a 文件系统&gt;</td>
+</tr>
+<tr>
+<td>将参考用户的限额设置复制给待设置的新用户</td>
+<td>setquota [-u] -p &lt;参考用户&gt; &lt;新用户&gt; &lt;-a 文件系统&gt;</td>
+</tr>
+<tr>
+<td>将参考组的限额设置复制给待设置的新组</td>
+<td>setquota -g -p &lt;参考组&gt; &lt;新组&gt; &lt;-a 文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定用户的设置配额宽限期</td>
+<td>setquota -t [-u] &lt;块宽限期 inode 宽限期&gt; &lt;-a 文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定组的设置配额时间限期</td>
+<td>setquota -t -g  &lt;块宽限期 inode 宽限期&gt; &lt;-a 文件系统&gt;</td>
+</tr>
+</tbody></table>
+<p>xfs_quota 命令设置磁盘限额的方法：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>为指定的用户设置配额</td>
+<td>xfs_quota -x -c ‘limit -u bsoft=N nhaird=N isoft=N ihard=N &lt;用户名&gt;’ &lt;文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定组的设置配额</td>
+<td>xfs_quota -x -c ‘limit -u bsoft=N nhaird=N isoft=N ihard=N &lt;组名&gt;’ &lt;文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定用户的设置配额宽限期</td>
+<td>xfs_quota -x -c ‘timer -u -b &lt;块宽限期&gt;’ &lt;文件系统&gt;<br>xfs_quota -x -c ‘timer -u -i &lt;inode 宽限期&gt;’ &lt;文件系统&gt;</td>
+</tr>
+<tr>
+<td>为指定组的设置配额宽限期</td>
+<td>xfs_quota -x -c ‘timer -g -b &lt;块宽限期&gt;’ &lt;文件系统&gt;<br>xfs_quota -x -c ‘timer -g -i &lt;inode 宽限期&gt;’ &lt;文件系统&gt;</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>ext3 / 4 文件系统</th>
+<th>xfs 文件系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看指定用户的配额</td>
+<td>quota -uv &lt;用户名&gt;</td>
+<td>xfs_quota -c ’quota -bi -uv &lt;用户名&gt;‘ &lt;文件系统&gt;</td>
+</tr>
+<tr>
+<td>查看指定组的配额</td>
+<td>quota -gv &lt;组名&gt;</td>
+<td>xfs_quota -c ’quota -bi -gv &lt;组名&gt;‘ &lt;文件系统&gt;</td>
+</tr>
+<tr>
+<td>查看所有文件系统的磁盘限额汇总信息</td>
+<td>requota -a<br>requota -au<br>requota -ag</td>
+<td>xfs_quota -x -c ‘report -a’<br>xfs_quota -x -c ‘report -u -a’<br>xfs_quota -x -c ‘report -g -a’<br></td>
+</tr>
+<tr>
+<td>显示指定文件系统的磁盘限额汇总信息</td>
+<td>requota &lt;文件系统&gt;<br>requota -u &lt;文件系统&gt;<br>requota -g &lt;文件系统&gt;</td>
+<td>xfs_quota -x -c report  &lt;文件系统&gt;<br>xfs_quota -x -c ’report -u’  &lt;文件系统&gt;<br>xfs_quota -x -c ‘report -g’  &lt;文件系统&gt;<br></td>
+</tr>
+</tbody></table>
 
             </div>
           
@@ -308,7 +470,7 @@
     <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
 <script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/love.js"></script>
