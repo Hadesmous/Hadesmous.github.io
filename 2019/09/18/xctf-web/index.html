@@ -56,11 +56,11 @@
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/11.png">
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/12.png">
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/13.png">
-<meta property="og:image" content="c:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1568816549961.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/18.png">
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/14.png">
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/16.png">
 <meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/17.png">
-<meta property="og:updated_time" content="2019-09-18T14:53:37.933Z">
+<meta property="og:updated_time" content="2019-09-18T14:56:09.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xctf-web">
 <meta name="twitter:description" content="xctf-web backup打开靶场看见的就是 index.php 的备份文件，最开始以为是 svn 源码泄露的题，后来 url 加上 /.svn/entries 没反应。 查了一下常见的备份文件名：.git .svn .swp .svn .~ .bak .bash_history 加上 index.php.bak 以后，下载了该文件，源码里有 flag。   xctf-web simple_j">
@@ -226,7 +226,7 @@
 
 <p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/13.png" alt></p>
 <p>3.后面的两个判断，先检查 b 是不是数字或数字字符，然后判断是否大于 1234，同样的道理，因为 php 语言的性质，传入 b=1235a 会转换为 1235。得到 flag。</p>
-<p><img src="C:%5CUsers%5CHades%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1568816549961.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/18.png" alt></p>
 <h4 id="xctf-web-cat"><a href="#xctf-web-cat" class="headerlink" title="xctf-web cat"></a>xctf-web cat</h4><p>看题目信息没什么东西，“抓住那只猫？” </p>
 <p>进靶场环境让输入域名，最开始也是以为是命令执行什么的，但是加上命令特殊字符被转义而且提示  Invalid URL 。</p>
 <p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/ctf/14.png" alt></p>
