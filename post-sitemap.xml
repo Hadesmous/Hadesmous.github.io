@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2019/09/19/xctf-web-1/</loc>
+        <lastmod>2019-09-19T13:33:40.827Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2019/09/18/xctf-web/</loc>
         <lastmod>2019-09-18T14:56:09.479Z</lastmod>
         <changefreq>weekly</changefreq>
