@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="汇编程序设计结构 顺序、分支">
+
+
+
+
+  <meta name="keywords" content="汇编,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/22/汇编程序设计结构/">
+
+
+<meta name="description" content="顺序程序设计在设计上比较简单，按指令书写的先后顺序执行一系列操作，程序流程中无分支、无循环、这种程序也被称为直线结构。 分支程序设计程序能够对自身执行情况进行自动判断，根据判断的结果控制程序选择不同的程序段执行的程序结构称为分支程序。 在 80x86 系列微机中，转移指令是一组可以在程序执行过程中，根据不同情况进行程序转移的控制类指令，是实现分支程序设计的基础。 转移指令转移指令的功能是使程序无条">
+<meta name="keywords" content="汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编程序设计结构 顺序、分支">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/汇编程序设计结构/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="顺序程序设计在设计上比较简单，按指令书写的先后顺序执行一系列操作，程序流程中无分支、无循环、这种程序也被称为直线结构。 分支程序设计程序能够对自身执行情况进行自动判断，根据判断的结果控制程序选择不同的程序段执行的程序结构称为分支程序。 在 80x86 系列微机中，转移指令是一组可以在程序执行过程中，根据不同情况进行程序转移的控制类指令，是实现分支程序设计的基础。 转移指令转移指令的功能是使程序无条">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-22T11:11:45.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汇编程序设计结构 顺序、分支">
+<meta name="twitter:description" content="顺序程序设计在设计上比较简单，按指令书写的先后顺序执行一系列操作，程序流程中无分支、无循环、这种程序也被称为直线结构。 分支程序设计程序能够对自身执行情况进行自动判断，根据判断的结果控制程序选择不同的程序段执行的程序结构称为分支程序。 在 80x86 系列微机中，转移指令是一组可以在程序执行过程中，根据不同情况进行程序转移的控制类指令，是实现分支程序设计的基础。 转移指令转移指令的功能是使程序无条">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 汇编程序设计结构 顺序、分支 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/Story">
+                            
+                            
+                                Story
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          汇编程序设计结构 顺序、分支
+        
+      </h1>
+
+      <time class="post-time">
+          9月 22 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="顺序程序设计"><a href="#顺序程序设计" class="headerlink" title="顺序程序设计"></a>顺序程序设计</h3><p>在设计上比较简单，按指令书写的先后顺序执行一系列操作，程序流程中无分支、无循环、这种程序也被称为直线结构。</p>
+<h3 id="分支程序设计"><a href="#分支程序设计" class="headerlink" title="分支程序设计"></a>分支程序设计</h3><p>程序能够对自身执行情况进行自动判断，根据判断的结果控制程序选择不同的程序段执行的程序结构称为分支程序。</p>
+<p>在 80x86 系列微机中，转移指令是一组可以在程序执行过程中，根据不同情况进行程序转移的控制类指令，是实现分支程序设计的基础。</p>
+<h4 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h4><p>转移指令的功能是使程序无条件的转移到指定的目标地址处，无条件转移指令执行后，程序将从目标地址处的指令开始继续执行。</p>
+<h5 id="1-无条件转移指令"><a href="#1-无条件转移指令" class="headerlink" title="1.无条件转移指令"></a>1.无条件转移指令</h5><p>无条件转移指令的功能是使程序无条件的转移到指定的目标地址处。</p>
+<p>1.）段内直接转移</p>
+<p>格式：<code>JMP [SHORT|NEAR PTR] 标号</code></p>
+<p>说明：</p>
+<p>该标号与当前无条件转移指令处于同一个代码段中，格式中的 SHORT 运算符表明指令代码中的操作数是 8 为偏移量，用补码表示，取值范围为 -128<del>+127 ，目标地址与当前无条件转移指令的距离在 -128</del>+127 字节范围内，叫做短转移。</p>
+<p>NEAR PTR 运算符表明指令代码中的操作数是 16 为偏移量，用补码表示，取值范围为 -32768<del>+32767，目标地址与当前无条件转移指令的距离在 -32768</del>+32767 字节范围内，叫做近转移。</p>
+<p>SHORT 和 NEAR PTR 可省略不写，由程序在汇编时自行计算偏移量。</p>
+<p>功能：转移到标号指定的代码段执行。</p>
+<p>具体操作：将 IP 的内容修改为标号的偏移地址， CS 的内容不变。</p>
+<p>2.）段间间接转移</p>
+<p>格式：<code>JMP 存储单元地址</code></p>
+<p>说明：该存储单元与当前无条件转移指令处于同一个代码段。</p>
+<p>功能：转移到指定的存储单元地址所在处的代码执行。</p>
+<p>具体操作：将 IP 的内容修改为存储单元的偏移地址， CS 的内容不变。</p>
+<p>3.）段间直接转移</p>
+<p>格式：<code>JMP FAR PTR 标号</code></p>
+<p>说明：该标号与当前无条件转移指令处于不同的代码段。</p>
+<p>功能：转移到标号指定的代码处执行。</p>
+<p>具体操作：将 IP 的内容修改为标号的偏移地址，将 CS 的内容修改为标号所在段的段地址。</p>
+<p>4.）段间间接转移</p>
+<p>格式：<code>JMP DWORD PTR 存储单元地址</code></p>
+<p>功能：转移到指定的存储单元地址所在行的代码处执行。</p>
+<p>具体操作：将 IP 的内容修改为存储单元地址的偏移地址，将 CS 的内容修改为存储单元地址所在段地址。</p>
+<h5 id="条件转移指令"><a href="#条件转移指令" class="headerlink" title="条件转移指令"></a>条件转移指令</h5><p>条件转移指令以某些标志位或标志位的逻辑运算位依据，满足条件，程序转移至指定目标地址，不满足条件，程序顺序执行。需要注意的是，条件转移的目标地址在 -128~+127 字节范围内。</p>
+<p>一般格式：<code>JXX 目标地址</code></p>
+<p>其中 xx 由 1-3 个字母组成，表示转移条件。</p>
+<p>1.）检测单个标志位实现转移的条件转移指令。</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JC</td>
+<td>CF=1</td>
+<td>有进位/有借位转移</td>
+</tr>
+<tr>
+<td>JNC</td>
+<td>CF=0</td>
+<td>无进位/无借位转移</td>
+</tr>
+<tr>
+<td>JO</td>
+<td>OF=1</td>
+<td>有溢出转移</td>
+</tr>
+<tr>
+<td>JNO</td>
+<td>OF=0</td>
+<td>无溢出转移</td>
+</tr>
+<tr>
+<td>JP/JPE</td>
+<td>PF=1</td>
+<td>有偶数个1转移</td>
+</tr>
+<tr>
+<td>JNP/JPO</td>
+<td>PF=0</td>
+<td>有奇数个1转移</td>
+</tr>
+<tr>
+<td>JS</td>
+<td>SF=1</td>
+<td>负数转移</td>
+</tr>
+<tr>
+<td>JNS</td>
+<td>SF=0</td>
+<td>正数转移</td>
+</tr>
+<tr>
+<td>JZ/JE</td>
+<td>ZF=1</td>
+<td>结果为0/相等转移</td>
+</tr>
+<tr>
+<td>JNZ/JNE</td>
+<td>ZF=0</td>
+<td>结果不为0/相等转移</td>
+</tr>
+</tbody></table>
+<p>2.）根据两个无符号数的比较结果实现转移的条件转移指令</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JA/JNBE</td>
+<td>CF= 0 ZF=0</td>
+<td>大于/不小于等于转移</td>
+</tr>
+<tr>
+<td>JAE/JNB</td>
+<td>CF=0 OR ZF=1</td>
+<td>不小于/大于等于转移</td>
+</tr>
+<tr>
+<td>IB/JNAE</td>
+<td>CF=1 AND ZF=0</td>
+<td>小于/不大于等于转移</td>
+</tr>
+<tr>
+<td>JBE/JNA</td>
+<td>CF=1 OR ZF=1</td>
+<td>不大于/小于等于转移</td>
+</tr>
+</tbody></table>
+<p>3.）根据两个有符号数的比较结果实现转移的条件转移指令</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JG/JNLE</td>
+<td>SF=OF AND ZF=0</td>
+<td>大于/不小于等于转移</td>
+</tr>
+<tr>
+<td>JGE/JNL</td>
+<td>SF=OF OR ZF=1</td>
+<td>不小于/大于等于转移</td>
+</tr>
+<tr>
+<td>JL/JNGE</td>
+<td>SF≠OF AND ZF=0</td>
+<td>小于/不大于等于转移</td>
+</tr>
+<tr>
+<td>JLE/JNG</td>
+<td>SF≠OF OR ZF=1</td>
+<td>不大于/小于等于转移</td>
+</tr>
+</tbody></table>
+<h5 id="多分支结构程序设计"><a href="#多分支结构程序设计" class="headerlink" title="多分支结构程序设计"></a>多分支结构程序设计</h5><p>常用的方法有条件转移法、地址表法、转移表法。</p>
+<p>条件转移法：</p>
+<p>使用一个条件转移指令可以实现一个双分支，使用多个条件转移指令可以实现多分支。条件转移法就是使用多个转移指令来实现多分支结构。</p>
+<p>地址表法：</p>
+<p>在数据段中利用 DW 指令将 n 个分支的入口处的偏移地址安装顺序放在一段连续的存储区中，构成地址表。</p>
+<p>设地址表的首地址为 BASE，则第 i 个分支的入口处偏移地址为：表地址=i<em>2+BASE，当程序需要转向第 i 个分支时，只需将 2\</em>i 送入 BX，并执行 JMP BASE[BX] , 即可。</p>
+<p>转移表法：</p>
+<p>与地址表法类似，只是需要在代码段中把转移到 n 个分支程序段的转移指令，JMP SHORT BRi(i=1,2,3……) 以此存放在一起，形成转移表，调用方式与地址表类似。</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/汇编/">汇编</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/09/22/xctf-web-2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default"></span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/09/19/xctf-web-1/">
+        <span class="next-text nav-default">xctf-web ics-05</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
