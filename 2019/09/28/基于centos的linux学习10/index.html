@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="基于centos的linux学习10">
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Hades">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/28/基于centos的linux学习10/">
+
+
+<meta name="description" content="博客停了好多天没更新了，十一调休把课都调乱了，又加上高数上的书过了一遍，在忙着做总结，要学的太多了…… 前两天买了阿里云的服务器玩，昨天把基本的环境配好了，过段时间会尝试打打自己，学学 linux 的提权。所以 linux 还是要学啊……. linux 网络配置网络参数的获取在 TCP/IP 网络上，每台工作站要存取网络上的资源之前，都必须进行基本的网络配置，一些主要的参数如 IP 地址、子网掩码">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于centos的linux学习10">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/基于centos的linux学习10/index.html">
+<meta property="og:site_name" content="Hades">
+<meta property="og:description" content="博客停了好多天没更新了，十一调休把课都调乱了，又加上高数上的书过了一遍，在忙着做总结，要学的太多了…… 前两天买了阿里云的服务器玩，昨天把基本的环境配好了，过段时间会尝试打打自己，学学 linux 的提权。所以 linux 还是要学啊……. linux 网络配置网络参数的获取在 TCP/IP 网络上，每台工作站要存取网络上的资源之前，都必须进行基本的网络配置，一些主要的参数如 IP 地址、子网掩码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/521.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/522.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/523.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/524.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/526.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/528.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/527.png">
+<meta property="og:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/529.png">
+<meta property="og:updated_time" content="2019-09-28T13:13:26.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于centos的linux学习10">
+<meta name="twitter:description" content="博客停了好多天没更新了，十一调休把课都调乱了，又加上高数上的书过了一遍，在忙着做总结，要学的太多了…… 前两天买了阿里云的服务器玩，昨天把基本的环境配好了，过段时间会尝试打打自己，学学 linux 的提权。所以 linux 还是要学啊……. linux 网络配置网络参数的获取在 TCP/IP 网络上，每台工作站要存取网络上的资源之前，都必须进行基本的网络配置，一些主要的参数如 IP 地址、子网掩码">
+<meta name="twitter:image" content="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/521.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: ture
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 基于centos的linux学习10 - Hades </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Hades</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/Story">
+                            
+                            
+                                Story
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          基于centos的linux学习10
+        
+      </h1>
+
+      <time class="post-time">
+          9月 28 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>博客停了好多天没更新了，十一调休把课都调乱了，又加上高数上的书过了一遍，在忙着做总结，要学的太多了……</p>
+<p>前两天买了阿里云的服务器玩，昨天把基本的环境配好了，过段时间会尝试打打自己，学学 linux 的提权。所以 linux 还是要学啊…….</p>
+<h3 id="linux-网络配置"><a href="#linux-网络配置" class="headerlink" title="linux 网络配置"></a>linux 网络配置</h3><h4 id="网络参数的获取"><a href="#网络参数的获取" class="headerlink" title="网络参数的获取"></a>网络参数的获取</h4><p>在 TCP/IP 网络上，每台工作站要存取网络上的资源之前，都必须进行基本的网络配置，一些主要的参数如 IP 地址、子网掩码、默认网关、DNS 等都必不可少。</p>
+<p>配置这些参数主要有两种方法：静态手工配置和从 DHCP 服务动态获得。</p>
+<p>动态获得网络参数依赖于 BOOTP/DHCP 协议，以及支持这种协议的 C/S 机制。</p>
+<h4 id="网络接口设备"><a href="#网络接口设备" class="headerlink" title="网络接口设备"></a>网络接口设备</h4><p>RHEL/CentOS 默认采用内核模块的方式在系统引导时驱动网络接口，也可以把相应的网卡驱动编译进内核，可以在 /lib/modules/$(uname -r)/kernel/drivers/net 目录下找到可以转入的驱动。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/521.png" alt></p>
+<p>linux 下常见的网络接口</p>
+<table>
+<thead>
+<tr>
+<th>接口类型</th>
+<th>接口名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以太网接口</td>
+<td>ethX</td>
+<td>是最常见的网络接口</td>
+</tr>
+<tr>
+<td>无线网接口</td>
+<td>wlanX</td>
+<td>无线局域网接口</td>
+</tr>
+<tr>
+<td>光纤分布式数据接口</td>
+<td>fddiX</td>
+<td>FDDI 接口设备昂贵，通常用于核心网络</td>
+</tr>
+<tr>
+<td>点对点协议接口</td>
+<td>PPPX</td>
+<td>用于 Modem/ADSL 拨号网络或基于 PPTP 协议的 VPN 等</td>
+</tr>
+<tr>
+<td>本地回环接口</td>
+<td>lo</td>
+<td>用于支持 UNIX Domain Socket 技术的进程互相通信</td>
+</tr>
+</tbody></table>
+<h4 id="一致的网络设备命名"><a href="#一致的网络设备命名" class="headerlink" title="一致的网络设备命名"></a>一致的网络设备命名</h4><p>一致的网络设备名以双字节前缀开始</p>
+<ul>
+<li>en：表示以太网设备</li>
+<li>wl：表示无线局域网设备</li>
+<li>ww：表示无线广域网设备</li>
+</ul>
+<p>随后的第 3 个字符用于区分不同的硬件类型</p>
+<ul>
+<li>o：表示主板板载设备</li>
+<li>s：表示热插拔插槽上的设备</li>
+<li>p：表示 PCI 总线或 USB 接口上的设备</li>
+</ul>
+<p>从 RHEL/CentOS 7 开始，动态设备管理器 udev 支持对网络设备的多种命名方案。</p>
+<ul>
+<li>一致的网络设备名，默认，由 systemd-udev 重命名</li>
+<li>基于 biosdevname 设置网络设备名，通常用于 Dell 服务器</li>
+<li>通过 MAC 地址识别网络设备名</li>
+<li>传统的内核识别的网络设备名</li>
+</ul>
+<p>无论哪种方法，执行后都需要重启系统。</p>
+<h4 id="CentOS-下的网络配置方法"><a href="#CentOS-下的网络配置方法" class="headerlink" title="CentOS 下的网络配置方法"></a>CentOS 下的网络配置方法</h4><p>临时性网络配置：</p>
+<p>使用 ip 命名配置，立即生效，但重启系统后失效。</p>
+<p>持久性网络配置:</p>
+<p>使用 nmtui/nmcli 配置工具修改网络配置文件，使用文本编辑器直接修改网络配置文件。</p>
+<p>重启后仍然生效，若希望立即生效，需要重新加载配置文件并重启网络连接。</p>
+<p>使用 ip 命令更改 ip 网络地址</p>
+<p>格式如下：<code>ip addr [add|del] &lt;CIDR 形式的ip地址&gt;  dev&lt;网络设备接口&gt;</code></p>
+<p>使用 ip 命令设置静态路由</p>
+<p>格式：<code>ip route [add|del] default|&lt;主机地址&gt;|&lt;网络地址&gt;via&lt;网关地址&gt;[dev&lt;留出设备接口&gt;]</code></p>
+<h4 id="手工修改网络配置"><a href="#手工修改网络配置" class="headerlink" title="手工修改网络配置"></a>手工修改网络配置</h4><p>CentOS 中的 TCP/IP 配置文件</p>
+<table>
+<thead>
+<tr>
+<th>配置文件名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/etc/sysconfig/network-scripts/ifcfg-*</td>
+<td>网络接口配置文件</td>
+</tr>
+<tr>
+<td>/etc/sysconfig/network-scripts/route-*</td>
+<td>网络接口路由配置文件</td>
+</tr>
+<tr>
+<td>/etc/hostname</td>
+<td>本地主机名配置文件</td>
+</tr>
+<tr>
+<td>/etc/hosts</td>
+<td>完成主机名映射为 ip 的解析功能</td>
+</tr>
+<tr>
+<td>/etc/networks</td>
+<td>完成域名与网络地址的映射</td>
+</tr>
+<tr>
+<td>/etc/host.conf</td>
+<td>配置域名服务客户端的控制文件</td>
+</tr>
+<tr>
+<td>/etc/resolv.conf</td>
+<td>配置域名服务客户端的配置文件，用于指定域名服务器的位置</td>
+</tr>
+</tbody></table>
+<p>查看 /etc/protocols 文件可获知 Linux 支持的协议以及各个协议的协议号。</p>
+<p>查看 /etc/servives 文件可获知 Linux 支持的网络服务及其端口号。</p>
+<p>网络接口配置文件</p>
+<p>所有的接口配置文件均存放在 /etc/sysconfig/network-scripts 目录下。网络接口配置文件的内容及其常用参数如下：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/522.png" alt></p>
+<table>
+<thead>
+<tr>
+<th>静态配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type=Ethernet</td>
+<td>指定网络接口设备</td>
+</tr>
+<tr>
+<td>DEVICE=eno16777736</td>
+<td>指定设备名</td>
+</tr>
+<tr>
+<td>UUID=8efea5fc-390e-4572-87fb-22621e6cb3a6</td>
+<td>指定设备的 UUID</td>
+</tr>
+<tr>
+<td>ONBOOT=yes</td>
+<td>指定是否在启动时启动设备</td>
+</tr>
+<tr>
+<td>DEFROUTE=yes</td>
+<td>指定是否基于此接口设置默认路由</td>
+</tr>
+<tr>
+<td>IPV4_FAILURE_FATAL=yes</td>
+<td>同时配置了 IPV4和IPV6，若IPv4 配置失败，则禁用该设备，即时 IPv6 正确。</td>
+</tr>
+<tr>
+<td>IPV6INIT=no</td>
+<td>是否为此接口启用 IPv6</td>
+</tr>
+<tr>
+<td>USERCTL=no</td>
+<td>是否允许非 root 用户控制该设备</td>
+</tr>
+<tr>
+<td>BOOTPROTR=static 或 none</td>
+<td>指定获取网络参数的方式</td>
+</tr>
+<tr>
+<td>IPADDR=192.168.0.123</td>
+<td>指定静态 ip 地址</td>
+</tr>
+<tr>
+<td>PREFIX=24</td>
+<td>设置 CIDR 网络前缀</td>
+</tr>
+<tr>
+<td>BROADCAST=192.168.0.255</td>
+<td>设置网络广播地址</td>
+</tr>
+<tr>
+<td>GATEWAY=192.168.0.1</td>
+<td>指定设备的网关</td>
+</tr>
+<tr>
+<td>DNS1=8.8.8.8</td>
+<td>指定首选 DNS</td>
+</tr>
+<tr>
+<td>DNS2=8.8.4.4</td>
+<td>指定次选 DNS</td>
+</tr>
+</tbody></table>
+<p>网络接口的静态路由配置</p>
+<p>在 /etc/sysconfig/network-scripts 目录下，每个网络接口均有其静态路由配置文件。</p>
+<p>本地域名解析配置文件</p>
+<p>在本地域名解析数据库文件为 /etc/hosts ,通常也称为 Host 表文件。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/523.png" alt></p>
+<p>配置远程域名解析器</p>
+<p>若网络接口配置文件中的 PEERDNS 指令设置为 no ，则不会自动设置远程域名解析器，为了手工设置 Linux 的远程域名解析器，可以编辑 /etc/resolv.conf 文件。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/524.png" alt></p>
+<ul>
+<li>关键字 nameserver 用于指定 DNS 服务器，最多指定3个 DNS 服务器，行的顺序决定了 DNS 查询顺序。</li>
+<li>关键字 domain 用于指定当前主机所在域的域名</li>
+<li>关键字 search 用于指定默认的搜索域</li>
+</ul>
+<p>配置域名解析顺序</p>
+<p>域名解析的优先顺序，由配置文件/etc/host.conf 决定。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/526.png" alt></p>
+<p>设置包转发</p>
+<p>查看当前系统是否支持包转发：<code>sysctl net.ipv4.ip_forward</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/528.png" alt></p>
+<p>永久性配置包转发，需要修改配置文件/etc/sysctl.conf 确保如下配置行存在。</p>
+<p><code>net.ipv4.ip_forward = 1</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/527.png" alt></p>
+<p>设置主机名</p>
+<p>在 CentOS 7 中主机名是由 Systemd    管理的，名为 systemd-hostname.service 的静态服务在开机后启动。使用 hostnamectl 命令可以修改主机名，主机名被写在配置文件 /etc/hostname 中，systemd-hostnamed.service 服务会自动感知主机名的改变。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/529.png" alt></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/linux/">linux</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/09/22/pat-乙/">
+        <span class="next-text nav-default">pat-乙</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Hades.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":"ture"},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

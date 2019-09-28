@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://yoursite.com/tags/linux/</loc>
+        <lastmod>2019-09-28T13:13:26.301Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/pat/</loc>
         <lastmod>2019-09-22T14:17:56.361Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,13 +26,6 @@
     <url>
         <loc>http://yoursite.com/tags/%E6%B1%87%E7%BC%96/</loc>
         <lastmod>2019-09-22T11:11:45.941Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2019-09-18T00:56:47.960Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
