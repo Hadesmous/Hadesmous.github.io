@@ -8,6 +8,13 @@
     </url>
     
     <url>
+        <loc>http://FullSky%60%E2%98%85.com/about/</loc>
+        <lastmod>2019-12-27T13:47:46.449Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>http://FullSky%60%E2%98%85.com/tag/</loc>
         <lastmod>2019-12-27T13:28:32.210Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,13 +24,6 @@
     <url>
         <loc>http://FullSky%60%E2%98%85.com/category/</loc>
         <lastmod>2019-12-27T13:19:51.576Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>http://FullSky%60%E2%98%85.com/about/</loc>
-        <lastmod>2019-09-15T03:01:17.441Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

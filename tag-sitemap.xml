@@ -4,7 +4,35 @@
 
     <url>
         <loc>http://FullSky%60%E2%98%85.com/tags/python/</loc>
-        <lastmod>2019-12-27T12:42:53.908Z</lastmod>
+        <lastmod>2019-12-27T13:51:14.758Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://FullSky%60%E2%98%85.com/tags/pat/</loc>
+        <lastmod>2019-12-27T13:50:47.086Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://FullSky%60%E2%98%85.com/tags/kali/</loc>
+        <lastmod>2019-12-27T13:50:12.906Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://FullSky%60%E2%98%85.com/tags/%E6%BC%8F%E6%B4%9E/</loc>
+        <lastmod>2019-12-27T13:49:50.209Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://FullSky%60%E2%98%85.com/tags/%E6%B1%87%E7%BC%96/</loc>
+        <lastmod>2019-12-27T13:49:36.877Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -24,29 +52,8 @@
     </url>
 
     <url>
-        <loc>http://FullSky%60%E2%98%85.com/tags/pat/</loc>
-        <lastmod>2019-09-22T14:17:56.361Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://FullSky%60%E2%98%85.com/tags/ctf/</loc>
         <lastmod>2019-09-22T12:36:22.105Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://FullSky%60%E2%98%85.com/tags/%E6%B1%87%E7%BC%96/</loc>
-        <lastmod>2019-09-22T11:11:45.941Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://FullSky%60%E2%98%85.com/tags/%E6%BC%8F%E6%B4%9E/</loc>
-        <lastmod>2019-09-17T12:48:08.231Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -68,13 +75,6 @@
     <url>
         <loc>http://FullSky%60%E2%98%85.com/tags/tools/</loc>
         <lastmod>2019-09-09T03:41:32.469Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://FullSky%60%E2%98%85.com/tags/kali/</loc>
-        <lastmod>2019-09-08T12:59:43.070Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
