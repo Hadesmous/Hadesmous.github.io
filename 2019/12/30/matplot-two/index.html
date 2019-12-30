@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>matplot-two | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">matplot-two</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十二月 30, 2019&nbsp;&nbsp;18:26:57</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/category/Mateplotlib/">Mateplotlib</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="1-用-plt-plot-画散点图"><a href="#1-用-plt-plot-画散点图" class="headerlink" title="1.用 plt.plot 画散点图"></a>1.用 plt.plot 画散点图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.style.use(<span class="string">'seaborn-whitegrid'</span>)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">30</span>)</span><br><span class="line">y = np.sin(x)</span><br><span class="line">plt.plot(x,y,<span class="string">'o'</span>,color=<span class="string">'black'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/1.png" alt="1"></p>
+<p>plt.plot 的第三个参数是一个字符，表示图形符号的类型。具体的几种类型参见如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">plt.style.use(<span class="string">'seaborn-whitegrid'</span>)</span><br><span class="line">rng = np.random.RandomState(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">'o'</span>,<span class="string">'.'</span>,<span class="string">','</span>,<span class="string">'x'</span>,<span class="string">'+'</span>,<span class="string">'v'</span>,<span class="string">'&lt;'</span>,<span class="string">'&gt;'</span>,<span class="string">'s'</span>,<span class="string">'d'</span>]:</span><br><span class="line">    plt.plot(rng.rand(<span class="number">5</span>),rng.rand(<span class="number">5</span>),i,label = <span class="string">"i='&#123;0&#125;'"</span>.format(i))</span><br><span class="line">    plt.legend(numpoints=<span class="number">1</span>)</span><br><span class="line">    plt.xlim(<span class="number">0</span>,<span class="number">1.8</span>)</span><br><span class="line">plt.axis(<span class="string">'tight'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/2.png" alt="2"></p>
+<p>这些设置也可以与线条，颜色代码组合起来，画出一条连接散点的线。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x,y,<span class="string">'-ok'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/3.png" alt="3"></p>
+<p>此外，plt.plot 还支持设置线条和散点的属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x,y,<span class="string">'-p'</span>,color=<span class="string">'gray'</span>，</span><br><span class="line">markersize=<span class="number">15</span>,linewidth=<span class="number">4</span>,markerfacecolor=<span class="string">'white'</span>,</span><br><span class="line">markeredgecolor=<span class="string">'gray'</span>,markeredgewidth=<span class="number">2</span>)</span><br><span class="line"><span class="comment">#markersize 点的尺寸</span></span><br><span class="line"><span class="comment">#linewidth 线的宽度</span></span><br><span class="line"><span class="comment">#markerfacecolor 散点内部填充颜色</span></span><br><span class="line"><span class="comment">#markeredgecolor 散点边缘颜色</span></span><br><span class="line"><span class="comment">#markeredgewidth 散点边缘线宽</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/4.png" alt="4"></p>
+<h4 id="2-用-plt-scatter-画散点图"><a href="#2-用-plt-scatter-画散点图" class="headerlink" title="2.用 plt.scatter 画散点图"></a>2.用 plt.scatter 画散点图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x,y,marker=<span class="string">'o'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/5.png" alt="5"></p>
+<p>plt.scatter 和 plt.plot 的主要差别在于，前者在创建散点图时具有很高的灵活性，可以控制每个散点与数据匹配，也可以让每个散点具有不同的属性（大小，表面颜色，边框颜色等）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">plt.style.use(<span class="string">'seaborn-whitegrid'</span>)</span><br><span class="line">rng = np.random.RandomState(<span class="number">0</span>)</span><br><span class="line">x = rng.randn(<span class="number">100</span>)</span><br><span class="line">y = rng.randn(<span class="number">100</span>)</span><br><span class="line">color = rng.rand(<span class="number">100</span>)</span><br><span class="line">sizes = <span class="number">1000</span>*rng.rand(<span class="number">100</span>)</span><br><span class="line">plt.scatter(x,y,c=color,s=sizes,alpha=<span class="number">0.3</span>,cmap=<span class="string">'viridis'</span>) </span><br><span class="line">plt.colorbar() <span class="comment">#显示颜色条</span></span><br></pre></td></tr></table></figure>
+
+<p>书上写的太少了，看一下官方帮助文档</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x,y,s=<span class="literal">None</span>,c=<span class="literal">None</span>,</span><br><span class="line">    	   marker=<span class="literal">None</span>,cmap=<span class="literal">None</span>,norm=<span class="literal">None</span>,vmin=<span class="literal">None</span>,vmax=<span class="literal">None</span>,</span><br><span class="line">    	   alpha=<span class="literal">None</span>,linewidths=<span class="literal">None</span>,verts=<span class="literal">None</span>,edgecolors=<span class="literal">None</span>,*,</span><br><span class="line">    	   plotnonfinite=<span class="literal">False</span>,data=<span class="literal">None</span>,**kwargs,)</span><br><span class="line"><span class="comment">#x,y 数据位置</span></span><br><span class="line"><span class="comment">#s 形状大小</span></span><br><span class="line"><span class="comment">#c 颜色，颜色序列</span></span><br><span class="line"><span class="comment">#marker 可选标记样式 默认为 None</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">plt.style.use(<span class="string">'seaborn-whitegrid'</span>)</span><br><span class="line">x = np.random.randn(<span class="number">10</span>)</span><br><span class="line">y = np.random.randn(<span class="number">10</span>)</span><br><span class="line">sizes=  <span class="number">1000</span>*(np.random.RandomState(<span class="number">0</span>).rand(<span class="number">10</span>))</span><br><span class="line">color = [<span class="string">'r'</span>,<span class="string">'w'</span>,<span class="string">'g'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'y'</span>,<span class="string">'k'</span>,<span class="string">'g'</span>,<span class="string">'b'</span>]</span><br><span class="line">plt.scatter(x,y,c=color,s=sizes,marker=<span class="string">'o'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/mat/2/6.png" alt="6"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#cmap 可选，默认值无 一个颜色样式关键字和元素映射的集合类 可选参数有&#123;'viridis', 'inferno', 'plasma', 'magma'&#125;等</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>cmap 的参数可参见下面地址：<br><a href="https://matplotlib.org/examples/color/colormaps_reference.html" target="_blank" rel="noopener">https://matplotlib.org/examples/color/colormaps_reference.html</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#norm 亮度选择 默认无</span></span><br><span class="line"><span class="comment">#vmin，vmax 标量，可选，默认无</span></span><br><span class="line"><span class="comment">#vmin,vmax,norm 一起使用以规范化亮度数据，如果没有，则分别为颜色的最小值和最大值，如果传递norm, 则忽略 vmin 和 vmax。</span></span><br><span class="line"><span class="comment">#appha 透明度</span></span><br><span class="line"><span class="comment">#linewidths 线宽</span></span><br><span class="line"><span class="comment">#edgecolors : &#123;'face', 'none', *None*&#125;  边缘颜色 可选 </span></span><br><span class="line"><span class="comment">#选择 face 时，与填充颜色一样；选择 none 时，不会绘制边缘</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/12/30/matplot-two/">http://FullSky`★.com/2019/12/30/matplot-two/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Data/"># Data</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/12/28/matplot-one/">matplot_one</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
