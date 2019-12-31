@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>汇编程序设计结构 顺序、分支 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">汇编程序设计结构 顺序、分支</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 22, 2019&nbsp;&nbsp;16:42:30</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="顺序程序设计"><a href="#顺序程序设计" class="headerlink" title="顺序程序设计"></a>顺序程序设计</h3><p>在设计上比较简单，按指令书写的先后顺序执行一系列操作，程序流程中无分支、无循环、这种程序也被称为直线结构。</p>
+<h3 id="分支程序设计"><a href="#分支程序设计" class="headerlink" title="分支程序设计"></a>分支程序设计</h3><p>程序能够对自身执行情况进行自动判断，根据判断的结果控制程序选择不同的程序段执行的程序结构称为分支程序。</p>
+<p>在 80x86 系列微机中，转移指令是一组可以在程序执行过程中，根据不同情况进行程序转移的控制类指令，是实现分支程序设计的基础。</p>
+<h4 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h4><p>转移指令的功能是使程序无条件的转移到指定的目标地址处，无条件转移指令执行后，程序将从目标地址处的指令开始继续执行。</p>
+<h5 id="1-无条件转移指令"><a href="#1-无条件转移指令" class="headerlink" title="1.无条件转移指令"></a>1.无条件转移指令</h5><p>无条件转移指令的功能是使程序无条件的转移到指定的目标地址处。</p>
+<p>1.）段内直接转移</p>
+<p>格式：<code>JMP [SHORT|NEAR PTR] 标号</code></p>
+<p>说明：</p>
+<p>该标号与当前无条件转移指令处于同一个代码段中，格式中的 SHORT 运算符表明指令代码中的操作数是 8 为偏移量，用补码表示，取值范围为 -128<del>+127 ，目标地址与当前无条件转移指令的距离在 -128</del>+127 字节范围内，叫做短转移。</p>
+<p>NEAR PTR 运算符表明指令代码中的操作数是 16 为偏移量，用补码表示，取值范围为 -32768<del>+32767，目标地址与当前无条件转移指令的距离在 -32768</del>+32767 字节范围内，叫做近转移。</p>
+<p>SHORT 和 NEAR PTR 可省略不写，由程序在汇编时自行计算偏移量。</p>
+<p>功能：转移到标号指定的代码段执行。</p>
+<p>具体操作：将 IP 的内容修改为标号的偏移地址， CS 的内容不变。</p>
+<p>2.）段间间接转移</p>
+<p>格式：<code>JMP 存储单元地址</code></p>
+<p>说明：该存储单元与当前无条件转移指令处于同一个代码段。</p>
+<p>功能：转移到指定的存储单元地址所在处的代码执行。</p>
+<p>具体操作：将 IP 的内容修改为存储单元的偏移地址， CS 的内容不变。</p>
+<p>3.）段间直接转移</p>
+<p>格式：<code>JMP FAR PTR 标号</code></p>
+<p>说明：该标号与当前无条件转移指令处于不同的代码段。</p>
+<p>功能：转移到标号指定的代码处执行。</p>
+<p>具体操作：将 IP 的内容修改为标号的偏移地址，将 CS 的内容修改为标号所在段的段地址。</p>
+<p>4.）段间间接转移</p>
+<p>格式：<code>JMP DWORD PTR 存储单元地址</code></p>
+<p>功能：转移到指定的存储单元地址所在行的代码处执行。</p>
+<p>具体操作：将 IP 的内容修改为存储单元地址的偏移地址，将 CS 的内容修改为存储单元地址所在段地址。</p>
+<h5 id="条件转移指令"><a href="#条件转移指令" class="headerlink" title="条件转移指令"></a>条件转移指令</h5><p>条件转移指令以某些标志位或标志位的逻辑运算位依据，满足条件，程序转移至指定目标地址，不满足条件，程序顺序执行。需要注意的是，条件转移的目标地址在 -128~+127 字节范围内。</p>
+<p>一般格式：<code>JXX 目标地址</code></p>
+<p>其中 xx 由 1-3 个字母组成，表示转移条件。</p>
+<p>1.）检测单个标志位实现转移的条件转移指令。</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JC</td>
+<td>CF=1</td>
+<td>有进位/有借位转移</td>
+</tr>
+<tr>
+<td>JNC</td>
+<td>CF=0</td>
+<td>无进位/无借位转移</td>
+</tr>
+<tr>
+<td>JO</td>
+<td>OF=1</td>
+<td>有溢出转移</td>
+</tr>
+<tr>
+<td>JNO</td>
+<td>OF=0</td>
+<td>无溢出转移</td>
+</tr>
+<tr>
+<td>JP/JPE</td>
+<td>PF=1</td>
+<td>有偶数个1转移</td>
+</tr>
+<tr>
+<td>JNP/JPO</td>
+<td>PF=0</td>
+<td>有奇数个1转移</td>
+</tr>
+<tr>
+<td>JS</td>
+<td>SF=1</td>
+<td>负数转移</td>
+</tr>
+<tr>
+<td>JNS</td>
+<td>SF=0</td>
+<td>正数转移</td>
+</tr>
+<tr>
+<td>JZ/JE</td>
+<td>ZF=1</td>
+<td>结果为0/相等转移</td>
+</tr>
+<tr>
+<td>JNZ/JNE</td>
+<td>ZF=0</td>
+<td>结果不为0/相等转移</td>
+</tr>
+</tbody></table>
+<p>2.）根据两个无符号数的比较结果实现转移的条件转移指令</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JA/JNBE</td>
+<td>CF= 0 ZF=0</td>
+<td>大于/不小于等于转移</td>
+</tr>
+<tr>
+<td>JAE/JNB</td>
+<td>CF=0 OR ZF=1</td>
+<td>不小于/大于等于转移</td>
+</tr>
+<tr>
+<td>IB/JNAE</td>
+<td>CF=1 AND ZF=0</td>
+<td>小于/不大于等于转移</td>
+</tr>
+<tr>
+<td>JBE/JNA</td>
+<td>CF=1 OR ZF=1</td>
+<td>不大于/小于等于转移</td>
+</tr>
+</tbody></table>
+<p>3.）根据两个有符号数的比较结果实现转移的条件转移指令</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>测试条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JG/JNLE</td>
+<td>SF=OF AND ZF=0</td>
+<td>大于/不小于等于转移</td>
+</tr>
+<tr>
+<td>JGE/JNL</td>
+<td>SF=OF OR ZF=1</td>
+<td>不小于/大于等于转移</td>
+</tr>
+<tr>
+<td>JL/JNGE</td>
+<td>SF≠OF AND ZF=0</td>
+<td>小于/不大于等于转移</td>
+</tr>
+<tr>
+<td>JLE/JNG</td>
+<td>SF≠OF OR ZF=1</td>
+<td>不大于/小于等于转移</td>
+</tr>
+</tbody></table>
+<h5 id="多分支结构程序设计"><a href="#多分支结构程序设计" class="headerlink" title="多分支结构程序设计"></a>多分支结构程序设计</h5><p>常用的方法有条件转移法、地址表法、转移表法。</p>
+<p>条件转移法：</p>
+<p>使用一个条件转移指令可以实现一个双分支，使用多个条件转移指令可以实现多分支。条件转移法就是使用多个转移指令来实现多分支结构。</p>
+<p>地址表法：</p>
+<p>在数据段中利用 DW 指令将 n 个分支的入口处的偏移地址安装顺序放在一段连续的存储区中，构成地址表。</p>
+<p>设地址表的首地址为 BASE，则第 i 个分支的入口处偏移地址为：表地址=i<em>2+BASE，当程序需要转向第 i 个分支时，只需将 2\</em>i 送入 BX，并执行 JMP BASE[BX] , 即可。</p>
+<p>转移表法：</p>
+<p>与地址表法类似，只是需要在代码段中把转移到 n 个分支程序段的转移指令，JMP SHORT BRi(i=1,2,3……) 以此存放在一起，形成转移表，调用方式与地址表类似。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/09/22/汇编程序设计结构/">http://FullSky`★.com/2019/09/22/汇编程序设计结构/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/汇编/"># 汇编</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/22/xctf-web-2/">xctf-web Lottery、 NewsCenter、 Mfw</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/19/xctf-web-1/">xctf-web ics-05</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

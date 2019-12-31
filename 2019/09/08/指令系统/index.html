@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>指令系统 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">指令系统</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 8, 2019&nbsp;&nbsp;21:11:09</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="指令系统概述"><a href="#指令系统概述" class="headerlink" title="指令系统概述"></a>指令系统概述</h3><p>计算机的指令系统是指其处理器所能执行的各种指令的集合。指令有机器指令和汇编指令两种形式，机器指令用二进制代码表示，便于机器识别；汇编指令则是用助记符来表示机器指令。</p>
+<h4 id="机器指令格式："><a href="#机器指令格式：" class="headerlink" title="机器指令格式："></a>机器指令格式：</h4><p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100736.jpg" alt></p>
+<p>机器指令通常由操作码字段和操作数字段两部分组成。</p>
+<p>操作码字段指示计算机所要执行的操作类似。操作数字段指出指令执行操作所需的数据和操作结果存放的位置。</p>
+<p>根据一条指令操作数字段提供的操作数个数，可将指令分为以下3种：</p>
+<p>双操作数指令：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100749.jpg" alt></p>
+<p>双操作数中的操作数字段提供两个操作数，中间用逗号分隔，逗号前面的数称为目的操作数，逗号后面的数称为源操作数。</p>
+<p>eg：<code>MOV AL,05H</code>   ； 将8位立即数 05H 存入寄存器 AL中</p>
+<p>eg：<code>MOV AL,BL</code>    ；将寄存器 AL 和 BL 中的数相加，结果放入 AL 中</p>
+<p>单操作数指令：</p>
+<p>操作数字段只提供一个操作数。这类指令有两种情况，一是只需要一个操作数；二是指令中只需给出一个指令，另一个操作数是隐含指出的。</p>
+<p>eg：<code>INC AX</code>    ；加1指令，将 寄存器AX的内容加1</p>
+<p>eg：<code>PUSH BX</code>  ；进栈指令，只需给出源操作数，目的操作数是栈顶单元</p>
+<p>零操作数指令：</p>
+<p>这类指令只有操作码字段，没有操作数字段。</p>
+<p>eg：<code>HLT</code> ；停机指令</p>
+<p>eg：<code>CBW</code> ；符号扩展指令，隐含的操作数在 AL 和 AX 中</p>
+<p>单操作数指令和零操作数指令格式如下：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_100754.jpg" alt></p>
+<h4 id="寻址技术"><a href="#寻址技术" class="headerlink" title="寻址技术"></a>寻址技术</h4><p>指令中操作数字段可能直接给出操作数，也可能给出操作数的存放地址，若指令中给出的是操作数的存放地址，则在执行指令前要根据指令中的地址信息来寻找操作数，这个过程叫做寻址。</p>
+<h5 id="立即寻址："><a href="#立即寻址：" class="headerlink" title="立即寻址："></a>立即寻址：</h5><p>立即寻址方式是指操作数直接包含在指令中，紧跟在操作码之后，作为指令的一部分存放在代码段中。立即寻址方式只能用于源操作数，不能用于目的操作数。</p>
+<p>eg：<code>MOV BL,20H</code>     ；将8位立即数 20H 存入寄存器 BL 中</p>
+<p>eg：<code>MOV AX,12BCH</code>  ；将16位立即数 12BCH 存入寄存器 AX 中</p>
+<p>eg：<code>MOV BX,&quot;AB&quot;</code>    ；将字符串 “AB” 存入寄存器 BX 中</p>
+<h5 id="寄存器寻址："><a href="#寄存器寻址：" class="headerlink" title="寄存器寻址："></a>寄存器寻址：</h5><p>寄存器寻址方式是指操作数存放在寄存器中，指令中直接给出寄存器名，通过寄存器名找到操作数。寄存器寻址即可用于源操作数，又可用于目的操作数。</p>
+<p>eg：<code>MOV CX,1234H</code>  ；将16位立即数 1234H 放入寄存器 CX 中</p>
+<p>eg：<code>MOV BL,AL</code>       ；将寄存器 AL 中的内容存入寄存器 BL 中</p>
+<p>eg：<code>MOV DS,BX</code>       ；将通用寄存器 BX 中的内容存入段寄存器 DS</p>
+<h5 id="存储器寻址方式："><a href="#存储器寻址方式：" class="headerlink" title="存储器寻址方式："></a>存储器寻址方式：</h5><p>操作数在存储器单元中，存储器单元作为操作数时，CPU 必须通过指令提供的信息计算出该存储单元的物理地址，物理地址由段基址和偏移量组成。</p>
+<p>在 80X86 中，根据对存储器单元地址偏移量的不同计算方式，可以分为以下5中不同的寻址方式。</p>
+<h6 id="直接寻址方式："><a href="#直接寻址方式：" class="headerlink" title="直接寻址方式："></a>直接寻址方式：</h6><p>直接寻址方式是指指令所需的操作数存放在存储器单元中，其地址偏移量由指令代码中的偏移量直接给出。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112823.jpg" alt></p>
+<p>操作数格式：<code>[常数]|变量名</code></p>
+<p>源操作数采用直接寻址方式：</p>
+<p>eg：<code>MOV BL,[100H]</code>     ；将当前数据段偏移量为 100H 的字节单元内容存入 BL 中</p>
+<p>eg：<code>MOV AX,DW_WORD</code>   ；将 DW_WORD 指向的字单元内容存入 AX</p>
+<p>目的操作数采用直接寻址方式：</p>
+<p>eg：<code>DW_WORD,OFFH</code>       ；将立即数 0FFH 存入 DA_WORD 指向的字节单元</p>
+<p>eg：<code>ES:[100H],AX</code>       ；将 AX 中的内容存入附加段 ES 中偏移 100H 的字单元</p>
+<h6 id="寄存器间接寻址："><a href="#寄存器间接寻址：" class="headerlink" title="寄存器间接寻址："></a>寄存器间接寻址：</h6><p>指指令所需的操作数存放在存储器单元中，其地址偏移量由基址寄存器 BX 、BP 或变址寄存器 SI、DI 给出。BP 默认段 SS；BX，SI，DI 默认段 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112826.jpg" alt></p>
+<p>操作数格式：<code>[BX|BP|SI|DI]</code></p>
+<p>目的操作数采用寄存器间接寻址：</p>
+<p>eg：<code>MOV [BX],1234H</code> ；设 BX 的内容为 100H ，将 1234H 存入 DS 段偏移 100H 的字单元</p>
+<p>eg：<code>MOV [BP],BL</code>      ；设 BP 的内容为 100H ，将 BL 存入 SS 段偏移 100H 的字节单元</p>
+<p>源操作数采用寄存器间接寻址：</p>
+<p>eg：<code>MOV AL,[SI]</code>      ；设 SI 的内容为 100H ，将 DS 段偏移 100H 的字节单元的内容存入 AL</p>
+<p>eg：<code>MOV AX,DS:[BP]</code> ；设 BP 的内容为 1000H ，将 DS 段偏移 1000H 的字单元的内容存入 AX</p>
+<p>注：当存入内容为16位时，存入字单元，8位时存入字节单元。</p>
+<h6 id="寄存器相对寻址方式："><a href="#寄存器相对寻址方式：" class="headerlink" title="寄存器相对寻址方式："></a>寄存器相对寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定的一个基址寄存器或变址寄存器名（BX,BP,SI,DI）和一个8位或16位的相对位移量，两者之和位操作数的地址偏移量。使用 BP ，默认段为 SS ；使用其他寄存器，默认段为 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112837.jpg" alt></p>
+<p>操作数格式：<code>位移量 [Bx|BP|SI|DI]</code></p>
+<p>eg：<code>MOV AL,ES:VAR[SI]</code>  ；设 SI 的内容为 100H ，VAR 所指存储单元的偏移量为200H，</p>
+<p>​                                         ；则源操作数偏移量为 300H ,将 ES 段偏移量为 300H 的字节单元内容存入 AL</p>
+<p>eg：<code>MOV 10H[BX],1234H</code>  ；设 BX 的内容为 100H ，则目的操作数偏移量为 110H，</p>
+<p>​                                          ；将 1234H存入 DS 段偏移量为 110H 的字单元</p>
+<h6 id="基址变址寻址方式："><a href="#基址变址寻址方式：" class="headerlink" title="基址变址寻址方式："></a>基址变址寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定的一个基址寄存器名 （BX或BP）和一个变址寄存器名 （SI或DI），两者内容之和为操作数的地址偏移量。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112841.jpg" alt></p>
+<p>操作数格式：<code>[BX|BP+SI|DI</code></p>
+<p>eg：<code>AX,ES:[BX+SI]</code>   ；设 BX 的内容为 100H ，SI 的内容为 20H ,则源操作数偏移量为 120H </p>
+<p>​                                   ；将 ES 段偏移为 120H 字单元内容存入 AX</p>
+<p>eg：<code>[BP+DI],AL</code>        ；设 BP 的内容为 1000H ，DI 的内容为 50H ，则目的操作数的偏移量为1050H </p>
+<p>​                                   ；将 AL 的内容存入 SS 段偏移量为 1050H 的字节单元</p>
+<h6 id="相对基址变址寻址方式："><a href="#相对基址变址寻址方式：" class="headerlink" title="相对基址变址寻址方式："></a>相对基址变址寻址方式：</h6><p>指指令所需的操作数存放在存储器单元中，指令中给定一个基址寄存器名（BX或BP)、一个变址寄存器名（SI或DI）和一个8位或16位的相对地址位移量，三者内容之和为操作数的偏移量。若基址寄存器使用BP ，默认段 SS，基址寄存器使用 BX ，默认段 DS。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190909_112844.jpg" alt></p>
+<p>操作数格式：<code>位移量[BX|BP+SI|DI]</code></p>
+<p>eg：<code>MOV AL,[BX+DI-20H]</code>   ；设 BX 的内容为 100H， DI 的内容为 20H ，则源操作数的偏移量为 100H</p>
+<p>​                                            ；将 DS 段偏移量为 100H 的字单元内容存入 AL</p>
+<p>eg：<code>MOV [BP+SI+100H],AX</code>  ；设 BP 的内容为 1000H， DI 的内容为 200H ，则目的操作数的偏移量为 1300H</p>
+<p>​                                             ；将 AX 的内容存入 DS 段偏移量为 1300H 的字单元</p>
+<hr>
+<p>[^]:  注：本篇中所有配图均来自《汇编语言程序设计实用教程》–任向民 ，如有侵权，请联系作者删除！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/09/08/指令系统/">http://FullSky`★.com/2019/09/08/指令系统/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/汇编/"># 汇编</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/09/python正则实现计算器/">python正则实现计算器</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/08/微型计算机系统/">微型计算机系统</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

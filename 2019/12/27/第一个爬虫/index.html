@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>第一个爬虫 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第一个爬虫</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十二月 27, 2019&nbsp;&nbsp;20:42:31</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="1-基础的爬虫架构及运行流程"><a href="#1-基础的爬虫架构及运行流程" class="headerlink" title="1.基础的爬虫架构及运行流程"></a>1.基础的爬虫架构及运行流程</h4><p>基础的爬虫框架主要包括五大模块，分别为爬虫调度器、URL 管理器、HTML 下载器、HTML 解析器、数据存储器。</p>
+<p>功能分析如下：</p>
+<p>爬虫调度器主要负责统筹其他四个模块的协调工作。</p>
+<p>URL 管理器负责管理 URL 链接，维护已经爬取的 URL 集合和未爬取的 URL 集合，提供获取新的 URL  链接的接口。</p>
+<p>HTML 下载器用于从 URL 中获取为爬取的 URL 链接并下载 HTML 网页。</p>
+<p>HTML 解析器用于从 HTML 下载器中获取已经下载的 HTML 网页，并从中解析出新的 URL 链接交给 URL 管理器，解析出有效数据交给数据存储器。</p>
+<p>数据存储器用于将 HTML 解析器解析出来的数据通过文件或者数据库的形式存储起来。</p>
+<h4 id="2-第一个爬虫示例"><a href="#2-第一个爬虫示例" class="headerlink" title="2.第一个爬虫示例"></a>2.第一个爬虫示例</h4><p>爬取随即1条百度百科的词条数据。</p>
+<h3 id="3-URL-管理器"><a href="#3-URL-管理器" class="headerlink" title="3.URL 管理器"></a>3.URL 管理器</h3><p>功能定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">has_new_url() <span class="comment">#判断是否有待取的 URL</span></span><br><span class="line">add_new_url(url) <span class="comment">#添加新的 URL 到未爬取集合中</span></span><br><span class="line">add_new_urls(urls) </span><br><span class="line">get_new_url() <span class="comment">#获取一个未爬取的 URL</span></span><br><span class="line">new_url_size() <span class="comment">#获取未爬取 URL 的集合大小</span></span><br><span class="line">old_url_size() <span class="comment">#获取已经爬取的 URL 的大小</span></span><br></pre></td></tr></table></figure>
+
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="comment">#author: FullSky</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Urlmanage</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.new_urls = set()</span><br><span class="line">        self.old_urls = set()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">has_new_url</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.new_url_size()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_new_url</span><span class="params">(self)</span>:</span></span><br><span class="line">        new_url = self.new_urls.pop()</span><br><span class="line">        self.old_urls.add(new_url)</span><br><span class="line">        <span class="keyword">return</span> new_url</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_new_url</span><span class="params">(self,url)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> url <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> url <span class="keyword">not</span> <span class="keyword">in</span> self.new_urls <span class="keyword">and</span> url <span class="keyword">not</span> <span class="keyword">in</span> self.old_urls:</span><br><span class="line">            self.new_urls.add(url)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_new_urls</span><span class="params">(self,urls)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> urls <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(urls) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            self.add_new_url(url)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">new_url_size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.new_urls)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">old_url_size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.old_urls)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-HTML-下载器"><a href="#4-HTML-下载器" class="headerlink" title="4.HTML 下载器"></a>4.HTML 下载器</h4><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="comment">#author: FullSky</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Htmldownload</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self,url)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> url <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        user_agent = <span class="string">'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'</span></span><br><span class="line">        headers = &#123;<span class="string">'User-Agent'</span>: user_agent&#125;</span><br><span class="line">        r = requests.get(url,headers=headers)</span><br><span class="line">        <span class="keyword">if</span> r.status_code == <span class="number">200</span>:</span><br><span class="line">            r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">            <span class="keyword">return</span> r.text</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-HTML-解析器"><a href="#5-HTML-解析器" class="headerlink" title="5.HTML 解析器"></a>5.HTML 解析器</h4><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="comment">#author: FullSky</span></span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">htmlparser</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parser</span><span class="params">(self,page_url,html_cont)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> page_url <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> html_cont <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        soup =  BeautifulSoup(html_cont,<span class="string">'html.parser'</span>,from_encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">        new_urls = self._get_new_urls(page_url,soup)</span><br><span class="line">        new_data = self._get_new_data(page_url,soup)</span><br><span class="line">        <span class="keyword">return</span> new_urls,new_data</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_new_urls</span><span class="params">(self,page_url,soup)</span>:</span></span><br><span class="line">        new_urls = set()</span><br><span class="line">        links = soup.find_all(<span class="string">'a'</span>,herf=re.compile(<span class="string">r'/view/\d+\.htm'</span>))</span><br><span class="line">        <span class="keyword">for</span> link <span class="keyword">in</span> links:</span><br><span class="line">            new_url = link[<span class="string">'href'</span>]</span><br><span class="line">            new_full_url = parse.urljoin(page_url,new_url)</span><br><span class="line">            new_urls.add(new_full_url)</span><br><span class="line">        <span class="keyword">return</span> new_urls</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_new_data</span><span class="params">(self,page_url,soup)</span>:</span></span><br><span class="line">        data=&#123;&#125;</span><br><span class="line">        data[<span class="string">'url'</span>] = page_url</span><br><span class="line">        title = soup.find(<span class="string">'dd'</span>,class_=<span class="string">'lemmaWgt-lemmaTitle-title'</span>).find(<span class="string">'h1'</span>)</span><br><span class="line">        data[<span class="string">'title'</span>] = title.get_text()</span><br><span class="line">        summary = soup.find(<span class="string">'div'</span>,class_=<span class="string">'lemma-summary'</span>)</span><br><span class="line">        data[<span class="string">'summary'</span>] = summary.get_text()</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-数据存储器"><a href="#6-数据存储器" class="headerlink" title="6.数据存储器"></a>6.数据存储器</h4><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="comment">#author: FullSky</span></span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dataoutput</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.datas = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">store_data</span><span class="params">(self,data)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.datas.append(data)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">output_html</span><span class="params">(self)</span>:</span></span><br><span class="line">        fout = codecs.open(<span class="string">'baile.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">        fout.write(<span class="string">'&lt;html&gt;'</span>)</span><br><span class="line">        fout.write(<span class="string">'&lt;body&gt;'</span>)</span><br><span class="line">        fout.write(<span class="string">'&lt;table&gt;'</span>)</span><br><span class="line">        <span class="keyword">for</span> data <span class="keyword">in</span> self.datas:</span><br><span class="line">            fout.write(<span class="string">'&lt;tr&gt;'</span>)</span><br><span class="line">            fout.write(<span class="string">'&lt;td&gt;%s&lt;/td&gt;'</span> %data[<span class="string">'url'</span>])</span><br><span class="line">            fout.write(<span class="string">'&lt;td&gt;%s&lt;/td&gt;'</span> %data[<span class="string">'title'</span>])</span><br><span class="line">            fout.write(<span class="string">'&lt;td&gt;%s&lt;/td&gt;'</span> %data[<span class="string">'summary'</span>])</span><br><span class="line">            fout.write(<span class="string">'&lt;/tr&gt;'</span>)</span><br><span class="line">            self.datas.remove(data)</span><br><span class="line">        fout.write(<span class="string">'&lt;/table&gt;'</span>)</span><br><span class="line">        fout.write(<span class="string">'&lt;/body&gt;'</span>)</span><br><span class="line">        fout.write(<span class="string">'&lt;/html&gt;'</span>)</span><br><span class="line">        fout.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-爬虫调度器"><a href="#7-爬虫调度器" class="headerlink" title="7.爬虫调度器"></a>7.爬虫调度器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="comment">#author: FullSky</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> spride.database <span class="keyword">import</span> dataoutput</span><br><span class="line"><span class="keyword">from</span> spride.htmldown <span class="keyword">import</span> Htmldownload</span><br><span class="line"><span class="keyword">from</span> spride.htmlsoup <span class="keyword">import</span> htmlparser</span><br><span class="line"><span class="keyword">from</span> spride.urlmanage <span class="keyword">import</span> Urlmanage</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spriderman</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.manager = Urlmanage()</span><br><span class="line">        self.downloder = Htmldownload()</span><br><span class="line">        self.parse = htmlparser()</span><br><span class="line">        self.output = dataoutput()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl</span><span class="params">(self,root_url)</span>:</span></span><br><span class="line">        self.manager.add_new_url(root_url)</span><br><span class="line">        <span class="keyword">while</span> (self.manager.has_new_url() <span class="keyword">and</span> self.manager.old_url_size()&lt;<span class="number">100</span>):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                new_url = self.manager.get_new_url()</span><br><span class="line">                html = self.downloder.download(new_url)</span><br><span class="line">                new_urls ,data = self.parse.parser(new_url,html)</span><br><span class="line">                self.manager.add_new_urls(new_urls)</span><br><span class="line">                self.output.store_data(data)</span><br><span class="line">                print(<span class="string">'has touch %s links'</span> %self.manager.old_url_size())</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">'crwal fallid'</span>,e)</span><br><span class="line">        self.output.output_html()</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	 <span class="function"><span class="keyword">def</span> <span class="title">viod</span><span class="params">(num)</span>:</span></span><br><span class="line">        ran = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">            add = random.randrange(<span class="number">10</span>)</span><br><span class="line">            ran += str(add)</span><br><span class="line">        <span class="keyword">return</span> ran</span><br><span class="line">    spriderman = Spriderman()</span><br><span class="line">    spriderman.crawl(<span class="string">'http://baike.baidu.com/view/'</span> + viod(<span class="number">7</span>) + <span class="string">'.htm'</span>)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/12/27/第一个爬虫/">http://FullSky`★.com/2019/12/27/第一个爬虫/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/12/28/matplot-one/">matplot_one</a>
+            
+            
+            <a class="next" rel="next" href="/2019/12/25/pandas/">pandas</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>8086运算、位移、处理器指令 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">8086运算、位移、处理器指令</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 13, 2019&nbsp;&nbsp;18:06:50</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h3><h5 id="1-）加法指令"><a href="#1-）加法指令" class="headerlink" title="1.）加法指令"></a>1.）加法指令</h5><p>不带进位加法指令 ADD</p>
+<p>格式：<code>ADD 目的操作数，源操作数</code></p>
+<p>功能：将源操作数加到目的操作数上。</p>
+<p>说明：源操作数和目的操作数类型必须一致，并且两者不能同为存储器操作数（这一点适合于所有双操作数的算术运算指令）。影响标志位 OF、SF、ZF、AF、PF、CF。</p>
+<p>eg：</p>
+<p><code>MOV AL,05CH</code></p>
+<p><code>MOV BL,3BH</code></p>
+<p><code>ADD AL,BL</code>                                     ；将 AL 寄存器于 BL 寄存器的内容相加，结果送入 AL 寄存器。</p>
+<p>带进位加法指令 ADC</p>
+<p>格式：<code>ADC 目的操作数，源操作数</code></p>
+<p>功能：与 ADD 基本相同，区别在于执行指令前将标志位 CF 的值加到目的操作数上。多用于多字节加法运算。</p>
+<p>eg：</p>
+<p><code>MOV DX,2FFFH</code></p>
+<p><code>MOV AX,0FF00H</code></p>
+<p><code>ADD AX,5678H</code></p>
+<p><code>ADC DX,1234H</code></p>
+<p>该指实现多字节数 2FFFFFF00H 与 12345678H 相加，DX 中存放高8位 2FFFH 和 1234H，AX 中存放低8位 FF00H 和 5678H，执行第三步时，低8位进行相加，FF00H+5678H =5578H ，此时进位标志位 CF=1，执行第四部时，高8位进行相加，2FFFH+1234H=4233H，之后加上进位标志位的进位数， DX = 4234H。</p>
+<p>加1指令 INC</p>
+<p>格式：<code>INC 目的操作数</code></p>
+<p>功能：将目的操作数加1。</p>
+<h5 id="2-）减法指令"><a href="#2-）减法指令" class="headerlink" title="2.）减法指令"></a>2.）减法指令</h5><p>不带借位减法指令 SUB</p>
+<p>格式：<code>SUB 目的操作数，源操作数</code></p>
+<p>功能：对目的操作数进行减去源操作数。</p>
+<p>eg：</p>
+<p><code>MOV AX,0C500H</code></p>
+<p><code>MOV BX,1234H</code></p>
+<p><code>SUB AX,BX</code>                                     ；将 AX 寄存器与 BX 寄存器的内容相减，结果送入 AX 寄存器。</p>
+<p>带借位减法指令 SBB</p>
+<p>格式：<code>SBB 目的操作数，源操作数</code></p>
+<p>功能：与 SUB 基本相同，区别在于执行指令后将标志位 CF 的值也减去。</p>
+<p>eg：</p>
+<p><code>MOV DX,2FFFH</code></p>
+<p><code>MOV AX,0FF00H</code></p>
+<p><code>SUB AX,5678H</code></p>
+<p><code>SBB DX,1234H</code></p>
+<p>该指实现多字节数 2FFFFFF00H 与 12345678H 相减，DX 中存放高8位 2FFFH 和 1234H，AX 中存放低8位 FF00H 和 5678H，执行第三步时，低8位进行相减，FF00H-5678H =A888H ，此时进位标志位 CF=0，执行第四部时，高8位进行相减，2FFFH-1234H=1DCBH，之后减去进位标志位的内容， DX = 0A888H，AX = 1DCBH。</p>
+<p>减1指令 DEC</p>
+<p>格式：<code>DEC 目的操作数</code></p>
+<p>功能：将目的操作数减1。</p>
+<p>取补指令 NEG</p>
+<p>格式：<code>NEG 目的操作数</code></p>
+<p>功能：对目的操作数取补码，相当于用0减去目的操作数，结果送回目的操作数。</p>
+<p>比较指令 CMP</p>
+<p>格式：<code>CMP 目的操作数，源操作数</code></p>
+<p>功能：利用目的操作减去源操作数的结果设置标志位，但运算结果不送回目的操作数。</p>
+<h5 id="3-）乘法指令"><a href="#3-）乘法指令" class="headerlink" title="3.）乘法指令"></a>3.）乘法指令</h5><p>无符号乘法指令 MUL</p>
+<p>格式：<code>MUL 源操作数</code></p>
+<p>功能：实现无符号乘法运算，若源操作数为字节操作数，则将 AL 与源操作数的乘积送入寄存器 AX ；若源操作数为字操作数，则将 AX 与源操作数乘积的高两字节送入寄存器 DX，低两字节送入寄存器 AX。 </p>
+<p>有符号乘法指令 IMUL</p>
+<p>格式：<code>IMUL 源操作数</code></p>
+<p>功能：实现有符号乘法运算，若源操作数为字节操作数，则将 AL 与源操作数的乘积送入寄存器 AX ；若源操作数为字操作数，则将 AX 与源操作数乘积的高两字节送入寄存器 DX，低两字节送入寄存器 AX。 </p>
+<h5 id="4-）除法指令"><a href="#4-）除法指令" class="headerlink" title="4.）除法指令"></a>4.）除法指令</h5><p>无符号除法指令 DIV</p>
+<p>格式：<code>DIV 源操作数</code></p>
+<p>功能：实现无符号除法运算，若源操作数为字节操作数，则将寄存器 AX 的内容除以源操作数的商送入 AL ，余数送入 AH ；若源操作数为字操作数，则寄存器 DX ，AX的内容连接成的双字数据除以源操作数的商送入 AX，余数送入 DX。</p>
+<p>eg：</p>
+<p><code>DIV BL</code>       ；(AX)/(BL) → AL，余数送入 AH</p>
+<p><code>DIV BX</code>        ；(DX,AX)/(BL) → AX，余数送入 DX</p>
+<p><code>DIV WORD PTR [SI]</code>        ；(DX,AX)/((SI)) → AX，余数送入 DX</p>
+<p>有符号乘法指令 IDIV</p>
+<p>格式：<code>IDIV 源操作数</code></p>
+<p>功能：实现有符号除法运算，若源操作数为字节操作数，则将寄存器 AX 的内容除以源操作数的商送入 AL ，余数送入 AH ；若源操作数为字操作数，则寄存器 DX ，AX的内容连接成的双字数据除以源操作数的商送入 AX，余数送入 DX。</p>
+<p>符号位扩展指令：</p>
+<p>格式：<code>CBW</code></p>
+<p>功能：将寄存器 AL 中的数据的符号位扩展到 AH 中，若 AL 中的最高位（符号位）为0，则 AH == 00H，若 AL 中的最高位（符号位）为1，则 AH == 0FFH。</p>
+<p>格式：<code>CWD</code></p>
+<p>功能：将寄存器 AX 中数据的符号位扩展到 DX 中。</p>
+<h3 id="逻辑运算和位移指令"><a href="#逻辑运算和位移指令" class="headerlink" title="逻辑运算和位移指令"></a>逻辑运算和位移指令</h3><h5 id="1-）逻辑运算"><a href="#1-）逻辑运算" class="headerlink" title="1.）逻辑运算"></a>1.）逻辑运算</h5><p>按位取反指令 NOT</p>
+<p>格式：<code>NOT 目的操作数</code></p>
+<p>功能：对目的操作数按位取反，结果送回目的操作数。</p>
+<p>eg：</p>
+<p><code>MOV AH,12H</code></p>
+<p><code>NOT AH</code></p>
+<p>执行后，AH = 0EDH, 12H 转换为 二进制为 00010010 ，按位取反为 11101101，转换为16进制为 0EDH。</p>
+<p>按位与运算指令 AND</p>
+<p>格式：<code>AND 目的操作数，源操作数</code></p>
+<p>功能：对目的操作数和源操作数执行按位的逻辑与操作，结果送回目的操作数。</p>
+<p>AND 指令常用于将寄存器或存储器操作数指定位清0。</p>
+<p>按位或运算指令 OR</p>
+<p>格式：<code>OR 目的操作数，源操作数</code></p>
+<p>功能：对目的操作数和源操作数执行按位的逻辑或操作，结果送回目的操作数。</p>
+<p>OR 指令通常用于将寄存器或存储器操作数指定位置1。</p>
+<p>按位异或运算指令 XOR</p>
+<p>格式：<code>XOR 目的操作数，源操作数</code></p>
+<p>功能：对目的操作数和源操作数执行按位的逻辑异或操作，结果送回目的操作数。</p>
+<p>XOR 指令通常用于将寄存器清0。</p>
+<p>测试指令 TEST    </p>
+<p>格式：<code>TEST 目的操作数，源操作数</code></p>
+<p>功能：对目的操作数和源操作数执行按位的逻辑与操作，但结果不送回目的操作数。</p>
+<p>TEST 指令常用于测试寄存器或存储器操作数的指定位内容是否为1。</p>
+<h5 id="2-）移位指令"><a href="#2-）移位指令" class="headerlink" title="2.）移位指令"></a>2.）移位指令</h5><p>移位指令包括算术移位指令、逻辑移位指令和循环移位指令。移位指令必须在格式中指明目的操作数和移位次数，移位次数只能为1或由 CL 的内容规定，当要移多个为时，移位位数需存放在 CL计数寄存器中。</p>
+<p>算术移位指令 </p>
+<p>算术左移指令 SAL</p>
+<p>格式：<code>SAL 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数左移指定出次数，没左移一次，最低位补0，最高位送入 CF。对于有符号位数，每左移一次相当于乘2。</p>
+<p>算术右移指令 SAR</p>
+<p>格式：<code>SAR 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数右移指定的次数，没右移一次，最高位保持不变，最低位送入 CF 。对于有符号位数，每右移一次相当与除2。</p>
+<p>逻辑移位指令 </p>
+<p>逻辑左移指令 SHL</p>
+<p>格式：<code>SHL 目的操作数，移位次数</code></p>
+<p>逻辑右移指令 SHR</p>
+<p>格式：<code>SHR 目的操作数，移位次数</code></p>
+<p>逻辑移位指令通常用于无符号位数乘2、除2运算。</p>
+<p>循环移位指令</p>
+<p>循环左移指令 ROL</p>
+<p>格式：<code>ROL 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数右移指定的次数，每左移一次，左移前的最高位送入最低位以及 CF 。</p>
+<p>循环右移指令 ROR</p>
+<p>格式：<code>ROR 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数右移指定的次数，每右移一次，右移前的最低位送入最高位以及 CF 。</p>
+<p>带进位的循环左移指令 RCL</p>
+<p>格式：<code>RCL 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数左移指定的次数，每左移一次，左移前的最高位送入 CF ，CF 的内容送入最低位。</p>
+<p>带进位的循环右移指令 RCR</p>
+<p>格式：<code>RCR 目的操作数，移位次数</code></p>
+<p>功能：将目的操作数右移指定的次数，每右移一次，右移前的最低位送入 CF ，CF 的内容送入最高位。</p>
+<h3 id="处理器控制指令"><a href="#处理器控制指令" class="headerlink" title="处理器控制指令"></a>处理器控制指令</h3><p>处理器控制指令包括标志操作指令和 CPU 控制指令。</p>
+<p>标志操作指令是一组可以对标志寄存器中的指定标志位进行设置的指令，都是零操作数指令。</p>
+<p>STC ：置 CF = 1 </p>
+<p>CLC ：置 CF = 0</p>
+<p>CMC ：将 CF 取反</p>
+<p>STD  ：置 DF = 1</p>
+<p>CLD  ：置 DF = 0</p>
+<p>STI  ：置 IF = 1</p>
+<p>CLI  ：置 IF = 0</p>
+<p>CPU 控制指令</p>
+<p>空操作指令 NOP</p>
+<p>功能：执行一次空操作，消耗 CPU 时间。</p>
+<p>停机指令 HLT</p>
+<p>功能：使 CPU 处于暂停状态，等待中断或复位。</p>
+<p>锁总线指令 LOCK</p>
+<p>功能：封锁总线，使指令执行原子操作，用于多处理器并行系统。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/09/13/8086运算、位移、处理器指令/">http://FullSky`★.com/2019/09/13/8086运算、位移、处理器指令/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/汇编/"># 汇编</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/14/汇编语言语句/">汇编语言语句</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/11/8086指令系统/">8086数据传送指令</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

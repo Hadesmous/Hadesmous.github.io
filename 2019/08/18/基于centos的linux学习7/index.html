@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>基于centos的linux学习7 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">基于centos的linux学习7</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 18, 2019&nbsp;&nbsp;10:08:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="本地存储管理"><a href="#本地存储管理" class="headerlink" title="本地存储管理"></a>本地存储管理</h3><p>本地存储管理的任务主要包括磁盘分区、逻辑卷管理、文件系统管理。</p>
+<p>使用文件系统的基本步骤：</p>
+<p>1.在硬盘上创建分区或逻辑卷</p>
+<p>2.在分区或逻辑卷上创建文件系统</p>
+<p>3.挂载文件系统到系统中</p>
+<ul>
+<li>手动挂装文件系统可以使用 mount 命令</li>
+<li>若需要系统每次启动时都自动挂装文件系统，需修改 /etc/fstab 文件</li>
+</ul>
+<p>4.卸载文件系统</p>
+<p>对于可移动介质上的文件系统，使用完毕后，需要使用 umount 命令实施卸载操作或执行eject命令直接弹出光盘。</p>
+<h3 id="linux-中支持的文件系统"><a href="#linux-中支持的文件系统" class="headerlink" title="linux 中支持的文件系统"></a>linux 中支持的文件系统</h3><p>linux 的内核采用了虚拟文件系统（VFS），支持多种不同的类型格式，每一种类型的文件系统都提供一个公共的软件接口给 VFS。</p>
+<p>Centos 7 中支持的常见文件系统</p>
+<table>
+<thead>
+<tr>
+<th>文件系统</th>
+<th>软件包</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ext2</td>
+<td>e2fsprogs</td>
+<td>linux 的标准文件系统，是 ext 文件系统的后续版本。</td>
+</tr>
+<tr>
+<td>ext3，ext4</td>
+<td>e2fsprogs</td>
+<td>由 ext2 扩展的日志文件系统。</td>
+</tr>
+<tr>
+<td>xfs</td>
+<td>xfsprogs</td>
+<td>由 SGI 开发的一种日志文件系统，RHEL/Centos7 默认使用的文件系统。</td>
+</tr>
+<tr>
+<td>btrfs</td>
+<td>btrfs-progs</td>
+<td>有望成为下一代linux标准文件系统，支持可写的磁盘快照（snapshots）、内建的磁盘阵列(RAID)和子卷（Subvolumes)等功能。</td>
+</tr>
+<tr>
+<td>vfats</td>
+<td>dosfstools</td>
+<td>windows95 和 windowNT 上使用的支持长文件名的DOS文件系统扩展。</td>
+</tr>
+<tr>
+<td>ntfs-3g</td>
+<td>ntfs-3g</td>
+<td>windows 的 NTFS 系统。</td>
+</tr>
+<tr>
+<td>ISO9660</td>
+<td>genisoimage</td>
+<td>标准 CD-ROM 文件系统类型。</td>
+</tr>
+<tr>
+<td>swap</td>
+<td>util-linux</td>
+<td>在 linux 中作为交换分区使用，交换分区用于操作系统管理内存的交换空间。</td>
+</tr>
+</tbody></table>
+<h3 id="硬盘及分区"><a href="#硬盘及分区" class="headerlink" title="硬盘及分区"></a>硬盘及分区</h3><h5 id="1-硬盘及其分类"><a href="#1-硬盘及其分类" class="headerlink" title="1.硬盘及其分类"></a>1.硬盘及其分类</h5><p>机械硬盘：主要由盘片、磁头、盘片转轴及控制电机、磁头控制器、数据转换器、接口、缓存等几个部分组成。</p>
+<p>固态硬盘：由固态电子存储芯片阵列而制成的，无机械部件。</p>
+<h5 id="硬盘接口方式"><a href="#硬盘接口方式" class="headerlink" title="硬盘接口方式"></a>硬盘接口方式</h5><p>PATA(俗称IDE) 接口、SATA 接口、SCSI 接口、SAS 接口和 FC-AL 接口。</p>
+<p>个人桌面多采用 SATA 接口，服务器多采用 SCSI、SAS 和 FC-AL 接口。</p>
+<p>FC-AL 接口主要应用于任务级的关键数据的大容量实时存储。可以满足高性能、高可靠性和高扩展性的存储需要。</p>
+<p>SCSI 接口主要应用于商业级的关键数据和大容量存储。</p>
+<p>SAS 接口可以支持 SAS 和 SATA 磁盘，很方便的满足不同性价比的存储需求。</p>
+<p>SATA 接口主要应用于非关键数据的大量存储，进线存储和非关键性应用。</p>
+<h3 id="使用fdisk分区"><a href="#使用fdisk分区" class="headerlink" title="使用fdisk分区"></a>使用fdisk分区</h3><p>格式:</p>
+<p><code>fdisk &lt;硬盘设备名&gt;</code>   //进入fdisk的交互操作方式，对指定的硬盘进行分区操作。</p>
+<p><code>fdisk -l &lt;硬盘设备名&gt;</code> //在命令行方式下显示指定硬盘的分区表信息</p>
+<p>fdisk 的子命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>可分区设置可启动标志</td>
+<td>p</td>
+<td>列出硬盘分区表</td>
+</tr>
+<tr>
+<td>d</td>
+<td>删除一个硬盘分区</td>
+<td>q</td>
+<td>退出fdisk，不保存更改</td>
+</tr>
+<tr>
+<td>l</td>
+<td>列出所以支持的分区类型</td>
+<td>t</td>
+<td>更改分区类型</td>
+</tr>
+<tr>
+<td>m</td>
+<td>列出所有命令说明</td>
+<td>u</td>
+<td>切换所显示的分区大小的单位</td>
+</tr>
+<tr>
+<td>n</td>
+<td>创建一个新的分区</td>
+<td>w</td>
+<td>把设置写入硬盘分区表，然后退出</td>
+</tr>
+<tr>
+<td>o</td>
+<td>创建 DOS  类型的空分区表</td>
+<td>g</td>
+<td>创建 GPT 类型的空分区表</td>
+</tr>
+</tbody></table>
+<p>进入分区设置</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/PE24_GOFO%40_%7B%24QL_7%25PM2PW.png" alt></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/AB.png" alt></p>
+<p>o: 创建 DOS 类型的空分区表</p>
+<p>n: 创建新的分区</p>
+<p>参数：</p>
+<p><code>Partion number</code> 分区号 <code>First sector</code> 起始扇区 <code>Last sector</code> last 扇区 可选大小 </p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/BJY%291NVF6%60T4_LJEBAH6X%5DN.png" alt="3"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/%7DAR4_%28L4%5DS_36Q%7DJ%605Q%40ASY.png" alt="2"></p>
+<p>p:显示当前分区</p>
+<p>d:删除已经存在的分区</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/E0RDPSH%5B%28%5B%25B%40R_Z%7DBLC%5DZB.png" alt="5"></p>
+<p>e:对所有磁盘剩余空间创建编号为3的扩展分区</p>
+<p>l:创建逻辑分区</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/H4B%5DUZ_F5QQ7U06GKO6%7B0PB.png" alt="6"></p>
+<p>t:修改分区类型</p>
+<p>参数：</p>
+<p><code>partition number</code> 分区号 <code>Hex code</code> Hex代码</p>
+<p>5 Extened</p>
+<p>82 linux swap / Solaris</p>
+<p>83 linux</p>
+<p>8e linux LVM</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/51%5BQU7A1XD6%29U6_V%605%5DT7%24C.png" alt="1"></p>
+<p>w:保存 </p>
+<p>partprobe /dev/sda 重新读取分区表</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/08/18/基于centos的linux学习7/">http://FullSky`★.com/2019/08/18/基于centos的linux学习7/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/linux/"># linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/20/web漏洞/">web漏洞</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/17/基于centos的linux学习6/">基于centos的linux学习6</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

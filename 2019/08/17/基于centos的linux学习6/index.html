@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>基于centos的linux学习6 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">基于centos的linux学习6</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 17, 2019&nbsp;&nbsp;20:41:55</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>进程概念：一个程序在其自身的虚拟地址空间中的一次执行活动。</p>
+<h3 id="linux中的进程"><a href="#linux中的进程" class="headerlink" title="linux中的进程"></a>linux中的进程</h3><p>在多用户多任务的linux系统中，每个进程都与运行的用户和组相关联，除了进程识别号PID外，在进程控制块PCB中每个进程还有另外4个与用户和组相关的识别号。</p>
+<p>RUID：实际用户识别号</p>
+<p>RGID：实际组识别号</p>
+<p>EUID：有效用户识别号</p>
+<p>EGID：有效组识别号</p>
+<p>RUID、RGID是用来识别正在运行此进程的用户和组。EUID、EGID用来确定一个进程对其访问的文件的权限和优先权。</p>
+<h3 id="进程的类型"><a href="#进程的类型" class="headerlink" title="进程的类型"></a>进程的类型</h3><p>交互进程：有一个shell启动的进程，交互既可以在前台运行，也可以在后台运行。</p>
+<p>批处理进程：不同于特定的终端相关联，提交到等待队列中顺序执行的进程。</p>
+<p>守护进程：在linux启动时初始化，需要时运行与后台的进程。</p>
+<h3 id="进程的启动方式"><a href="#进程的启动方式" class="headerlink" title="进程的启动方式"></a>进程的启动方式</h3><p>（1.）手工启动</p>
+<p>前台启动：手动启动一个进程的最常用方式。</p>
+<p>后台启动：使用&amp;命令。</p>
+<p>（2.）调度启动</p>
+<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ps</td>
+<td>查看进程的详细信息</td>
+</tr>
+<tr>
+<td>pgrep</td>
+<td>通过模式匹配查找进程id</td>
+</tr>
+<tr>
+<td>pidof</td>
+<td>通过进程名获取进程的pid</td>
+</tr>
+</tbody></table>
+<p>ps 格式：<code>ps [选项]</code></p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>显示所有进程</td>
+<td>f/-H</td>
+<td>显示进程树，等价于–forest</td>
+</tr>
+<tr>
+<td>e</td>
+<td>在命令后显示环境变量</td>
+<td>w/-w</td>
+<td>宽行输出，通常用于显示完整的命令行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>显示用户名和启动时间等信息</td>
+<td>-e</td>
+<td>显示所有进程 等价于–A</td>
+</tr>
+<tr>
+<td>x</td>
+<td>显示没有控制终端的进程</td>
+<td>-f</td>
+<td>完全显示，增加用户名，ppid，进程起始时间</td>
+</tr>
+<tr>
+<td>o/-o</td>
+<td>用户自定义输出</td>
+<td>–sort&lt;order&gt;</td>
+<td>指定按那些列排序</td>
+</tr>
+</tbody></table>
+<p>ps输出的消息含义</p>
+<table>
+<thead>
+<tr>
+<th>输出项</th>
+<th>说明</th>
+<th>输出项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PID</td>
+<td>进程号</td>
+<td>TIME</td>
+<td>进程自从启动以来占用cpu的时间</td>
+</tr>
+<tr>
+<td>PPID</td>
+<td>父进程的进程号</td>
+<td>USER</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>进程从哪个终端启动</td>
+<td>%CPU</td>
+<td>占用cpu时间与时间的百分比</td>
+</tr>
+<tr>
+<td>STAT</td>
+<td>进程的当前状态</td>
+<td>%MEM</td>
+<td>占用内存与系统内存总量的百分比</td>
+</tr>
+<tr>
+<td>START</td>
+<td>进程开始执行的时间</td>
+<td>SIZE</td>
+<td>进程代码大小+数据大小+栈空间大小 KB</td>
+</tr>
+<tr>
+<td>VSZ</td>
+<td>进程占用的虚拟内存空间 KB</td>
+<td>COMMAND/CMD</td>
+<td>进程的命令名</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>进程所占用的内存的空间 KB</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>进程状态STAT一栏表示状态的字符含义</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R</td>
+<td>进程正在执行中</td>
+</tr>
+<tr>
+<td>S</td>
+<td>进程处于睡眠状态</td>
+</tr>
+<tr>
+<td>T</td>
+<td>追踪或停止</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>僵尸进程，进程已经被终止，但其父进程并不知道，没有妥善处理</td>
+</tr>
+<tr>
+<td>W</td>
+<td>进程没有固定的pages</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>高优先级的进程</td>
+</tr>
+<tr>
+<td>N</td>
+<td>低优先级的进程</td>
+</tr>
+</tbody></table>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/b.png" alt="1"></p>
+<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><p>发生以下情况需要杀死进程</p>
+<ul>
+<li>进程占用了过多的cpu时间</li>
+<li>进程锁住了一个终端，使得前台进程无法运行</li>
+<li>进程运行时间过长，但没有预期效果或者无法正常退出</li>
+<li>进程产生了过多的到屏幕或磁盘文件的输出</li>
+</ul>
+<p>进程信号</p>
+<p>概念：进程信号是在软件层次上对中断机制的一种模拟，进程信号是最基本的进程间通信方式，可以在进程之间直接发送。</p>
+<p>使用<code>kill -l</code>或  <code>man 7 signal</code> 可以查看可以的进程信号。</p>
+<p>常用进程信号说明</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>数值</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>重读配置文件</td>
+</tr>
+<tr>
+<td>SIGINT</td>
+<td>2</td>
+<td>从键盘上发出的强行终止信号 ctrl+c</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>结束接受信号的进程 强行杀死进程</td>
+</tr>
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>正常的终止信号</td>
+</tr>
+</tbody></table>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/c.png" alt></p>
+<h3 id="可以发送进程信号的命令"><a href="#可以发送进程信号的命令" class="headerlink" title="可以发送进程信号的命令"></a>可以发送进程信号的命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kill</td>
+<td>通过指定进程的PID为进程发送进程信号</td>
+</tr>
+<tr>
+<td>killall</td>
+<td>通过指定进程的名称为进程发送进程信号</td>
+</tr>
+<tr>
+<td>pkill</td>
+<td>通过模式匹配为指定的进程发送进程信号</td>
+</tr>
+</tbody></table>
+<h3 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h3><p>概念：控制当前正在运行的进程的行为。</p>
+<p>进程控制常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令或快捷键</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cmd&amp;</td>
+<td>命令后的&amp;符号表示该命令放到后台执行</td>
+</tr>
+<tr>
+<td>nohup cmd &amp;</td>
+<td>将该命令放到后台运行，用户注销后依然执行</td>
+</tr>
+<tr>
+<td>ctrl+d</td>
+<td>终止一个正在前台运行的进程 正常</td>
+</tr>
+<tr>
+<td>ctrl+c</td>
+<td>终止一个正在前台运行的进程 强行</td>
+</tr>
+<tr>
+<td>ctrl+z</td>
+<td>挂起一个正在前台运行的进程</td>
+</tr>
+<tr>
+<td>jobs</td>
+<td>显示后台作业和被挂起的进程</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>在后台恢复运行一个被挂起的进程</td>
+</tr>
+<tr>
+<td>fg</td>
+<td>在前台恢复一个被挂起的进程</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/08/17/基于centos的linux学习6/">http://FullSky`★.com/2019/08/17/基于centos的linux学习6/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/linux/"># linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/18/基于centos的linux学习7/">基于centos的linux学习7</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/16/基于centos的linux学习5/">基于centos的linux学习5</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

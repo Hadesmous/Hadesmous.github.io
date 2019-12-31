@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>渗透测试中的工具利用 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">渗透测试中的工具利用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 13, 2019&nbsp;&nbsp;16:38:38</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="Burp"><a href="#Burp" class="headerlink" title="Burp"></a>Burp</h3><p>Https证书配置：</p>
+<p>burp官网下载CA证书，浏览器设置配置，导入证书机构勾选服务权限进行抓包。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/1.png" alt="1"></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/2.png" alt="2"></p>
+<p>BurpSuite 模块介绍：</p>
+<ul>
+<li>targer 显示历史站点 收入到scope中 可特别显示</li>
+<li>spider 爬虫  右键send to spider </li>
+<li>scanner 扫描 静态扫描/动态扫描</li>
+<li>extender 插件 java/ruby/python</li>
+<li>comparer 比较 对收集的数据包进行比较</li>
+<li>repeater 复现 方便对收集的数据包进行更改以及查看更改后的结果</li>
+<li>sequencer 计数器 cookie伪造 可以对网站cookie的复杂度进行分析</li>
+<li>intruder 攻击</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Sniper模式</th>
+<th>Battering ram模式</th>
+<th>Pitchfork模式</th>
+<th>Clusterbomd模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一个变量单一匹配爆破</td>
+<td>一个变量重复匹配爆破</td>
+<td>两个变量单一匹配爆破</td>
+<td>两个变量交叉匹配爆破</td>
+</tr>
+</tbody></table>
+<p>Payload的几种模式</p>
+<p>simple list 简单表单</p>
+<p>runtime file  文件字典</p>
+<p>case modification 大小写改变</p>
+<p>number 自动生成数字</p>
+<p>date 日期</p>
+<p>brute forcer 暴力枚举</p>
+<p>null payloads  空payloads</p>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>nmap 【空格】 【选项|多选项|协议】 空格 目标 masscan 快速扫描端口</p>
+<p>nmap支持的协议和对应编号：</p>
+<p>（1.）TCP    6（2.）ICMP  1（3.）igmp  2（4.）udp   17</p>
+<p>可指定协议向目标主机发送数据包判断目标主机是否在线。</p>
+<p>1.-A 全面扫描  </p>
+<p>2.ip/20 扫描网段 </p>
+<p>3.-p 端口 指定端口扫描 </p>
+<p>4.-v 查看版本 </p>
+<p>5.-sP ping扫描 </p>
+<p>6.P0 无ping扫描 </p>
+<p>7.nmap -PS tcp syn ping扫描  -v显示过程 </p>
+<p>8.-PA tcp ack ping扫描 </p>
+<p>9.-PU udp</p>
+<p>10.-PE  icmp -PP icmp时间戳 -PM icmp地址掩码</p>
+<p>11.-PR  ARP扫描 </p>
+<p>12.-PY  SCTP init ping扫描 </p>
+<p>13.-n  禁止dns反向解析 </p>
+<p>14.-R  反向域名解析</p>
+<p>15.–system-dns 使用系统域名解析器 </p>
+<p>16.-sL 列表扫描</p>
+<p>17.-6 扫描tpv6地址 </p>
+<p>18.–traceroute 路由跟踪</p>
+<p>19.-F 快速扫描端口，扫描有限的端口 </p>
+<p>20.-r 随机扫描 </p>
+<p>21.–top-ports 数量（默认高危端口数量）</p>
+<p>22.-sS tcp syn 扫描 </p>
+<p>23.-sT TCP连接扫描 最稳定的扫描方式</p>
+<p>24.-sU udp扫描  非常缓慢</p>
+<p>25.-sN 空扫描 </p>
+<p>26.-sF fin扫描 使用tcp syn 扫描被防火墙拦截后 使用fin扫描穿透防火墙</p>
+<p>27.-sA  tcp ack扫描 不能确定端口是开放还是被过滤</p>
+<p>端口状态：</p>
+<p>open   close   </p>
+<p>filtered 防火墙过滤或者网络堵塞  </p>
+<p>unfitered 未被过滤，端口可访问 但是无法判断开发还是关闭</p>
+<p>open|fitered 开放还是过滤    </p>
+<p>close|fitered 不能确定是关闭还是被过滤 只可能出现在ipid idle</p>
+<p>时序选项：</p>
+<p>使用-T（0-5）启动时序扫描</p>
+<p>-T0 慢  -T1 缓慢 -T2 降低速度 -T3 根据目标自动调整 -T4 野蛮的 -T5 疯狂的 急速扫描</p>
+<p>指纹识别：</p>
+<p>1.-sV 版本探测 </p>
+<p>2.-sV –allports nmap默认跳过9100tcp端口 只有使用–allports 才可以扫描所有端口   </p>
+<p>3.-version-intensity 0-9 扫描强度设置 默认7  –version-light 2 –version-all 9</p>
+<p>4.–version-trace 获取详细版本信息</p>
+<p>5.-sS -sR rpc扫描 扫描对所以被发现开发的tcp/udp端口执行sunrpc程序null命令来确定是否为rpc端口，是则返回程序和版本号</p>
+<p>6.-O 启用操作系统扫描 </p>
+<p>7.–osscan-limit 对指定的目标进行操作系统检测 –osscan-guess 推测系统并识别</p>
+<p>结果输出：</p>
+<p>nmap -F -oN text.txt IP地址 标准保存txt</p>
+<p>-oX  xml保存  -oS  133t保存  -oG  grep保存  -oA  所有格式保存  –append-output -oN 补充保存文件</p>
+<p>脚本引擎：</p>
+<p>–script=类别这种方式 脚本目录/usr/share/nmap/scriptnmap </p>
+<p>防火墙欺骗：</p>
+<p>-f        报文分段</p>
+<p>–mtu 指定偏移大小 设置输出数据包时的最大传输大小 8的倍数</p>
+<p>-D      ip欺骗nmap </p>
+<p>-D 【dacoy1，docoy2…|RND:number】【目标】</p>
+<p>使用-D选项可以指定多个ip地址 或使用rnd 随机生成几个ip地址 </p>
+<p>源地址欺骗-sL 地址</p>
+<p>源端口欺骗 –source-port 端口 IP地址</p>
+<p>指定发包长度–date-length</p>
+<p>mac地址欺骗–spoof-mac 参数 0随机 MAC Address用户手动指定 Vendor Name指定厂商生成 </p>
+<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><p>-v 查看过程 七个顶级 默认1 </p>
+<p>-u 或-url  目标url 可直接查看目标网站是否具有注入</p>
+<p>-l   可以导入burp proxy中的日志</p>
+<p>-m 将文本中的url以此检测 可将多个目标网站url保存文本文件进行注入判断</p>
+<p>-r   从一个文本中获取http请求 可以跳过设置一些参数 可以使用burp抓包 用于对需要cookie的网站</p>
+<p>-r -force-ssl  https 或者在数据包文件中设置端口443</p>
+<p>–data 允许把数据以post请求发生 参数加引号参数 </p>
+<p>-cookie -load-cookies -drop-set-cookie  对于不采用-r 请求网站报文文件 但是需要cookie的 可以设置cookie值</p>
+<p>-user-agent，-random-agent 设置伪造http请求头中user-agent值</p>
+<p>-referer    设置位置请求中的http头的referer 当-lever参数设定为3或者为3以上的时候会尝试referer或user-angent注入</p>
+<p>-headers  额外的http头  可以通过-headers参数增加额外的https</p>
+<p>-delay      http请求延迟  可以设定两个http（s）请求间的延迟 默认没有延迟</p>
+<p>-timeout   设定超时时间  设置一个http（s）请求超过多少时间判断为超时 默认30秒</p>
+<p>-retries    设置重试超时  当http（s）超时时，可以设置重新尝试连接次数 默认3次</p>
+<p>-eval      每次请求时候执行自定义的python代码</p>
+<p>-p   手动设置想要测试的参数  -skip    手动设置不想要测试的参数   -dbms    指定数据库</p>
+<p>-os  指定数据库服务器系统    -invalid-bignum   指定无效的大数字    报错注入时使用</p>
+<p>-prefix -suffix     在payload 前后加字符    </p>
+<p>-level    五个等级  使用的payload 在xml/payloads.xml中可以看到 默认为1</p>
+<p>-risk     四个风险等级 </p>
+<p>1测试大部分语句        2会增加基于事件的测试语句         3会增加or语句的sql注入测试</p>
+<p>-time-sec        设定延迟注入的时间      默认5秒</p>
+<p>-union-cols     设定union查询字段数   默认1-10 </p>
+<p>-b -banner     返回数据库的版本号 通常是函数version（） 或者变量@@version</p>
+<p>-current-user 在大多数数据库中可以获取到数据库的用户</p>
+<p>-current-db    返回当前连接的数据库</p>
+<p>-is-dba           用户是否为管理 返回true</p>
+<p>–users           列出数据库用户</p>
+<p>-password     列出并破解数据库用户的hash</p>
+<p>-privileges     列出数据库管理员权限</p>
+<p>–roles           列出数据库管理员角色</p>
+<p>-dbs              列出系统数据库</p>
+<p>-dump -C -T -D 列出整个表的数据</p>
+<p>-dump-all      获取所以数据库表的内容</p>
+<p>-sql-query -sql-shell 运行自定义的sql语句</p>
+<p>-schema -exclude-sysdbs 列出数据库系统的架构</p>
+<p>-count   取表中数据的个数</p>
+<p>-tables -exclude-sysdbs -D 列出数据库表</p>
+<p>-columns -C -T -D  列出数据库表中的字段</p>
+<hr>
+<p>未完待续……</p>
+<p>人们只愿看到自己想看到的一切，分不清是非对错，黑白颠倒。–Hades</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/08/13/渗透测试中的工具利用/">http://FullSky`★.com/2019/08/13/渗透测试中的工具利用/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tools/"># tools</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/13/基于centos的linux学习3/">基于centos的linux学习3</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/13/上传文件中后台代码判断非法文件的几种情况/">上传文件中后台代码判断非法文件的几种情况</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

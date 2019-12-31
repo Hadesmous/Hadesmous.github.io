@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>模块的概念、包 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">模块的概念、包</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 10, 2019&nbsp;&nbsp;17:09:23</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="模块的概念"><a href="#模块的概念" class="headerlink" title="模块的概念"></a>模块的概念</h3><p>概念：一个.py文件就是一个模块，文件中存储着相似的多种功能。</p>
+<p>种类：Python标志库、第三方模块、应用程序自定义模块。</p>
+<p>模块的导入方式：</p>
+<h5 id="import-语句："><a href="#import-语句：" class="headerlink" title="import 语句："></a>import 语句：</h5><p><code>import [module1],[modeule1]...</code></p>
+<p>eg：</p>
+<p>自定义 .py 文件 cal.py ，内容写入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (x+y)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(x,y)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (x-y)</span><br><span class="line">x=<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>新建一个 .py 文件，使用 import 导入模块 cal：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cal</span><br><span class="line">print(cal.add(<span class="number">1</span>,<span class="number">2</span>))  <span class="comment">#3</span></span><br><span class="line">print(cal.sub(<span class="number">2</span>,<span class="number">1</span>))  <span class="comment">#1</span></span><br><span class="line">print(cal.x)         <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<p>import 导入模块过程：</p>
+<p>1.模块路径的搜索：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">python(sys.path) </span><br><span class="line"><span class="comment">#['D:\\pycharm\\wook\\week1', </span></span><br><span class="line"><span class="string">'D:\\pycharm\\wook'</span>, </span><br><span class="line"><span class="string">'D:\\pycharm\\PyCharm 2019.2.1\\helpers\\pycharm_display'</span>, <span class="string">'D:\\Envirement\\Python3\\Python37\\python37.zip'</span>, <span class="string">'D:\\Envirement\\Python3\\Python37\\DLLs'</span>, <span class="string">'D:\\Envirement\\Python3\\Python37\\lib'</span>, </span><br><span class="line"><span class="string">'D:\\Envirement\\Python3\\Python37'</span>, <span class="string">'D:\\Envirement\\Python3\\Python37\\lib\\site-packages'</span>, </span><br><span class="line"><span class="string">'D:\\pycharm\\PyCharm 2019.2.1\\helpers\\pycharm_matplotlib_backend'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>2.从第一个路径下开始寻找相关模块。</p>
+<p>3.解释器解释模块内所有代码</p>
+<h5 id="from-从模块中调用方法"><a href="#from-从模块中调用方法" class="headerlink" title="from 从模块中调用方法"></a>from 从模块中调用方法</h5><p>只加载指定调用的模块。</p>
+<p>eg：</p>
+<p>从 cal.py 中调用 add 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cal <span class="keyword">import</span> add </span><br><span class="line">print(add(<span class="number">1</span>,<span class="number">2</span>))  <span class="comment">#3</span></span><br><span class="line">print(cal.add(<span class="number">2</span>,<span class="number">1</span>))  <span class="comment">#name 'cal' is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> cal <span class="keyword">import</span> * <span class="comment">#加载所有变量</span></span><br><span class="line">print(add(<span class="number">1</span>,<span class="number">2</span>))  <span class="comment">#3</span></span><br><span class="line">print(x)         <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<p>当调用的模块中方法名和同文件中的函数名重复时执行相对位置较后的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'ok1'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'ok2'</span>)</span><br><span class="line">f()             <span class="comment">#ok2</span></span><br><span class="line">*******************************</span><br><span class="line"><span class="keyword">from</span> cal <span class="keyword">import</span> *</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span></span><br><span class="line">	print(x+y+<span class="number">2</span>)</span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>)        <span class="comment">#5</span></span><br><span class="line">*******************************</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span></span><br><span class="line">	print(x+y+<span class="number">2</span>)</span><br><span class="line"><span class="keyword">from</span> cal <span class="keyword">import</span> *</span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>)         <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<p>模块中方法调用时取别名：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cal <span class="keyword">import</span> add <span class="keyword">as</span> a</span><br><span class="line">print(a.(<span class="number">1</span>,<span class="number">2</span>))      <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h3><p>为了避免模块名冲突，python 又引入了按目录来组织模块的方法，称为包，包是用来组织模块的文件夹。每个包下包含一个 _init_ .py 文件。</p>
+<p>包的调用：</p>
+<p>eg：</p>
+<p>web 包下 py 文件内容分别为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#logger.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logger</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'logging'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>调用 web 包中的 log 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> web <span class="keyword">import</span> log <span class="comment">#一层调用</span></span><br><span class="line">log.logger()   <span class="comment">#logging</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web.web1 <span class="keyword">import</span> log <span class="comment">#二层调用</span></span><br><span class="line">log.logger()   <span class="comment">#logging</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web.web1.log <span class="keyword">import</span> log <span class="comment">#二层调用模块中的方法</span></span><br><span class="line">logger()       <span class="comment">#logging</span></span><br></pre></td></tr></table></figure>
+
+<p>调用包的过程：</p>
+<p><code>import [package]</code> 只执行 _init_.py 文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> web </span><br><span class="line">print(web.main.x)  <span class="comment">#module 'web' has no attribute 'main'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web <span class="keyword">import</span> main</span><br><span class="line">print(main.x)     <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>新建项目如下：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/55555.png" alt></p>
+<p>各文件中代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#logger.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_function</span><span class="params">()</span>:</span></span><br><span class="line">	print(logging)</span><br><span class="line">	</span><br><span class="line"><span class="comment">#main.py</span></span><br><span class="line"><span class="keyword">import</span> logger</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	logger.log_function()</span><br><span class="line"></span><br><span class="line"><span class="comment">#bin.py</span></span><br><span class="line"><span class="keyword">from</span> mudule <span class="keyword">import</span> main</span><br><span class="line">main.main()</span><br></pre></td></tr></table></figure>
+
+<p>在 pycharm 中执行结果：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/666.png" alt></p>
+<p>在命令行的执行结果：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/44.png" alt></p>
+<p>这种调用，在 python 解释器中可执行成功，但是在命令行下不能执行成功，报错内容为没有模块名字为 mudule 。</p>
+<p>为什么在 pycharm 中没有报错呢？</p>
+<p>原因在于 python 解释器在第一层路径 D:/pycharm/ATM/bin/bin.py 中找不到 mudule后， 自动搜索路径父级路径 D:/pycharm/ATM/bin ，该路径中仍然找不到，于是继续寻找父路径  D:/pycharm/ATM，该路径中存在 mudule ，于是执行成功。</p>
+<p>而在命令行下却因为第一层找不到该模块而报错。</p>
+<p>解决方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">WAY=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  <span class="comment">#D:\pycharm\ATM</span></span><br><span class="line">sys.path.append(WAY)  <span class="comment">#自动添加搜索路径</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/445.png" alt></p>
+<h3 id="name-变量"><a href="#name-变量" class="headerlink" title="__name__变量"></a>__name__变量</h3><p>在同级目录下新建 name.py 和 function.py 观察如下代码的执行效果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#name.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	<span class="title">print</span><span class="params">(<span class="string">'foo...'</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(__name__)</span>     #<span class="title">__main__</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">#<span class="title">function</span>.<span class="title">py</span></span></span><br><span class="line"><span class="function"><span class="title">import</span> <span class="title">function</span>     #<span class="title">function</span></span></span><br></pre></td></tr></table></figure>
+
+<p>__name__ 变量返回值具有如下规则：</p>
+<p>在一个文件中执行时，__name__ 返回 __main__ ，当在调用处的文件中执行时，__name__ 返回该文件的名字。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/09/10/模块的概念/">http://FullSky`★.com/2019/09/10/模块的概念/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/11/8086指令系统/">8086数据传送指令</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/09/python正则实现计算器/">python正则实现计算器</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

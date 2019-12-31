@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>8086数据传送指令 | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">8086数据传送指令</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 11, 2019&nbsp;&nbsp;17:02:37</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="数据传输指令"><a href="#数据传输指令" class="headerlink" title="数据传输指令"></a>数据传输指令</h3><p>用于在寄存器、存储器和输入输出端口之间传送数据或地址，可分为通用数据传送指令、累加器专用传送指令、地址传送指令和标志传送指令。</p>
+<h4 id="通用数据传送指令："><a href="#通用数据传送指令：" class="headerlink" title="通用数据传送指令："></a>通用数据传送指令：</h4><p>传送指令 MOV</p>
+<p>格式：<code>MOV 目的操作数，源操作数</code></p>
+<p>功能：将源操作数存入目的地址中，执行后，源操作数不变。对标志位无影响。</p>
+<p>应注意：源操作数和目的操作数的数据类型必须一致。立即数和 CS （代码段寄存器）不能作为目的操作数，不能将立即数直接送到段寄存器；两个存储器之间不能直接进行数据传送；两个段寄存器之间也不能直接进行数据传送。</p>
+<p>MOV 指令的传送方向示意图：</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175639.jpg" alt></p>
+<p>根据对传送方向的规定，MOV 指令有以下几种使用形式：</p>
+<p>1.）将立即数传送到通用寄存器或存储单元</p>
+<p>MOV 指令可以实现立即数到通用寄存器或存储单元的传送，源操作数为8位或16位的立即数，立即数的类型必须与寄存器字长或存储单元类型一致，8位立即数可以送入8位或16位寄存器，16位只能送入16位的寄存器或存储单元。</p>
+<p>eg：</p>
+<p><code>MOV CL,4BH</code>                     ；将8 位立即数 4BH 送入通用寄存器 CL </p>
+<p><code>MOV DI,COUNT</code>                  ；COUNT 为符号常数，将其值传送到通用寄存器 DI </p>
+<p><code>MOV DI,2008</code>                    ；将十进制数 2008 传送到 DS 段 DI 内容所指地址的字单元</p>
+<p><code>MOV ES:[100H],&#39;B&#39;</code>          ；将字符 B 的 ASCII 码传送到 ES 段偏移 100H 的字节单元</p>
+<p>2.）寄存器之间的数据传送</p>
+<p>MOV 指令可以实现寄存器之间的数据传送，注意两个寄存器的数据类型必须一致，即两个寄存器应同为8位或16位寄存器。</p>
+<p>eg：</p>
+<p><code>MOV CL,DL</code>                        ；将8位通用寄存器 DL 的内容传送到8位通用寄存器 CH</p>
+<p><code>MOV DI,BX</code>                        ；将16位通用寄存器 BX 的内容传送到 16 位通用寄存器 DI</p>
+<p><code>MOV DS,AX</code>                        ；将16位通用寄存器 AX 的内容传到数据段寄存器 DS</p>
+<p>3.）寄存器与存储单元之间的数据传送</p>
+<p>MOV 指令可以实现寄存器到存储单元的数据传送，也可以实现存储单元到寄存器的数据传送。操作数类型必须一致。</p>
+<p>eg：</p>
+<p><code>MOV [200H],DX</code>                 ；将 DX 中的内容传送到 DS 段偏移 200H 的字单元</p>
+<p><code>MOV AL,VAR</code>                       ；将符号地址 VAR 所指的字符单元内容传到 AL</p>
+<p><code>MOV [SI],DS</code>                      ；将 DS 的内容传送到 SI 所指的字单元</p>
+<p><code>MOV ES,DX</code>                          ；将 BX 所指的存储单元的内容传送到 ES</p>
+<p>堆栈操作指令：</p>
+<p>堆栈是在存储器中开辟的一个特殊区域，遵循“后进先出”的存取原则，段基地址存放在堆栈段寄存器 SS 中。堆栈操作只能在栈顶进行，堆栈的操作有进栈和出栈两种。</p>
+<p>1.）进栈指令 PUSH </p>
+<p>格式：<code>PUSH 源操作数</code></p>
+<p>功能：修改堆栈指针 SP ，然后将源操作数压入栈顶单元。</p>
+<p>说明：源操作数可以是寄存器操作数、段寄存器操作数或存储器操作数。长度必须是16位。</p>
+<p>2.）出栈指令 POP</p>
+<p>格式：<code>POP 目的操作数</code></p>
+<p>功能：将栈顶单元的内容弹出到目的地址中，然后修改堆栈指针 SP。</p>
+<p>说明：目的操作数可以是通用寄存器操作数、除 CS 以外的段寄存器操作数或字类型的存储器操作数，长度必须为16位。</p>
+<p>3.）交换指令 XCHG</p>
+<p>格式：<code>XCHG 目的操作数，源操作数</code></p>
+<p>功能：将源操作数和目的操作数互换。</p>
+<h4 id="累计器专用传送指令"><a href="#累计器专用传送指令" class="headerlink" title="累计器专用传送指令"></a>累计器专用传送指令</h4><p>1.）XTAT 换码指令</p>
+<p>一般用来实现码制之间的转换，又称查表转换指令。</p>
+<p>格式：<code>XTAT</code></p>
+<p>功能：将累加器 AL 中的一个值转换为内存表格中的一个值，再传送到累加器 AL 中。</p>
+<p>eg：</p>
+<p><code>MOV BX, 4C02H</code></p>
+<p><code>MOV AL,08H</code></p>
+<p><code>XTAT</code></p>
+<p>指令执行时，先计算 BX+ AL ，得到有效地址 4C0AH ，在将 4C0AH 所指的字节单元中的数据送入 AL 寄存器。</p>
+<p>2.）输入输出指令</p>
+<p>专门用于在输入输出端口和累加器之间进行数据传送的指令。</p>
+<p>（1.）输入指令 IN</p>
+<p>短格式：<code>IN AL/AX ,PORT</code></p>
+<p>长格式：<code>IN AL/AX,DX</code></p>
+<p>功能：从无符号数 PORT 或 DX 寄存器所指的端口输入一个字节数据到累加器 AL 中，或输入一个字数据到累加器 AX 中。</p>
+<p>说明：可以用一个无符号数 PORT 直接给出外设端口地址，取值为 0-FFH ，也可以用 DX 寄存器间接给出外设端口地址，取值 0-FFFFH。</p>
+<p>eg：</p>
+<p><code>IN AL,60H</code>               ；将 60H 端口中的数据读到 AL 中</p>
+<p><code>IN AX,60H</code>               ；将 60H 端口中的数据读到 AX 中</p>
+<p><code>MOV DX,3FFH</code>            ；将端口地址寄存到 DX 中</p>
+<p><code>IN AL,DX</code>                  ；将 DX 所指定的端口中的数据读到 AL 中</p>
+<p><code>IN AX,DX</code>                  ；将 DX 所指定的端口中的数据读到 AL 中，将 （DX）+1 所指定的端口中内容数据读到 AH 中。</p>
+<p>（2.）输出指令 OUT</p>
+<p>短格式：<code>OUT PORT ,AL/AX</code></p>
+<p>长格式：<code>OUT DX,AL/AX</code></p>
+<p>功能：实现输出，其数据传送方向与 IN 指令相反。</p>
+<h4 id="地址传送指令"><a href="#地址传送指令" class="headerlink" title="地址传送指令"></a>地址传送指令</h4><p>地址传送指令实现操作数地址信息的传送。</p>
+<p>1.）有效地址送寄存器指令 LEA</p>
+<p>格式：<code>LEA 通用寄存器，源操作数</code></p>
+<p>功能：将源操作数的偏移地址送入通用寄存器。</p>
+<p>说明：指令中的目的操作数只能使用 16 位通用寄存器，不能使用段寄存器，源操作数只能是存储器操作数。</p>
+<p>eg：</p>
+<p><code>MOV BX,0200H</code></p>
+<p><code>MOV SI,3000H</code></p>
+<p><code>LEA BP.[BX+SI+6]</code>   ；将源操作数的有效地址 3206H 送到 BP 寄存器中</p>
+<p>2.）指针送寄存器和 DS 指令 LDS</p>
+<p>格式：<code>LDS 通用寄存器，源操作数</code></p>
+<p>功能：将源操作数指示的双字节内容送入通用寄存器和 DS ，低两字节内容送到通用寄存器，高两字节内容送入 DS。</p>
+<p>说明：指令中的目的操作数只能使用 16 位通用寄存器，不能使用段寄存器，源操作数只能是存储器操作数。</p>
+<p>eg：</p>
+<p><code>LDS BX,[100H]</code></p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175651.jpg" alt></p>
+<p>3.）指针送寄存器和 ES 指令 LES</p>
+<p>LES 和 LDS 的区别在于，传送地址时将高地址两字节送入 ES ，而不是 DS。</p>
+<h4 id="标志传送指令"><a href="#标志传送指令" class="headerlink" title="标志传送指令"></a>标志传送指令</h4><p>标志传送指令专门用于对标志寄存器进行操作。    LAHF 和 SAHF 只对标志寄存器的低8位进行操作，而 PUSHF 和 POPF 对整个标志寄存器进行操作。</p>
+<p>1.）取标志指令 LAHF</p>
+<p>格式：<code>LAHF</code></p>
+<p>功能：将标志寄存器的低8位传送到累加器 AH。</p>
+<p>标准寄存器中低8位中有五个状态标志位，LAHF 指令将这些标志位传送到 AH 中的对应位。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175658.jpg" alt></p>
+<p>2.）置标志指令 SAHF</p>
+<p>格式：<code>SAHF</code></p>
+<p>功能：将累加器 AH 中的内容送到标志寄存器的低8位。影响低8位中的五种状态标志位。</p>
+<p><img src="https://hades-1300189337.cos.ap-chengdu.myqcloud.com/blog%E5%9B%BE%E7%89%87/1/IMG_20190913_175702.jpg" alt></p>
+<p>3.）标志进栈/出栈指令 PUSHF/POPF</p>
+<p>格式：<code>PUSHF</code></p>
+<p>格式：<code>POPF</code></p>
+<p>功能：与 PUSH 不同之处在于，压入堆栈的是标志寄存器的内容；与 POP 不同之处在于，弹出的栈顶元素进入标志寄存器中。</p>
+<hr>
+<p>[^]:  注：本篇中所有配图均来自《汇编语言程序设计实用教程》–任向民 ，如有侵权，请联系作者删除！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2019/09/11/8086指令系统/">http://FullSky`★.com/2019/09/11/8086指令系统/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/汇编/"># 汇编</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/13/8086运算、位移、处理器指令/">8086运算、位移、处理器指令</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/10/模块的概念/">模块的概念、包</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
