@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="FullSky">
+
+
+
+
+
+<title>matplot-fou | FullSky</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+    <script type="text/javascript" src="/js/love.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">FullSky&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">FullSky&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">matplot-fou</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">FullSky</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">一月 12, 2020&nbsp;&nbsp;18:14:01</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/category/Mateplotlib/">Mateplotlib</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="1-绘制频次直方图"><a href="#1-绘制频次直方图" class="headerlink" title="1.绘制频次直方图"></a>1.绘制频次直方图</h4><p>先来画一个简单的直方图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">plt.style.use(<span class="string">'seaborn-white'</span>)</span><br><span class="line">data = np.random.randn(<span class="number">1000</span>)</span><br><span class="line">plt.hist(data)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C1.png" alt="1"></p>
+<p>来看一下 plt.hist 的帮助文档：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Signature:</span></span><br><span class="line">plt.hist(x,bins=<span class="literal">None</span>,range=<span class="literal">None</span>,density=<span class="literal">None</span>,weights=<span class="literal">None</span>,cumulative=<span class="literal">False</span>,</span><br><span class="line">    bottom=<span class="literal">None</span>,histtype=<span class="string">'bar'</span>,align=<span class="string">'mid'</span>,orientation=<span class="string">'vertical'</span>,rwidth=<span class="literal">None</span>,log=<span class="literal">False</span>,</span><br><span class="line">    color=<span class="literal">None</span>,label=<span class="literal">None</span>,stacked=<span class="literal">False</span>,normed=<span class="literal">None</span>,*,data=<span class="literal">None</span>,**kwargs,)</span><br><span class="line"><span class="comment">#Docstring:</span></span><br><span class="line"><span class="comment">#Plot a histogram. 绘制直方图</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="部分参数解析"><a href="#部分参数解析" class="headerlink" title="部分参数解析"></a>部分参数解析</h5><h6 id="x"><a href="#x" class="headerlink" title="x"></a>x</h6><p>数组或数组的序列。</p>
+<h6 id="bins"><a href="#bins" class="headerlink" title="bins"></a>bins</h6><p>int 或 sequence 或 str，可选。是将x坐标轴分解的方法。可以直接一个数字，一个序列和一个字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = [<span class="number">1</span>,<span class="number">1.2</span>,<span class="number">3</span>,<span class="number">3.5</span>,<span class="number">4</span>,<span class="number">4.6</span>]</span><br><span class="line">plt.hist(d,bins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C2.png" alt="1"></p>
+<p>可以看到，图像的x坐标轴被分为[1,2)，[2,3)，[3,4]。</p>
+<h6 id="range"><a href="#range" class="headerlink" title="range"></a>range</h6><p>范围 tuple 或 None 可选。用来定义直方图的上下范围，如果没有提供，则默认为 x.min() x.max()。如果 bins 是一个序列，则 range 无效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = [<span class="number">1</span>,<span class="number">1.2</span>,<span class="number">3</span>,<span class="number">3.5</span>,<span class="number">4</span>,<span class="number">4.6</span>]</span><br><span class="line">plt.hist(d,bins=<span class="number">4</span>,range=[<span class="number">2</span>,<span class="number">15</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C3.png" alt="1"></p>
+<p>可以看到，range 指定的值就是 x 坐标的上下限。</p>
+<h6 id="density"><a href="#density" class="headerlink" title="density"></a>density</h6><p>密度，布尔值，可选。如果为 true 则返回元组的第一个元素将是形成概率密度的标准化计数，即直方图的面积积分为1。对于，normed 和 density 参数，如果两者都是 True ，则使用 density 如果两者都没有设置，默认为 False ，如果同时设置了 normed 和 density 则会产生错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(d)</span><br><span class="line">plt.hist(x,density=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(x)</span><br><span class="line">plt.hist(x)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C4.png" alt="1"></p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C5.png" alt="1"></p>
+<h6 id="weights"><a href="#weights" class="headerlink" title="weights"></a>weights</h6><p>权重 数组或 None，可选。与 x 形状相同的权重数组，如果 normed 或 density 的值是 True ，密度的积分超出范围扔为1。</p>
+<h6 id="cumulative"><a href="#cumulative" class="headerlink" title="cumulative"></a>cumulative</h6><p>bool 可选，如果为 true 计算直方图中每个  bin 中的数值，最后一个的面积为1。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(x)</span><br><span class="line">plt.hist(x,cumulative=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C6.png" alt="1"></p>
+<h6 id="bottom"><a href="#bottom" class="headerlink" title="bottom"></a>bottom</h6><p>数组，标量或 None，每个图像底部基线的位置，如果是标量，每个图像的基线移动相同的量，如果是一个数组，则每个 bin 独立移动，数组的个数必须与图中图像的个数相同。</p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C7.png" alt="1"></p>
+<h6 id="histtype"><a href="#histtype" class="headerlink" title="histtype"></a>histtype</h6><p>histtype : {‘bar’, ‘barstacked’, ‘step’,  ‘stepfilled’}, 可选要绘制的直方图类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.bar</span></span><br><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(d)</span><br><span class="line">plt.hist(x,density=<span class="literal">True</span>,histtype=<span class="string">'bar'</span>)</span><br><span class="line"><span class="comment">#2.barstacked</span></span><br><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(d)</span><br><span class="line">plt.hist(x,density=<span class="literal">True</span>,histtype=<span class="string">'barstacked'</span>)</span><br><span class="line"><span class="comment">#3.step</span></span><br><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(d)</span><br><span class="line">plt.hist(x,density=<span class="literal">True</span>,histtype=<span class="string">'step'</span>)</span><br><span class="line"><span class="comment">#4.stepfilled</span></span><br><span class="line">d = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">25</span>)</span><br><span class="line">x = np.sin(d)</span><br><span class="line">plt.hist(x,density=<span class="literal">True</span>,histtype=<span class="string">'stepfilled'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>按照顺序各种样式如下：</p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C8.png" alt="1"></p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C9.png" alt="1"></p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C10.png" alt="1"></p>
+<p><img src="C:%5CUsers%5CHades%5CDesktop%5C4%5C11.png" alt="1"></p>
+<h6 id="align"><a href="#align" class="headerlink" title="align"></a>align</h6><p>align : {‘left’, ‘mid’, ‘right’}, optional}</p>
+<p>对齐方式。默认值为 mid。</p>
+<h6 id="orientation"><a href="#orientation" class="headerlink" title="orientation"></a>orientation</h6><p>orientation : {‘horizontal’, ‘vertical’}, optional</p>
+<p>方向：{‘horizontal’，’vertical’}，可选</p>
+<h6 id="rwidth"><a href="#rwidth" class="headerlink" title="rwidth"></a>rwidth</h6><p>标量或无，可选。</p>
+<p>条形图的相对宽度，是直方图宽度的一部分，如果“无”，自动计算宽度。</p>
+<h6 id="log"><a href="#log" class="headerlink" title="log"></a>log</h6><p>bool ，可选。</p>
+<h6 id="color"><a href="#color" class="headerlink" title="color"></a>color</h6><p>标签，str 或 none 可选</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>FullSky</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://FullSky`★.com/2020/01/12/matplot-fou/">http://FullSky`★.com/2020/01/12/matplot-fou/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>能通途偶遇在这星球上，我多么够运。</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Data/"># Data</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/06/22/杂记/">杂记</a>
+            
+            
+            <a class="next" rel="next" href="/2019/12/31/matplot-thr/">matplot-thr</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© FullSky | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+<script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.οnresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"node_modules\\live2d-widget-models\\packages\\live2d-widget-model-wanko"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
